@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Johannes Engels">
 
-<title>Basics of Statistics and R</title>
+<title>Basics of Statistics and R - Working With RStudio and Git(Hub)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1stats_1basics.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./1stats_2sampling.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -92,7 +73,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface - Aim and Scope</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_gitsetup.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="./R_gitsetup.html">Working With RStudio and Git(Hub)</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -119,7 +100,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface - Aim and Scope</span></a>
   </div>
 </li>
@@ -157,7 +138,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_gitsetup.html" class="sidebar-item-text sidebar-link">
+  <a href="./R_gitsetup.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Working With RStudio and Git(Hub)</span></a>
   </div>
 </li>
@@ -179,13 +160,11 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface---aim-and-scope" id="toc-preface---aim-and-scope" class="nav-link active" data-scroll-target="#preface---aim-and-scope">Preface - Aim and Scope</a>
+  <li><a href="#why-git" id="toc-why-git" class="nav-link active" data-scroll-target="#why-git">Why Git?</a></li>
+  <li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git">Installing Git</a>
   <ul class="collapse">
-  <li><a href="#what-is-this" id="toc-what-is-this" class="nav-link" data-scroll-target="#what-is-this">What is this?</a>
-  <ul class="collapse">
-  <li><a href="#arent-there-many-resources-like-this-already" id="toc-arent-there-many-resources-like-this-already" class="nav-link" data-scroll-target="#arent-there-many-resources-like-this-already">Aren’t there many resources like this already?</a></li>
-  </ul></li>
-  <li><a href="#the-core-structure" id="toc-the-core-structure" class="nav-link" data-scroll-target="#the-core-structure">The Core Structure</a></li>
+  <li><a href="#version-1-git-over-desktop-client" id="toc-version-1-git-over-desktop-client" class="nav-link" data-scroll-target="#version-1-git-over-desktop-client">Version 1: Git over desktop client</a></li>
+  <li><a href="#version-2-git-in-rstudio" id="toc-version-2-git-in-rstudio" class="nav-link" data-scroll-target="#version-2-git-in-rstudio">Version 2: Git in RStudio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -195,19 +174,13 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Basics of Statistics and R</h1>
+<h1 class="title">Working With RStudio and Git(Hub)</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Johannes Engels </p>
-          </div>
-  </div>
     
   
     
@@ -216,43 +189,34 @@ div.csl-indent {
 
 </header>
 
-<section id="preface---aim-and-scope" class="level1 unnumbered">
-<h1 class="unnumbered">Preface - Aim and Scope</h1>
+<p>This is about installing/setting up Git and R. If you have already done so or have your own solution, feel free to ignore the following content.</p>
 <section id="this-page-contains" class="level4">
 <h4 class="anchored" data-anchor-id="this-page-contains">This page contains …</h4>
-<p>… a quick overview of what this book is and what it is intended for, as well as how to use it.</p>
+<p>… a quick overview of how to set up a GitHub (or whatever tool you want to use) on your machine. I’ll show you two ways of doing it - which one you choose is up to you (you can even run both, as I do). If you just want to experiment, I recommend the desktop client at first, but for people who are serious about working with R or code in general, the second version might provide a better workflow.</p>
 </section>
-<section id="what-is-this" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-this">What is this?</h2>
-<p>This is not an exhaustive book featuring deep dives into the history or application of specific statistics concepts, ideas and methods. It is also not meant to be a textbook accompanying a university course - although I might use it in this way in the future.</p>
-<p>Instead, this is meant to be a collection of small texts and examples serving as primers on core statistical concepts, methods and workflows. The aim here is to present the basic ideas (as well as their execution in R) and explain the reasons behind these ideas, in order to give you a general understanding as to what is happening. I will also point you in the right direction if you want to dive deeper.</p>
-<section id="arent-there-many-resources-like-this-already" class="level3">
-<h3 class="anchored" data-anchor-id="arent-there-many-resources-like-this-already">Aren’t there many resources like this already?</h3>
-<p>Yes, and no. Although a lot of books have been written about the core ideas behind statistical methods, and many web resources about the application of these methods in any given statistical program exist, these suffer from some major drawbacks:</p>
-<ul>
-<li><p>Books are long and nobody wants to read anymore. I hope that my way of explaining stuff as concise as possible, as well as my way of writing will resonate in a way that many “dry” statistics textbooks simply can’t.</p></li>
-<li><p>While Andy Field’s <span class="citation" data-cites="Field2012">(<a href="references.html#ref-Field2012" role="doc-biblioref">2012</a>)</span> is still a great book on the subject, it was published in 2012 and much of the code used is unfortunately wildly out-of-date. Don’t get me wrong, most of it will still work fine. However, better and more user-friendly ways to work in R have emerged since.</p></li>
-<li><p>At the end of the day statistics is math, and math people love communicating via formulas and mathematical notations. I don’t know about you, but unfortunately my brain shuts off whenever I see more than two mathematical formulas in a text. Therefore, I will try to keep the mathematics to a minimum and instead focus on examples and comparisons to explain ideas.</p></li>
-<li><p>How-To guides tend to focus mainly on the “how” of statistical methods and not on the “why” behind it. While they might make you an expert about anything a given R (Python, …) function may be able to do, you still won’t know when and how to use them - or why you might get certain weird results back. Also, nowadays LLMs can teach you the “how” part probably better than any website ever will.</p></li>
-<li><p>Most statistics websites are run by professional website owners. This is not meant as a dig at them - they can do whatever they want - but I personally hate seeing ads and cookie-popups when I just want to find out why my code won’t work. Therefore, you won’t find ads or cookie banners here, because I don’t care who you are. :)</p></li>
-</ul>
+<section id="why-git" class="level2">
+<h2 class="anchored" data-anchor-id="why-git">Why Git?</h2>
+<p>Have you ever accidentally deleted a file and then not found a way to restore it? Have you ever overwritten some important detail in a document and not been able to recover it? Do these situations still haunt you in your dreams? It doesn’t have to be like that! Git is a type of <strong>version control</strong> for your machine, allowing you to manually set <strong>Checkpoints</strong> for your progress that you can restore at any time for the entire folder or individual files within it.</p>
+<p>Going even further, GitHub is a online database where you can upload these checkpoints. While GitHub is the most popular repository, there are many others that build on git or similar structures to offer version control of your files. Now you may ask yourself: “Why would I want to upload my personal projects to the internet?” Well, here are some of the arguments: - <strong>Remote data storage:</strong> Yes, you can save your progress locally. But if something happens to your machine, you’re still fucked - no matter how many copies you saved. Keeping copies in different places is always a good idea (see <a href="https://www.seagate.com/blog/what-is-a-3-2-1-backup-strategy/">3-2-1 backup recommendations</a>), and GitHub’s owners (Microsoft) should be less likely to lose your data than you yourself. - <strong>Easy Cooperation:</strong> If you’ve ever worked with other people on the same document, you know what a pain that can be. While Google Docs etc. have already done their part, I still have nightmares about mailing Word documents and PowerPoint presentations back and forth, losing track of who modified what in the process. With GitHub, this is no problem as long as there aren’t multiple people editing the exact same word! (slight exaggeration) - <strong>Public sharing of tools:</strong> Whenever you create something to solve a problem, it’s reasonable to assume that you’re not the only one having this problem. And now, if you’ve already built a solution, why not just share it? Make everyone’s lives just a bit easier. GitHub allows that if you choose to make your code visible to the public. In fact, many of the R packages you will use are hosted on GitHub (and so is <a href="https://github.com/rstudio/rstudio">RStudio</a>), as well as the page you’re on right now. Neat, right? :) - <strong>Issue tracking:</strong> If you build something that other people can use, GitHub can be a great way to collect and keep track of feedback and error reports. If you’re lucky, some of your users might even contribute their own improvements to your project!</p>
 </section>
+<section id="installing-git" class="level2">
+<h2 class="anchored" data-anchor-id="installing-git">Installing Git</h2>
+<section id="step-0-make-an-account" class="level4">
+<h4 class="anchored" data-anchor-id="step-0-make-an-account">Step 0: Make an account</h4>
+<p>This should go without saying, but if you want to use GitHub, you need a GitHub account (don’t worry, it’s free and the basic version is more than enough usually). If you want to use another service, you’ll probably need an account there - and if you don’t want to use anything, you can obviously skip this step. Side Note: Did you know that as a student, you can get GitHub Pro for free? <a href="https://education.github.com/discount_requests/application">See here</a> for more information!</p>
 </section>
-<section id="the-core-structure" class="level2">
-<h2 class="anchored" data-anchor-id="the-core-structure">The Core Structure</h2>
-<p>This also means that this isn’t necessarily designed to be read front-to-back. Instead, I would encourage you to jump to a specific subject whenever you encounter it, and work your way from there until the end of your issues.</p>
-<p>However, I have still organized the book into subsections that (in my view) link together logically connected subjects and methods, going from simple methods and concepts on towards more complex implementations. However, the sprawling nature of statistical methods and coding means that forcing everything into a linear progression would do more harm than good. Therefore, while you may encounter basic concepts in a given topic (like “Plotting Data” in the main topic “Descriptive Statistics”), you will also find expansions of these contexts in separate topics (in this case “Data Plotting in R”).</p>
-<p>To emphasize this further, everything that centers on using R, and less on statistical methodology has been organized into it’s own part in the structure. While the <strong>numbered parts</strong> deal with statistics, <strong>part R</strong> focuses on using R and RStudio. I would encourage everyone who is not familiar with R (or certain packages I frequently use) to look at this part whenever you’re not sure what I’m doing or why I’m doing things in a certain way - you’ll hopefully find an explanation there.</p>
+<section id="version-1-git-over-desktop-client" class="level3">
+<h3 class="anchored" data-anchor-id="version-1-git-over-desktop-client">Version 1: Git over desktop client</h3>
+<p>In this version, all the interactions with GitHub will be handled automatically by a chosen software, and you won’t have to worry about anything. While this can be very convenient, keep in mind that in this way <strong>version control only works with this client</strong>! Meaning that if you want to sync something not intended, you might be in for an annoying time.</p>
+<p>If you want to go this way, there is a whole boatload of potential desktop clients to choose from. If you for example already use <em>VS Code</em> for other projects, there’s a <a href="https://code.visualstudio.com/docs/sourcecontrol/github">Git integration built in</a> and you’ll find plenty of resources online to set that up, as well as plenty of plugins to expand it. Going beyond VS Code, GitHub has <a href="https://desktop.github.com/">it’s own desktop client</a> that’s able to sync any folder on your device. However, the last time I used it, I found it to be very annoying and clunky. The better alternative in my view is <a href="https://www.gitkraken.com/">GitKraken</a>. The Team behind GitKraken is also responsible for the VS Code GitLens extension if you want to upgrade its capabilities.</p>
+</section>
+<section id="version-2-git-in-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="version-2-git-in-rstudio">Version 2: Git in RStudio</h3>
 <hr>
-<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-22 15:39</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
-<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/index.qmd">here</a>.</p>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-22 16:17</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/R_gitsetup.qmd">here</a>.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-Field2012" class="csl-entry" role="listitem">
-Field, Andy P., Jeremy Miles, and Zoë Field. 2012. <em>Discovering Statistics Using <span>R</span></em>. London ; Thousand Oaks, Calif: Sage.
-</div>
-</div>
 </section>
 </section>
 
@@ -492,10 +456,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./1stats_2sampling.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sampling</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1stats_1basics.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Basic Idea of Statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

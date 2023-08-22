@@ -1,0 +1,44 @@
+# Working With RStudio and Git(Hub) {.unnumbered}
+
+```{r setup, include=FALSE}
+library(reticulate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is about installing/setting up Git and R. If you have already done so or have your own solution, feel free to ignore the following content.
+
+#### This page contains ...
+
+... a quick overview of how to set up a GitHub (or whatever tool you want to use) on your machine. I'll show you two ways of doing it - which one you choose is up to you (you can even run both, as I do). If you just want to experiment, I recommend the desktop client at first, but for people who are serious about working with R or code in general, the second version might provide a better workflow.
+
+## Why Git?
+
+Have you ever accidentally deleted a file and then not found a way to restore it? Have you ever overwritten some important detail in a document and not been able to recover it? Do these situations still haunt you in your dreams? It doesn't have to be like that! Git is a type of **version control** for your machine, allowing you to manually set **Checkpoints** for your progress that you can restore at any time for the entire folder or individual files within it.
+
+Going even further, GitHub is a online database where you can upload these checkpoints. While GitHub is the most popular repository, there are many others that build on git or similar structures to offer version control of your files. Now you may ask yourself: "Why would I want to upload my personal projects to the internet?" Well, here are some of the arguments: - **Remote data storage:** Yes, you can save your progress locally. But if something happens to your machine, you're still fucked - no matter how many copies you saved. Keeping copies in different places is always a good idea (see [3-2-1 backup recommendations](https://www.seagate.com/blog/what-is-a-3-2-1-backup-strategy/)), and GitHub's owners (Microsoft) should be less likely to lose your data than you yourself. - **Easy Cooperation:** If you've ever worked with other people on the same document, you know what a pain that can be. While Google Docs etc. have already done their part, I still have nightmares about mailing Word documents and PowerPoint presentations back and forth, losing track of who modified what in the process. With GitHub, this is no problem as long as there aren't multiple people editing the exact same word! (slight exaggeration) - **Public sharing of tools:** Whenever you create something to solve a problem, it's reasonable to assume that you're not the only one having this problem. And now, if you've already built a solution, why not just share it? Make everyone's lives just a bit easier. GitHub allows that if you choose to make your code visible to the public. In fact, many of the R packages you will use are hosted on GitHub (and so is [RStudio](https://github.com/rstudio/rstudio)), as well as the page you're on right now. Neat, right? :) - **Issue tracking:** If you build something that other people can use, GitHub can be a great way to collect and keep track of feedback and error reports. If you're lucky, some of your users might even contribute their own improvements to your project!
+
+## Installing Git
+
+#### Step 0: Make an account
+
+This should go without saying, but if you want to use GitHub, you need a GitHub account (don't worry, it's free and the basic version is more than enough usually). If you want to use another service, you'll probably need an account there - and if you don't want to use anything, you can obviously skip this step. Side Note: Did you know that as a student, you can get GitHub Pro for free? [See here](https://education.github.com/discount_requests/application) for more information!
+
+### Version 1: Git over desktop client
+
+In this version, all the interactions with GitHub will be handled automatically by a chosen software, and you won't have to worry about anything. While this can be very convenient, keep in mind that in this way **version control only works with this client**! Meaning that if you want to sync something not intended, you might be in for an annoying time.
+
+If you want to go this way, there is a whole boatload of potential desktop clients to choose from. If you for example already use *VS Code* for other projects, there's a [Git integration built in](https://code.visualstudio.com/docs/sourcecontrol/github) and you'll find plenty of resources online to set that up, as well as plenty of plugins to expand it. Going beyond VS Code, GitHub has [it's own desktop client](https://desktop.github.com/) that's able to sync any folder on your device. However, the last time I used it, I found it to be very annoying and clunky. The better alternative in my view is [GitKraken](https://www.gitkraken.com/). The Team behind GitKraken is also responsible for the VS Code GitLens extension if you want to upgrade its capabilities.
+
+### Version 2: Git in RStudio
+
+------------------------------------------------------------------------
+
+```{python sys, include = F}
+import os
+from datetime import datetime
+lastmodified = datetime.fromtimestamp(os.stat('R_gitsetup.qmd').st_mtime)
+lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD HH:MM'
+```
+
+**Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/R_gitsetup.qmd">here</a>.

@@ -13,7 +13,7 @@ book:
       - 1stats_2sampling.qmd
     - part: "R: Packages and General Deep Dives"
       chapters:
-      - 2desc_1basics.qmd
+      - R_gitsetup.qmd
     - references.qmd
 
 bibliography: references.bib
