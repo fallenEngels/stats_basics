@@ -1,0 +1,27 @@
+project:
+  type: book
+
+book:
+  title: "Basics of Statistics and R"
+  author: "Johannes Engels"
+  chapters:
+    - index.qmd
+    - part: "1: Basics of Statistics"
+      chapters:
+      - 1stats_1basics.qmd
+      - 1stats_2sampling.qmd
+    - part: "R: Packages and General Deep Dives"
+      chapters:
+      - 2desc_1basics.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: darkly
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
