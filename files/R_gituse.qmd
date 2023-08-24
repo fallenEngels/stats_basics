@@ -27,7 +27,7 @@ This in my view is the cleanest way of organizing version control, as much of th
 To keep things organized, I highly recommend selecting a dedicated folder for coding projects on your machine: If you input this folder at `Create project as subdirectory of`, RStudio will remember this and automatically select it the next time you generate a new project.
 :::
 
-![](rsc/git//Repo_clone.gif){fig-align="center"}
+![](../rsc/git/Repo_clone.gif){fig-align="center"}
 
 The big advantage of doing things this way is that the selected GitHub repository will be seen as the `origin` without needing manual setup. In this way, the project should immediately be usable, without having to worry about manually `push`ing or `pull`ing files. If there are already files in your chosen repository, these will also automatically be downloaded and made available locally.
 
@@ -47,7 +47,12 @@ Obligatory xkcd
 
 Now that you've opened your Git-synced project in RStudio, you might have already noticed something new: The `Environment` tab (usually top right) features a new tab simply labeled `Git`. When working with Git in RStudio, this tab is where all the magic happens - and everything that you otherwise would have to execute manually via the aforementioned Unix-terminal. Don't be scared, but I will now show you a graphic visualizing the basic working steps in Git that I stole from Reddit:
 
-[![](rsc/git/reddit_git.png){width="75%"}](https://www.reddit.com/r/git/comments/99ul9f/git_workflow_diagram_showcasing_the_role_of/)
+::: {#img-reddit_git}
+<a href="https://www.reddit.com/r/git/comments/99ul9f/git_workflow_diagram_showcasing_the_role_of/"> 
+  <img src="../rsc/git/reddit_git.png" width = "900"></img>
+</a>
+
+:::
 
 You should already know many of the `area`s mentioned in this image, although maybe not by this name: The `remote branch` is the repo saved on GitHub, while the `working branch` is the file structure on your current machine. The other layers in between are what makes Git so powerful for version control (and so irritating in the beginning). Here's how it works on a basic level:
 
@@ -67,7 +72,7 @@ While you should save often and therefore also commit your changes often in case
 
 Now, if you've already made some changes to your new R project, you might notice that things start to appear inside the `git`-tab un RStudio. Based on the type of change, you should see a coloured symbol appear in the "Status" column: ?(New file), A(dded), M(odified), D(eleted) and R(enamed) will probably be the ones you'll encounter most frequently. This window is RStudio's pendant to the `staging area` I just mentioned - here, files are being prepared for a git synchronization. What the command `git add` does in the image above can be achieved here by clicking the check box:
 
-![](rsc/git/Rstudio_staging.png){width="50%"}
+![](../rsc/git/Rstudio_staging.png){width="50%"}
 
 To commit your selected files, you simply have to click the aptly named "Commit" button, leave an informative commit message as to what you did and why (so you know what happened when you look back in a few weeks/months/years) in the now open window, and then press "Commit" there as well.
 
@@ -83,6 +88,8 @@ Luckily, Git's designers have thought of this and introduced the concept of "bra
 
 ::: {.callout-note title="Side Note"}
 Even if you're not dealing with these kinds of issues, it is probably always best to work with a separate testing branch, and **NEVER** commit untested code directly to the main branch - who knows what you might break in the process ...
+
+To make this easier to remember, if you open GitHub, you should see a message complaining that your main branch is unprotected. Setting the option to at least require pull requests (see below) is probably a good idea.
 :::
 
 When working in R, I found it easiest to employ the following workflow for new branches:
@@ -100,10 +107,16 @@ If you've ever taken a stroll through the wonderful world of open-source softwar
 Forks are basically just like branches, with the main difference being that you're not creating a new branch inside the same repository, but instead creating a new repository based on someone else's work. That way, you start out with all the work they've already committed and can then go on to tweak it to your liking. For a practical example, the [engine underlying the Firefox web browser](https://github.com/mozilla/gecko-dev) has almost 2.000 forks from users modifying security settings to their liking or [building their own web browsers](https://github.com/adonais/iceweasel) from the provided baseline (not an endorsement, just an example).
 
 ## Merging: Why can't we be friends? {.unnumbered}
-Now that you've substantially improved someone else's code (or toyed around in a separate branch and want to update the main branch), another step is necessary: merging the changes.
-If you're the owner of both the original and the new and improved branch, this is not an issue and can be done with relative ease. Out of convenience, I will demonstrate this using GitHub, but as before, you can also use [Git via terminal](https://happygitwithr.com/git-branches).
 
+Now that you've substantially improved someone else's code (or toyed around in a separate branch and want to update the main branch), another step is necessary: merging the changes. If you're the owner of both the original (main in my case) and the new and improved branch (indev in my case), this is not an issue and can be done with relative ease. Out of convenience, I will demonstrate this using GitHub, but as before, you can also use [Git via terminal](https://happygitwithr.com/git-branches).
 
+To merge two branches via GitHub, go to your project's repository and in the "Pull requests" tab click on `New pull request`. Now select the new branch, and you'll land on a comparison website. It should have already selected a comparison between indev and main at the top (or however you called your branches) and show you the changes between both branches. If you toy around with this, you can see that you can merge any branches in your repository - you aren't limited to constantly overwriting your main branch.
+
+::: {.callout-note title="Side Note"}
+This allows for more complex testing structures. You could for example run a "main" branch with working code, an "indev" branch to develop new features that branches off from "main" and an "unstable" branch off of "indev" that tests brand new features. Once you're reasonably certain about your code, you could then merge "unstable"'s changes into "indev" for further testing, before deploying them to "main".
+:::
+
+If nothing went horribly wrong in your branch management, you should also be presented with a big green "New pull request" GitHub should automatically open a overview site for the new pull request, where you simply have to approve the changes to incorporate them to the main branch (or whichever branch you want to merge to). This is also where requests from other users that worked on your code will appear for your approval (and where your pull requests will appear on other users' projects.
 
 As before, if you're still unsure about how things work or want to learn more about the possibilities Git and R offer, I recommend you look at: <https://happygitwithr.com/index.html>
 
@@ -117,4 +130,4 @@ lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD 
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/R_gituse.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/R_gituse.qmd">here</a>.

@@ -35,7 +35,6 @@ This should go without saying, but if you want to use GitHub, you need a GitHub 
 Did you know that as a student, you can get GitHub Pro for free? [See here](https://education.github.com/discount_requests/application) for more information!
 :::
 
-
 ## Version 1: Git over a desktop client {.unnumbered}
 
 In this version, all the interactions with GitHub will be handled automatically by a chosen software, and you won't have to worry about anything. While this can be very convenient, keep in mind that in this way **version control only works with this client**! Meaning that if you want to sync something not intended by the developers, you might be in for an annoying time.
@@ -101,4 +100,4 @@ lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD 
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/R_gitsetup.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/R_gitsetup.qmd">here</a>.
