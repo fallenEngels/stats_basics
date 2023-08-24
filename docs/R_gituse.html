@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basics of Statistics and R - Using Git(Hub) in RStudio</title>
+<title>Basics of Statistics and R - 4&nbsp; Using Git(Hub) in RStudio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_gitsetup.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="./R_gituse.html">Using Git(Hub) in RStudio</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_gitsetup.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="./R_gituse.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,13 +139,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gitsetup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Working With RStudio and Git(Hub)</span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gituse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Using Git(Hub) in RStudio</span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
   </div>
 </li>
       </ul>
@@ -172,21 +172,21 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#preexisting-local-project" id="toc-preexisting-local-project" class="nav-link" data-scroll-target="#preexisting-local-project">Preexisting local project</a></li>
   </ul></li>
   <li><a href="#working-with-git-in-rstudio" id="toc-working-with-git-in-rstudio" class="nav-link" data-scroll-target="#working-with-git-in-rstudio">Working with Git in RStudio</a></li>
-  <li><a href="#Branch" id="toc-Branch" class="nav-link" data-scroll-target="#Branch">Repo-Branches, Forks, Merges</a>
+  <li><a href="#repo-branches-forks-merges" id="toc-repo-branches-forks-merges" class="nav-link" data-scroll-target="#repo-branches-forks-merges">Repo-Branches, Forks, Merges</a>
   <ul class="collapse">
-  <li><a href="#mehr-kontrolle-durch-branches" id="toc-mehr-kontrolle-durch-branches" class="nav-link" data-scroll-target="#mehr-kontrolle-durch-branches">Mehr Kontrolle durch Branches</a></li>
-  <li><a href="#forks-this-is-mine-now" id="toc-forks-this-is-mine-now" class="nav-link" data-scroll-target="#forks-this-is-mine-now">Forks: This is mine now</a></li>
-  <li><a href="#Future" id="toc-Future" class="nav-link" data-scroll-target="#Future">Was nun?</a></li>
+  <li><a href="#branches-more-control-over-your-project" id="toc-branches-more-control-over-your-project" class="nav-link" data-scroll-target="#branches-more-control-over-your-project">Branches: More control over your project</a></li>
+  <li><a href="#forks-whats-yours-is-mine" id="toc-forks-whats-yours-is-mine" class="nav-link" data-scroll-target="#forks-whats-yours-is-mine">Forks: What’s yours is mine</a></li>
+  <li><a href="#merging-why-cant-we-be-friends" id="toc-merging-why-cant-we-be-friends" class="nav-link" data-scroll-target="#merging-why-cant-we-be-friends">Merging: Why can’t we be friends?</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Using Git(Hub) in RStudio</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></h1>
 </div>
 
 
@@ -201,22 +201,34 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="this-page-contains" class="level4">
-<h4 class="anchored" data-anchor-id="this-page-contains">This page contains …</h4>
+<section id="this-page-contains" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="this-page-contains">This page contains …</h4>
 <p>… a how-to of using Git and GitHub as version controls from inside RStudio, as basically everything important is built into it already. If you’ve opted to use a desktop client instead, most of the core concepts and workflows should still be relevant for you, although the steps to achieve them might vary between applications. I’ll also discuss some more of Git’s features like branches and modifying other people’s code.</p>
 </section>
-<section id="starting-a-project" class="level1">
-<h1>Starting a project</h1>
+<section id="starting-a-project" class="level1 unnumbered">
+<h1 class="unnumbered">Starting a project</h1>
 <p>To have Git integration work from inside RStudio, it is <strong>strictly necessary</strong> to work inside an RStudio <em>project</em> rather than just a loose collection of code files scattered around your machine. This is because RStudio seems to treat the .Rproj file as an anchor point to build the file management around. While there are many ways to start a project, I want to highlight two different ways of doing things - although both boil down to the same method in the end.</p>
-<section id="new-project-that-started-on-github" class="level2">
-<h2 class="anchored" data-anchor-id="new-project-that-started-on-github">New project that started on GitHub</h2>
+<section id="new-project-that-started-on-github" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="new-project-that-started-on-github">New project that started on GitHub</h2>
 <p>This in my view is the cleanest way of organizing version control, as much of the setup headaches get handled automatically for you:</p>
 <ul>
 <li><p>Go on GitHub and press the nice <code>+</code> button at the top to create a new repository</p></li>
 <li><p>Open your newly created repository and press the green <code>Code</code> button at the top. Copy the web address displayed here</p></li>
 <li><p>Open RStudio, start a new project (<code>File -&gt; New Project</code>), select <code>Version Control -&gt; Git</code> and enter the link you copied into the <code>Repository URL</code> field.</p></li>
 </ul>
-<p><strong>Side Note:</strong> To keep things organized, I highly recommend selecting a dedicated folder for coding projects on your machine: If you input this folder at <code>Create Project as subdirectory of</code>, RStudio will remember this and automatically select it the next time you generate a new project.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To keep things organized, I highly recommend selecting a dedicated folder for coding projects on your machine: If you input this folder at <code>Create project as subdirectory of</code>, RStudio will remember this and automatically select it the next time you generate a new project.</p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="rsc/git//Repo_clone.gif" class="img-fluid figure-img"></p>
@@ -224,14 +236,22 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>The big advantage of doing things this way is that the selected GitHub repository will be seen as the <code>origin</code> without needing manual setup. In this way, the project should immediately be usable, without having to worry about manually <code>push</code>ing or <code>pull</code>ing files. If there are already files in your chosen repository, these will also automatically be downloaded and made available locally.</p>
 </section>
-<section id="preexisting-local-project" class="level2">
-<h2 class="anchored" data-anchor-id="preexisting-local-project">Preexisting local project</h2>
+<section id="preexisting-local-project" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="preexisting-local-project">Preexisting local project</h2>
 <p>Do you already have some old project lying around that you want to update and share and/or save on GitHub? Then this is the step for you! The core idea in this step is the same as before: We follow the instructions above to generate an (empty) repository and generate it locally as a new project. The trick with this approach is that you can now go ahead and - after opening the project’s folder in a file manager of your choice - simply copy all your old files into this new folder. RStudio’s Git integration will recognize these files as new to the project, and you will be able to work with them as if you had just created them inside the project.</p>
 </section>
 </section>
-<section id="working-with-git-in-rstudio" class="level1">
-<h1>Working with Git in RStudio</h1>
-<p>Now that you’ve opened your Git-synced project in RStudio, you might have already noticed something new: The <code>Environment</code> tab (usually top right) features a new tab simply labeled <code>Git</code>. When working with Git in RStudio, this tab is where all the magic happens - and everything that you otherwise would have to execute manually via the aforementioned Unix-terminal. Don’t be scared, but I will now show you a graphic visualizing the basic working steps in Git that I stole from Reddit:</p>
+<section id="working-with-git-in-rstudio" class="level1 unnumbered page-columns page-full">
+<h1 class="unnumbered">Working with Git in RStudio</h1>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div id="fig-xkcd_git" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><a href="https://xkcd.com/1597/"> <img src="https://imgs.xkcd.com/comics/git.png" width="250" align="left" class="figure-img"> </a></p>
+<figcaption class="figure-caption">Figure&nbsp;4.1: Obligatory xkcd</figcaption>
+</figure>
+</div>
+</div></div><p>Now that you’ve opened your Git-synced project in RStudio, you might have already noticed something new: The <code>Environment</code> tab (usually top right) features a new tab simply labeled <code>Git</code>. When working with Git in RStudio, this tab is where all the magic happens - and everything that you otherwise would have to execute manually via the aforementioned Unix-terminal. Don’t be scared, but I will now show you a graphic visualizing the basic working steps in Git that I stole from Reddit:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://www.reddit.com/r/git/comments/99ul9f/git_workflow_diagram_showcasing_the_role_of/"><img src="rsc/git/reddit_git.png" class="img-fluid figure-img" style="width:75.0%"></a></p>
@@ -245,38 +265,61 @@ ul.task-list li input[type="checkbox"] {
 <li><p>If you now want to sync your GitHub repository, you simply have to <code>push</code> the changes to GitHub. As the graphic shows, this only uses your <code>local branch</code> as a source, so you have to go through all previous steps to be able to save your files.</p></li>
 <li><p>Going further, if you’ve made changes to your project from another machine (or someone else in your project updated some files), you can easily <code>pull</code> these changes from GitHub to your <code>working tree</code> so your code stays up-to-date and clean.</p></li>
 </ul>
-<p><strong>Side Note:</strong> While you should save often and therefore also commit your changes often in case of emergency, you don’t have to push your changes every time you update something. It can be entirely valid to collect multiple changes and push them all in one go, especially when you’re still toying around with something half-baked that doesn’t entirely work yet. Similarly, if you’re using some automation, pushing often might be a bad idea. For example, this web interface gets automatically generated from the files I provide in the associated repo. If I were to push every little change, it would constantly re-compile and re-deploy this website for every minor spelling mistake - which would be annoying, energy-inefficient and would probably make Microsoft reconsider keeping this functionality as a free feature.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While you should save often and therefore also commit your changes often in case of emergency, you don’t have to push your changes every time you update something. It can be entirely valid to collect multiple changes and push them all in one go, especially when you’re still toying around with something half-baked that doesn’t entirely work yet. Similarly, if you’re using some automation, pushing often might be a bad idea. For example, this web interface gets automatically generated from the files I provide in the associated repo. If I were to push every little change, it would constantly re-compile and re-deploy this website for every minor spelling mistake - which would be annoying, energy-inefficient and would probably make Microsoft reconsider keeping this functionality as a free feature. However, if you’re dealing with these kinds of issues, you should probably think about using branches (see below) instead of not committing at all.</p>
+</div>
+</div>
 <p>Now, if you’ve already made some changes to your new R project, you might notice that things start to appear inside the <code>git</code>-tab un RStudio. Based on the type of change, you should see a coloured symbol appear in the “Status” column: ?(New file), A(dded), M(odified), D(eleted) and R(enamed) will probably be the ones you’ll encounter most frequently. This window is RStudio’s pendant to the <code>staging area</code> I just mentioned - here, files are being prepared for a git synchronization. What the command <code>git add</code> does in the image above can be achieved here by clicking the check box:</p>
 <p><img src="rsc/git/Rstudio_staging.png" class="img-fluid" style="width:50.0%"></p>
 <p>To commit your selected files, you simply have to click the aptly named “Commit” button, leave an informative commit message as to what you did and why (so you know what happened when you look back in a few weeks/months/years) in the now open window, and then press “Commit” there as well.</p>
 <p>Congratulations! You now know how to use Git for version control! All that remains now is syncing your files with GitHub - something RStudio directly lets you know by complaining that your local branch is ahead of GitHub (here called origin/main) in it’s update history. To rectify this, simply press the green, upwards pointing arrow. In the opposite situation, where GitHub is further ahead than your local machine, RStudio would still complain, and you would pull by pressing the blue, downwards pointing arrow.</p>
 </section>
-<section id="Branch" class="level1">
-<h1>Repo-Branches, Forks, Merges</h1>
-<section id="mehr-kontrolle-durch-branches" class="level3">
-<h3 class="anchored" data-anchor-id="mehr-kontrolle-durch-branches">Mehr Kontrolle durch Branches</h3>
-<p>Standardmäßig verfügt ein gestartetes Repo über einen einzige, linear verlaufende Änderungsistorie (“Branch”). Es besteht jedoch immer die Möglichkeit, eine beliebige Reihe weiterer Branches zu einem bestehenden Projekt hinzuzufügen.<br>
-Die Gründe für das Erstellen eines Branches sind dabei meist praktischer Natur: So lassen sich in diesen Branches Lösungen für aufgetretene Bugs testen und neue Features testen, ohne dass die Commit-Historie des Haupt-Branches mit zu Testzwecken vorgenommenen Änderungen überflutet wird.<br>
-Ich nutze für dieses Projekt auch Branches, aber aus einem anderen Grund: Dieses Projekt ist über GitHub Pages auch als Webseite verfügbar (Hallo (: ). GitHub erstellt dabei jedes Mal alle Projekt-Webseiten von Grundauf neu, wenn eine Veränderung in den “main”-Branch des Projektes gepusht wird. Da ich aus Gewohnheit immer sofort pushe, wenn ich committe, würde ich beim Arbeiten im Main-Branch somit alle halbe Stunde die Neugenerierung der Webseiten anregen. Um dies zu verhindern, schreibe ich meine Änderungen und Überarbeitungen in einem anderen Branch (der als “indev” auf der Repo-Seite einsehbar ist), und merge diesen Branch dann in den “main”-Branch sobald ich mit meinen Änderungen zufrieden bin.</p>
-<p>Neue Branches können dabei in RStudio ebenfalls über das Git-Fenster erstellt werden. Zusätzlich lässt sich hier einfach zwischen den verfügbaren Branches hin- und herwechseln.<br>
-Was das Mergen von Branches angeht, sind jedoch Nutzer von Desktop-Clients im Vorteil. Während diese direkt aus ihrem Client heraus einen erstellten Branch in einen anderen mergen können, müssen RStudio-Nutzer dies über den <code>Pull request</code>-Knopf auf der Seite ihres GitHub-Repos durchführen.</p>
+<section id="repo-branches-forks-merges" class="level1 unnumbered">
+<h1 class="unnumbered">Repo-Branches, Forks, Merges</h1>
+<section id="branches-more-control-over-your-project" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="branches-more-control-over-your-project">Branches: More control over your project</h2>
+<p>When you start a new project, you end up with one linearly developing history of changes, usually called a <code>main branch</code> (or “master” if following older conventions). However, it might not always be a good idea to work inside this main branch. For example if you’re only testing features and you’re not yet sure if they make it into the final project (or if they are horribly unstable), it might not be a good idea to include them in your main code database where they might ruin stuff or at the very least fill up your change history. Another case would be if you wanted to try and compare multiple different approaches to the same problem - you can’t really have both in the same file at the same time usually, as they are exclusive.</p>
+<p>Luckily, Git’s designers have thought of this and introduced the concept of “branches”: versions of your code that “split off” from the main branch and can develop in differing directions, allowing you to try out all the wildest ideas without ruining your project. For a practical use case, as I’ve mentioned before, ths website updates automatically whenever I commit something to the underlying repository. Now, I don’t want this to happen any time I make and commit some minor change, which is why I actually commit to a different branch called “indev” - and once I’m satisfied with my progress, I simply carry over all my changes to the main branch in one fell swoop.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Even if you’re not dealing with these kinds of issues, it is probably always best to work with a separate testing branch, and <strong>NEVER</strong> commit untested code directly to the main branch - who knows what you might break in the process …</p>
+</div>
+</div>
+<p>When working in R, I found it easiest to employ the following workflow for new branches:</p>
+<ul>
+<li><p>commit all outstanding changes to the branch you want to branch off from</p></li>
+<li><p>create a new branch on GitHub</p></li>
+<li><p>Pull in GitHub. Since you’re up-to-date, no files should be overwritten, but the new branch should be detected. You can now switch local branches inside the Git tab (where it says “main” in the image above), and all changes should automatically be attributed to this branch from now on.</p></li>
+</ul>
 </section>
-<section id="forks-this-is-mine-now" class="level3">
-<h3 class="anchored" data-anchor-id="forks-this-is-mine-now">Forks: This is mine now</h3>
-<p>Wie ein kurzes Scrollen durch die <code>Explore</code>-Seite auf GitHub zeigt, existiert eine große Vielfalt bereits vollständiger (oder teilweise entwickelter und inzwischen verlassener) Softwares, die auf GitHub gehostet werden.<br>
-Tatsächlich ist es so, dass sich zu vielen Problemen bereits Software-Lösungen anderer GitHub-Nutzer finden, die mit leichten Abwandlungen für eigene Projekte genutzt werden können. Dies kann über <strong>Forks</strong> getan werden.</p>
-<p>Forks sind prinzipiell wie Branches zu verstehen, nur dass der Ursprungs-Branch in einem anderen Repository zu finden ist. Für die Firefox-Engine Gecko finden sich beispielsweise beinahe zweitausend Forks von individuellen Nutzern, die ausgehend von dem vom Firefox-Team geschaffenen Grundgerüst eigene Veränderungen an der Engine vorgenommen haben, um beispielsweise die Nutzer-Privatsphäremöglichkeiten zu erweitern.</p>
-<p>SOmit lassen sich beispielsweise vorhandene Tools anderer Forscher für den persönlichen Gebrauch mithilfe von Forks weiterentwickeln, oder eigener Code aus bestehenden Repositories für zukünftige Projekte nutzen. Die Besitzer des ursprünglichen Repositories können dabei ähnlich wie bei Branches jederzeit die Änderungen einer Fork in das Hauptprojekt mit aufnehmen (dies läuft ebenso wie merges über <em>Pull requests</em>). Somit bieten sich Forks auch an, um beispielsweise Bugfixes für Repos fremder Besitzer vorzuschlagen.<br>
-(Der <em>request</em> ist dabei, dass der Besitzer deine Veränderungen in den Hauptbranch <em>pullt</em>, um den Namen zu erklären.)</p>
+<section id="forks-whats-yours-is-mine" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="forks-whats-yours-is-mine">Forks: What’s yours is mine</h2>
+<p>If you’ve ever taken a stroll through the wonderful world of open-source software or had the time to look at GitHub’s “Explore” section, you might have noticed something: There is a whole boat load of complete, incomplete and abandoned software available out there. In fact, if you’re looking to solve a specific problem, you might find that someone has already started working on it - or completed a somewhat similar project that just needs some slight tweaking for your use case. This is where <code>fork</code>s come in.</p>
+<p>Forks are basically just like branches, with the main difference being that you’re not creating a new branch inside the same repository, but instead creating a new repository based on someone else’s work. That way, you start out with all the work they’ve already committed and can then go on to tweak it to your liking. For a practical example, the <a href="https://github.com/mozilla/gecko-dev">engine underlying the Firefox web browser</a> has almost 2.000 forks from users modifying security settings to their liking or <a href="https://github.com/adonais/iceweasel">building their own web browsers</a> from the provided baseline (not an endorsement, just an example).</p>
 </section>
-<section id="Future" class="level2">
-<h2 class="anchored" data-anchor-id="Future">Was nun?</h2>
-<p>Du kennst nun die grundlegende Funktionsweise von Git und GitHub und weißt, wie du sie aus RStudio zur Versionskontrolle benutzen kannst.<br>
-DIe Nutzung von Git ermöglicht dir zusätzlich noch eine ganze Reihe weiterer Möglichkeiten. So kannst du beispielsweise mit mehreren anderen Nutzern an demselben Projekt arbeiten, und deine und ihre Commits einfach synchronisieren. Außerdem bietet Git dir die Möglichkeit, ein einzelnen Programm in mehreren <code>branches</code> zu entwickeln, sodass du beispielsweise eine stabile Version deines Codes öffentlich anderen Nutzern verfügbar machen kannst, während du in einem anderen Branch experimentell mit neuen Ideen und Inhalten experimentierst. Diese Branches lassen sich bei abgeschlossenem Experiment jederzeit miteinander zusammenführen, die genaue Durchführung dieser und anderer Nutzungsmethoden sprengt jedoch den Rahmen dieser kurzen Einführung.<br>
-Ich wünsche viel Erfolg in der Nutzung von Git und Happy Coding!</p>
+<section id="merging-why-cant-we-be-friends" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="merging-why-cant-we-be-friends">Merging: Why can’t we be friends?</h2>
+<p>Now that you’ve substantially improved someone else’s code (or toyed around in a separate branch and want to update the main branch), another step is necessary: merging the changes. If you’re the owner of both the original and the new and improved branch, this is not an issue and can be done with relative ease. Out of convenience, I will demonstrate this using GitHub, but as before, you can also use <a href="https://happygitwithr.com/git-branches">Git via terminal</a>.</p>
 <p>As before, if you’re still unsure about how things work or want to learn more about the possibilities Git and R offer, I recommend you look at: <a href="https://happygitwithr.com/index.html" class="uri">https://happygitwithr.com/index.html</a></p>
 <hr>
-<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-23 14:54</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-24 11:12</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
 <strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/R_gituse.qmd">here</a>.</p>
 
 
@@ -520,7 +563,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./R_gitsetup.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Working With RStudio and Git(Hub)</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
