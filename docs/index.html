@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1stats_1basics.html" rel="next">
+<link href="./files/1stats_1basics.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -134,13 +134,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1stats_1basics.html" class="sidebar-item-text sidebar-link">
+  <a href="./files/1stats_1basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Basic Idea of Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1stats_2sampling.html" class="sidebar-item-text sidebar-link">
+  <a href="./files/1stats_2sampling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
   </div>
 </li>
@@ -157,21 +157,27 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_gitsetup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
+  <a href="./files/R_ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_gituse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
+  <a href="./files/R_gitsetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./files/R_gituse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="./files/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -237,7 +243,7 @@ div.csl-indent {
 <p>Yes, and no. Although a lot of books have been written about the core ideas behind statistical methods, and many web resources about the application of these methods in any given statistical program exist, these suffer from some major drawbacks:</p>
 <ul>
 <li><p>Books are long and nobody wants to read anymore. I hope that my way of explaining stuff as concise as possible, as well as my way of writing will resonate in a way that many “dry” statistics textbooks simply can’t.</p></li>
-<li><p>While Andy Field’s <span class="citation" data-cites="Field2012">(<a href="references.html#ref-Field2012" role="doc-biblioref">2012</a>)</span> is still a great book on the subject, it was published in 2012 and much of the code used is unfortunately wildly out-of-date. Don’t get me wrong, most of it will still work fine. However, better and more user-friendly ways to work in R have emerged since.</p></li>
+<li><p>While Andy Field’s <span class="citation" data-cites="Field2012">(<a href="files/references.html#ref-Field2012" role="doc-biblioref">2012</a>)</span> is still a great book on the subject, it was published in 2012 and much of the code used is unfortunately wildly out-of-date. Don’t get me wrong, most of it will still work fine. However, better and more user-friendly ways to work in R have emerged since.</p></li>
 <li><p>At the end of the day statistics is math, and math people love communicating via formulas and mathematical notations. I don’t know about you, but unfortunately my brain shuts off whenever I see more than two mathematical formulas in a text. Therefore, I will try to keep the mathematics to a minimum and instead focus on examples and comparisons to explain ideas.</p></li>
 <li><p>How-To guides tend to focus mainly on the “how” of statistical methods and not on the “why” behind it. While they might make you an expert about anything a given R (Python, …) function may be able to do, you still won’t know when and how to use them - or why you might get certain weird results back. Also, nowadays LLMs can teach you the “how” part probably better than any website ever will.</p></li>
 <li><p>Most statistics websites are run by professional website owners. This is not meant as a dig at them - they can do whatever they want - but I personally hate seeing ads and cookie-popups when I just want to find out why my code won’t work. Therefore, you won’t find ads or cookie banners here, because I don’t care who you are. :)</p></li>
@@ -250,8 +256,8 @@ div.csl-indent {
 <p>However, I have still organized the book into subsections that (in my view) link together logically connected subjects and methods, going from simple methods and concepts on towards more complex implementations. However, the sprawling nature of statistical methods and coding means that forcing everything into a linear progression would do more harm than good. Therefore, while you may encounter basic concepts in a given topic (like “Plotting Data” in the main topic “Descriptive Statistics”), you will also find expansions of these contexts in separate topics (in this case “Data Plotting in R”).</p>
 <p>To emphasize this further, everything that centers on using R, and less on statistical methodology has been organized into it’s own part in the structure. While the <strong>numbered parts</strong> deal with statistics, <strong>part R</strong> focuses on using R and RStudio. I would encourage everyone who is not familiar with R (or certain packages I frequently use) to look at this part whenever you’re not sure what I’m doing or why I’m doing things in a certain way - you’ll hopefully find an explanation there.</p>
 <hr>
-<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-22 15:39</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
-<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/index.qmd">here</a>.</p>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-24 13:44</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/index.qmd">here</a>.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -500,7 +506,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1stats_1basics.html" class="pagination-link">
+      <a href="./files/1stats_1basics.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Basic Idea of Statistics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

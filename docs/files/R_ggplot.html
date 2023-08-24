@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Basics of Statistics and R - 3&nbsp; Beautiful data visualizations using ggplot2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../files/R_gitsetup.html" rel="next">
+<link href="../files/1stats_2sampling.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../files/R_ggplot.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="../files/R_ggplot.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Basics of Statistics and R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface - Aim and Scope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">1: Basics of Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_1basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Basic Idea of Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_2sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">R: Packages and General Deep Dives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_ggplot.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_gitsetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_gituse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-ggplot2" id="toc-why-ggplot2" class="nav-link active" data-scroll-target="#why-ggplot2">Why ggplot2?</a></li>
+  <li><a href="#modularity-be-my-canvas" id="toc-modularity-be-my-canvas" class="nav-link" data-scroll-target="#modularity-be-my-canvas">Modularity: Be my canvas</a>
+  <ul class="collapse">
+  <li><a href="#setting-the-stage-ggplot" id="toc-setting-the-stage-ggplot" class="nav-link" data-scroll-target="#setting-the-stage-ggplot">Setting the stage: <code>ggplot()</code></a></li>
+  <li><a href="#used-data-and-aesthetics-aes" id="toc-used-data-and-aesthetics-aes" class="nav-link" data-scroll-target="#used-data-and-aesthetics-aes">Used data and aesthetics: <code>aes()</code></a></li>
+  <li><a href="#visualization-elements-geom_..." id="toc-visualization-elements-geom_..." class="nav-link" data-scroll-target="#visualization-elements-geom_...">Visualization elements: <code>geom_...</code></a></li>
+  <li><a href="#other-central-building-blocks" id="toc-other-central-building-blocks" class="nav-link" data-scroll-target="#other-central-building-blocks">Other central building blocks</a></li>
+  </ul></li>
+  <li><a href="#everything-all-at-once---information-overload" id="toc-everything-all-at-once---information-overload" class="nav-link" data-scroll-target="#everything-all-at-once---information-overload">Everything all at once - information overload</a></li>
+  <li><a href="#presentation-and-colours" id="toc-presentation-and-colours" class="nav-link" data-scroll-target="#presentation-and-colours">Presentation and colours</a></li>
+  <li><a href="#special-use-cases-and-tricks" id="toc-special-use-cases-and-tricks" class="nav-link" data-scroll-target="#special-use-cases-and-tricks">Special use cases and tricks</a>
+  <ul class="collapse">
+  <li><a href="#sub-plots-based-on-variables" id="toc-sub-plots-based-on-variables" class="nav-link" data-scroll-target="#sub-plots-based-on-variables">Sub-plots based on variables</a></li>
+  <li><a href="#different-axes-in-one-plot" id="toc-different-axes-in-one-plot" class="nav-link" data-scroll-target="#different-axes-in-one-plot">Different axes in one plot</a></li>
+  <li><a href="#going-even-further-beyond" id="toc-going-even-further-beyond" class="nav-link" data-scroll-target="#going-even-further-beyond">Going even further beyond</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="this-page-contains" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="this-page-contains">This page contains …</h4>
+<p>… a general overview of how ggplot2 can be used to quickly and easily generate nice-looking and publication-ready data visualizations. I’ll also talk about some of the customization features, displaying many different variables in one plot and provide quick references for annoying problems and methods that I have to look up every time I want to use them.</p>
+</section>
+<section id="why-ggplot2" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="why-ggplot2">Why ggplot2?</h2>
+<p>Even though base-R already comes with multiple functions and features to visually display information (like the <code>plot()</code> and <code>hist()</code> functions), the results are usually not very nice to look at - especially when you think about publishing them in a more professional setting. <code>ggplot2</code> is one of multiple packages (see also <code>plot_ly</code>) that aims to make data visualizations easy and nice to look at:</p>
+<div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting with base-R command plot()</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mpg<span class="sc">$</span>displ, mpg<span class="sc">$</span>hwy, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="co"># additional labels</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Engine size - Miles/Gallon plot for different cars"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">"plotted in base-R"</span>, <span class="at">xlab =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">ylab =</span> <span class="st">"Miles/Gallon"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting with ggplot2 command ggplot() and dplyr-pipes</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">"dark gray"</span>, <span class="at">fill =</span> <span class="st">"light gray"</span>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cyl)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># additional labels</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Engine size - Miles/Gallon plot for different cars"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"plotted in ggplot2"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">y =</span> <span class="st">"Miles/Gallon"</span>, <span class="at">colour =</span> <span class="st">"# of cylinders"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/plotdemo_data-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/plotdemo_data-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+<p>Two things should be directly noticeable in the plots above: For one, ggplot’s plot is way cleaner and nicer to look at than the base-R plot, with options for colours and additional variables (number of cylinders) as well as measures for tendencies in the data. The other thing to note: ggplot’s command is way more complex and involved to set up than the base-R command.</p>
+<p>This complexita is by design, as ggplot2 builds upon an underlying and standardized <a href="https://doi.org/10.1198/jcgs.2009.07098"><strong>Grammar of Graphics</strong> basiert</a> (the GG in ggplot). Luckily, much of what seems like complexities in the code above can be reduced down to the modularity this approach brings with it - and once you understand the core concepts and modules (or the core vocabulary of the “grammar”), you should be able to understand and write your own visualizations in no time. :)</p>
+</section>
+<section id="modularity-be-my-canvas" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="modularity-be-my-canvas">Modularity: Be my canvas</h2>
+<p><code>ggplot2</code> follows a modular design. This means that the final plot will not be calculated in one step, but instead built up through multiple overlaying partial commands. The amount and design of these commands is entirely up to you, and both the commands you pick as well as their order will impact the final plot. This enables you to build insanely complex plots if you invest the time and energy to learn the underlying ideas and structures.</p>
+<section id="setting-the-stage-ggplot" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="setting-the-stage-ggplot">Setting the stage: <code>ggplot()</code></h3>
+<p>Core of this modular approach is the <code>ggplot()</code> command, which serves two functions: On one hand it specifies that everything following is part of a plot and outlines the general canvas, and on the other it can be used to specify global commands and settings that should be true for the entire plot. If you for example want to use the same core data set for all elements in your plot, you could specify this data set for each element individually, or you could include it in the <code>ggplot()</code> function, where you only have to type it out once.</p>
+<p>To visualize: Executing an empty <code>ggplot()</code> command produces an empty canvas, in effect only providing a background for your plot (left). If you already include a data set as well as variables (don’t worry, we’ll look at this in detail in a second), you also already get axes overlayed depending on the scaling of your variables:</p>
+<div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># empty ggplot function</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot function with global data and axis specification</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/base_modular_demo-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/base_modular_demo-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+<p>This specification of global parameters is also great to keep an overview over the variables and options used if you want to use multiple visualizations in the same plot (ex. points and lines as in the example above). On a technical level it doesn’t matter which approach you take, as both lead to the same result:</p>
+<div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with local vars for each element</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> mpg<span class="sc">$</span>displ, <span class="at">y =</span> mpg<span class="sc">$</span>hwy)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> mpg<span class="sc">$</span>displ, <span class="at">y =</span> mpg<span class="sc">$</span>hwy))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with global vars for the entire plot</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/global_vars-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/global_vars-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Notes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Notes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>As you can see, if you include parameters in the ggplot() functions, you can use the tidyverse way of giving only column names, whereas the individual functions need a direct reference to the data set used.</li>
+<li>You can also combine both approaches, for example if you want to use the same data set (specified in global function) but different colour palettes for different elements (specified in the local functions) or if you want on element to use an entirely different data source.</li>
+</ol>
+</div>
+</div>
+<p>As you can see, we can now easily expand our core canvas by chaining further functions with a <code>+</code> at the end of the <code>ggplot()</code> function. The command chain <code>ggplot() + geom_histogram() + labs()</code> would create a canvas (<code>ggplot()</code>), draw a histogram of the specified data on top of it (<code>geom_histogram()</code>) and then overwrite the automatically generated names for parts of the plot with the names specified in <code>labs()</code>. Because each element is evaluated separate from the others, it is important to <strong>close all opened brackets before a</strong> <code>+</code>!</p>
+</section>
+<section id="used-data-and-aesthetics-aes" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="used-data-and-aesthetics-aes">Used data and aesthetics: <code>aes()</code></h3>
+<p>As can be seen above, used data and other aesthetic arguments have to be specified within a <code>aes()</code> command nested inside the command for an element (or the global command). Correctly nesting this function is an <strong>essential step</strong> and usually the primary source of issues if something doesn’t work with your code. The <code>aes()</code> command can take not only variables to display on the x and y axis, but also variables that should be used to define other attributes of the plot, like colour or fill and a whole host of further options.</p>
+<p>HOWEVER: Just because arguments like <code>colour</code> and <code>fill</code> <strong>can</strong> be specified inside <code>aes()</code>, that doesn’t mean they have to. You can also specify these aspects outside of <code>aes()</code> if you want to set them to a specific value rather than base them on a variable:</p>
+<div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># colour inside aes -&gt; colour based on variable</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cyl)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Engine size - Miles/Gallon plot for different cars"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">y =</span> <span class="st">"Miles/Gallon"</span>, <span class="at">colour =</span> <span class="st">"# of cylinders"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># colour outside aes -&gt; colour takes specified value</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Engine size - Miles/Gallon plot for different cars"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">y =</span> <span class="st">"Miles/Gallon"</span>, <span class="at">colour =</span> <span class="st">"# of cylinders"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/aes-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/aes-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To preempt upcoming confusions: You will get errors when you specify a variable colour outside <code>aes()</code>, but you won’t when you specify a definite colour inside <code>aes()</code>. Instead, code like <code>geom_point(aes(colour = "blue"))</code> will make R look for the variable <code>blue</code> in your data - and if that doesn’t exist, it will simply treat all cases as having the same value for this attribute and assign the first colour of the standard colour palette - which is red. So, if you ever wonder why “blue” appears as red in your plot, this might be why.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Knowing when to use <code>colour</code> or <code>fill</code> is a whole headache in and of it self and depends on the chosen visualization method. Generally, <code>fill</code> is used for the inside fill of an element, while <code>colour</code> is used for borders and edges - with <code>geom_point()</code> being the most prominent exception and using only the <code>colour</code> attribute for points.</p>
+</div>
+</div>
+</section>
+<section id="visualization-elements-geom_..." class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="visualization-elements-geom_...">Visualization elements: <code>geom_...</code></h3>
+<p>As you have seen in the previous examples, <code>geom_...</code>functions build on the defined canvas and offer the meat of data visualization. If you enter “geom_” in RStudio, you will see that the autocomplete function offers you a wide array of different options for plotting your data, from lines up to entire maps.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When choosing a visualization element for your plots, always keep an eye on the arguments the associated function takes! Especially bar plots and histograms only take an <code>x</code> variable as input and derive <code>y</code> from frequency distributions of <code>x</code>. Manually specifying <code>y</code> in the <code>geom</code>-function (or the global <code>ggplot</code>-function) will lead to errors and annoyances.</p>
+</div>
+</div>
+<p>In theory, the modular nature of ggplot2 allows you to stack as many elements on top of each other. However, keep the modular buildup of ggplot in mind: <strong>The most frequent element will overlay any element specified prior to it</strong>!</p>
+<div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dots after line, dots overlay</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"dark gray"</span>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cyl)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">y =</span> <span class="st">"Miles/Gallon"</span>, <span class="at">colour =</span> <span class="st">"# of cylinders"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># line after dots, line overlays</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cyl)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"dark gray"</span>) <span class="sc">+</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">y =</span> <span class="st">"Miles/Gallon"</span>, <span class="at">colour =</span> <span class="st">"# of cylinders"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/order-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="R_ggplot_files/figure-html/order-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-central-building-blocks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="other-central-building-blocks">Other central building blocks</h3>
+<p>Aside from <code>geom_...</code> functions, ggplot packs a whole load of additional functions to improve and/or modify the way you display your data. I have already used the <code>labs()</code>function in multiple plots to specify my own names for for axes, legends or the entire plot, rather than the defaults, which are derived from variable names in your input data. Further options using additional functions are scale transformations (using for example <code>scale_x_log10()</code> or <code>scale_y_data()</code>), different colour palettes (ex. <code>scale_colour_gradient()</code> or <code>scale_fill_manual()</code>for custom palettes), as well as overarching design themes for the entire plot, like <code>theme_minimal()</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Don’t know if you’ve noticed, but these functions are available in many different versions for many different use cases. Anything you find under <code>scale_x_...</code> will have an equivalent under <code>scale_y_...</code> depending on which variable you want to transform. Same goes for the other arguments, with <code>scale_colour_...</code> and <code>scale_fill_...</code> containing much of the same functions, only applied in different contexts.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="everything-all-at-once---information-overload" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="everything-all-at-once---information-overload">Everything all at once - information overload</h2>
+<p>As I’ve said before, you can tweak a wide array of elements to your liking - I’ve simply focused on colour and fill as I think these will be the two most frequently used elements. But you can go further: Tweak the shape of points, the thickness of lines, the opacity of bars or whatever else you want! Heck, put it all together on one plot and make everything entirely unreadable - but undeniably unique:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl), <span class="at">year =</span> <span class="fu">as.factor</span>(year)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> <span class="co"># X and Y variable</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">alpha =</span> cyl, <span class="co"># opacity based on # of cylinders</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> year, <span class="co"># year as form for points</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colour =</span> fl, <span class="co"># fuel type as colour</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size =</span> class <span class="co"># vehicle type as size</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                 )) <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> manufacturer), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">nudge_y =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="co"># manufacturer as name</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Engine size - Miles/Gallon plot for different cars"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"plotted in ggplot2"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">y =</span> <span class="st">"Miles/Gallon"</span>, <span class="at">colour =</span> <span class="st">"# of cylinders"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_ggplot_files/figure-html/overload-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="presentation-and-colours" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="presentation-and-colours">Presentation and colours</h2>
+<p>As you have already seen multiple times by now, you can change basically the entirety of a plot’s presentation and resulting graphics. This can be of great help when it comes to generating plots that present large amounts of data in a readable format. I want to use this short section to highlight two different approaches to make this customization even more powerful:</p>
+<p>For colours, I very much like using <a href="https://jmsallan.netlify.app/blog/the-brewer-palettes/">Brewer palettes</a> (use <code>scale_..._brewer(palette="Name")</code> in ggplot) for discrete values and <a href="https://sjmgarnier.github.io/viridis/">viridis palettes</a> (use <code>scale_..._viridis_c(option=LetterOrName)</code>) for continuous values (viridis can also handle binned or discrete scales with …_b and …_d respectively).</p>
+<p>Although I am partial to minimalism and therefore like <code>theme_minimal()</code> a lot, you can also expand the range of available plot themes with something like <a href="https://exts.ggplot2.tidyverse.org/ggthemes.html">ggthemes</a> if you like excel too much. You can also create and use your own theme if you like. For an easier time, have a look at the <a href="https://github.com/INWTlab/ggCorpIdent">ggCorpIdent</a> package - however, keep in mind that Tufte <span class="citation" data-cites="Tufte2001">(<a href="references.html#ref-Tufte2001" role="doc-biblioref">2001</a>)</span> is right when he says that minimal and clear visualizations are often superior to everything else.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To get on my little soap box for a moment, I think that everyone who wants to create good visualizations should read Tufte <span class="citation" data-cites="Tufte2001">(<a href="references.html#ref-Tufte2001" role="doc-biblioref">2001</a>)</span> at some point. Not because you should follow everything he says, but simply to raise awareness for some of the issues in data communication. Don’t worry, the book isn’t that long and it features a whole range of pretty images. :)</p>
+</div>
+</div>
+</section>
+<section id="special-use-cases-and-tricks" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="special-use-cases-and-tricks">Special use cases and tricks</h2>
+<section id="sub-plots-based-on-variables" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sub-plots-based-on-variables">Sub-plots based on variables</h3>
+<p>Using <code>facet_grid()</code> (or the <a href="https://www.statology.org/facet_wrap-vs-facet_grid-in-r/">less strict</a> <code>facet_wrap()</code>), you can create subgraphs based on variables in your data set. That way, you could for example compare value distributions between different points in time. This is another way to display additional data without visual clutter as we’ve seen it in the above image. Based on your specifications, you can enter up to two variables to build subplots out of, using the formula <code>facet_grid(verticalVariable ~ horizontalVariable)</code> - however, you can leave one argument empty, if you just want one variable to control the split: <code>facet_grid( ~ horizontalVariable)</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet_wrap based on year</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">"dark gray"</span>, <span class="at">fill =</span> <span class="st">"light gray"</span>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cyl)) <span class="sc">+</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Engine size - Miles/Gallon plot for different cars"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"plotted in ggplot2"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">y =</span> <span class="st">"Miles/Gallon"</span>, <span class="at">colour =</span> <span class="st">"# of cylinders"</span>) <span class="sc">+</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_ggplot_files/figure-html/facet-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet_grid based on # of cylinders and year - notice empty fields for 1999 and 5 cyl</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cyl =</span> <span class="fu">as.factor</span>(cyl)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">"dark gray"</span>, <span class="at">fill =</span> <span class="st">"light gray"</span>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cyl)) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Engine size - Miles/Gallon plot for different cars"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"plotted in ggplot2"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Engine size (litre)"</span>, <span class="at">y =</span> <span class="st">"Miles/Gallon"</span>, <span class="at">colour =</span> <span class="st">"# of cylinders"</span>) <span class="sc">+</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(cyl<span class="sc">~</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_ggplot_files/figure-html/facet-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a case like this one, it would probably better not to use global axes, in order to better see differences within groups at the cost of visual differences between groups. to achieve this, you can set a <code>scales</code> parameter inside <code>facet_...</code> to “free_x”, “free_y” or “free” (both).</p>
+</div>
+</div>
+</section>
+<section id="different-axes-in-one-plot" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="different-axes-in-one-plot">Different axes in one plot</h3>
+<p>This is a niche case you may or may not encounter eventually, but I’ve had to deal with it twice and have been annoyed every time - which means I write this mostly for myself, so I can easily find it again.</p>
+<p>As mentioned in the beginning, axes in ggplot are calculated globally depending on your data - even if you plug in different data sources, the result is a single, global scale depending on the minimum of the smaller variable and the maximum of the larger variable. To display data on two different scales at the same time, a bit of annoying trickery is needed: You simply have to scale up the second variable so that it fits inside the scale of the first variable, add a second axis for this variable, and re-transform the labels on this axis back to the original size via a command like <code>scale_y_continuous(sec.axis = sec_axis(~ . FORMEL))</code>. In practice:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame with two y values and x value "month"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>climate <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">month =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">temp =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">11</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">15</span>,<span class="dv">11</span>,<span class="dv">6</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">3</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">precip =</span> <span class="fu">c</span>(<span class="dv">49</span>,<span class="dv">36</span>,<span class="dv">47</span>,<span class="dv">41</span>,<span class="dv">53</span>,<span class="dv">65</span>,<span class="dv">81</span>,<span class="dv">89</span>,<span class="dv">90</span>,<span class="dv">84</span>,<span class="dv">73</span>,<span class="dv">55</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>climate <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">precip =</span> precip <span class="sc">/</span> <span class="dv">8</span>) <span class="sc">%&gt;%</span> <span class="co"># recode precipitation to temp scale</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month)) <span class="sc">+</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> precip), <span class="at">fill =</span> <span class="st">"light blue"</span>) <span class="sc">+</span> <span class="co"># add precipitation</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> temp), <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="co"># add temperature</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># now recode the secondary axis back to the original scale</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Temperature"</span>, <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span> . <span class="sc">*</span> <span class="dv">8</span>, <span class="at">name =</span> <span class="st">"Precipitation"</span>)) <span class="sc">+</span> </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">title =</span> <span class="st">"Climatogram for Oslo (1961-1990)"</span>) <span class="sc">+</span> <span class="co"># add title</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="co"># toy around a bit more</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="R_ggplot_files/figure-html/axes-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="going-even-further-beyond" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="going-even-further-beyond">Going even further beyond</h3>
+<p>As you can see, the possibilities ggplot offers are (nearly) endless! And if you add <a href="https://exts.ggplot2.tidyverse.org/gallery/">further R-packages</a> to the mix, you can build plots that are even more insane. If you want to be inspired, have a look at this: https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</p>
+<p>If you want to learn more, I encourage you to just toy around a bit with ggplot. Once you understand the core format and the underlying grammar, you’ll be able to generate great plots in no time. And if you’re ever stuck, the internet has a wealth of knowledge around solving specific issues, whatever they may be. For further reading on ggplot, I’d also encourage you to have a look at the <a href="https://ggplot2.tidyverse.org/">ggplot2 webseite</a> and the <a href="http://www.cookbook-r.com/Graphs/">R-Cookbook for graphs</a>. Oh and read Tufte <span class="citation" data-cites="Tufte2001">(<a href="references.html#ref-Tufte2001" role="doc-biblioref">2001</a>)</span>!</p>
+<hr>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-24 14:45</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/R_ggplot.qmd">here</a>.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Tufte2001" class="csl-entry" role="listitem">
+Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information, 2nd Ed.</em> Graphics Press.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../files/1stats_2sampling.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sampling</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../files/R_gitsetup.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

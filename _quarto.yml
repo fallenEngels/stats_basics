@@ -9,13 +9,14 @@ book:
     - index.qmd
     - part: "1: Basics of Statistics"
       chapters:
-      - 1stats_1basics.qmd
-      - 1stats_2sampling.qmd
+      - files/1stats_1basics.qmd
+      - files/1stats_2sampling.qmd
     - part: "R: Packages and General Deep Dives"
       chapters:
-      - R_gitsetup.qmd
-      - R_gituse.qmd
-    - references.qmd
+      - files/R_ggplot.qmd
+      - files/R_gitsetup.qmd
+      - files/R_gituse.qmd
+    - files/references.qmd
 
 bibliography: references.bib
 

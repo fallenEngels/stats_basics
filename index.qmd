@@ -5,8 +5,9 @@ library(reticulate)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#### This page contains ...  
-... a quick overview of what this book is and what it is intended for, as well as how to use it. 
+#### This page contains ...
+
+... a quick overview of what this book is and what it is intended for, as well as how to use it.
 
 ## What is this?
 
@@ -32,9 +33,9 @@ Yes, and no. Although a lot of books have been written about the core ideas behi
 
 This also means that this isn't necessarily designed to be read front-to-back. Instead, I would encourage you to jump to a specific subject whenever you encounter it, and work your way from there until the end of your issues.
 
-However, I have still organized the book into subsections that (in my view) link together logically connected subjects and methods, going from simple methods and concepts on towards more complex implementations. However, the sprawling nature of statistical methods and coding means that forcing everything into a linear progression would do more harm than good. Therefore, while you may encounter basic concepts in a given topic (like "Plotting Data" in the main topic "Descriptive Statistics"), you will also find expansions of these contexts in separate topics (in this case "Data Plotting in R"). 
+However, I have still organized the book into subsections that (in my view) link together logically connected subjects and methods, going from simple methods and concepts on towards more complex implementations. However, the sprawling nature of statistical methods and coding means that forcing everything into a linear progression would do more harm than good. Therefore, while you may encounter basic concepts in a given topic (like "Plotting Data" in the main topic "Descriptive Statistics"), you will also find expansions of these contexts in separate topics (in this case "Data Plotting in R").
 
-To emphasize this further, everything that centers on using R, and less on statistical methodology has been organized into it's own part in the structure. While the **numbered parts** deal with statistics, **part R** focuses on using R and RStudio. I would encourage everyone who is not familiar with R (or certain packages I frequently use) to look at this part whenever you're not sure what I'm doing or why I'm doing things in a certain way - you'll hopefully find an explanation there. 
+To emphasize this further, everything that centers on using R, and less on statistical methodology has been organized into it's own part in the structure. While the **numbered parts** deal with statistics, **part R** focuses on using R and RStudio. I would encourage everyone who is not familiar with R (or certain packages I frequently use) to look at this part whenever you're not sure what I'm doing or why I'm doing things in a certain way - you'll hopefully find an explanation there.
 
 ------------------------------------------------------------------------
 
@@ -46,4 +47,4 @@ lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD 
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/index.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/index.qmd">here</a>.
