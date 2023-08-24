@@ -63,35 +63,7 @@ Congratulations! You now know how to use Git for version control! All that remai
 
 # Repo-Branches, Forks, Merges {#Branch}  
 
-
-
-
-
-### Mehr Kontrolle durch Branches
-Standardmäßig verfügt ein gestartetes Repo über einen einzige, linear verlaufende Änderungsistorie ("Branch"). Es besteht jedoch immer die Möglichkeit, eine beliebige Reihe weiterer Branches zu einem bestehenden Projekt hinzuzufügen.  
-Die Gründe für das Erstellen eines Branches sind dabei meist praktischer Natur: So lassen sich in diesen Branches Lösungen für aufgetretene Bugs testen und neue Features testen, ohne dass die Commit-Historie des Haupt-Branches mit zu Testzwecken vorgenommenen Änderungen überflutet wird.  
-Ich nutze für dieses Projekt auch Branches, aber aus einem anderen Grund: Dieses Projekt ist über GitHub Pages auch als Webseite verfügbar (Hallo (: ). GitHub erstellt dabei jedes Mal alle Projekt-Webseiten von Grundauf neu, wenn eine Veränderung in den "main"-Branch des Projektes gepusht wird. Da ich aus Gewohnheit immer sofort pushe, wenn ich committe, würde ich beim Arbeiten im Main-Branch somit alle halbe Stunde die Neugenerierung der Webseiten anregen. Um dies zu verhindern, schreibe ich meine Änderungen und Überarbeitungen in einem anderen Branch (der als "indev" auf der Repo-Seite einsehbar ist), und merge diesen Branch dann in den "main"-Branch sobald ich mit meinen Änderungen zufrieden bin.
-
-Neue Branches können dabei in RStudio ebenfalls über das Git-Fenster erstellt werden. Zusätzlich lässt sich hier einfach zwischen den verfügbaren Branches hin- und herwechseln.  
-Was das Mergen von Branches angeht, sind jedoch Nutzer von Desktop-Clients im Vorteil. Während diese direkt aus ihrem Client heraus einen erstellten Branch in einen anderen mergen können, müssen RStudio-Nutzer dies über den `Pull request`-Knopf auf der Seite ihres GitHub-Repos durchführen.
-
-### Forks: This is mine now  
-Wie ein kurzes Scrollen durch die `Explore`-Seite auf GitHub zeigt, existiert eine große Vielfalt bereits vollständiger (oder teilweise entwickelter und inzwischen verlassener) Softwares, die auf GitHub gehostet werden.  
-Tatsächlich ist es so, dass sich zu vielen Problemen bereits Software-Lösungen anderer GitHub-Nutzer finden, die mit leichten Abwandlungen für eigene Projekte genutzt werden können. Dies kann über **Forks** getan werden.
-
-Forks sind prinzipiell wie Branches zu verstehen, nur dass der Ursprungs-Branch in einem anderen Repository zu finden ist. Für die Firefox-Engine Gecko finden sich beispielsweise beinahe zweitausend Forks von individuellen Nutzern, die ausgehend von dem vom Firefox-Team geschaffenen Grundgerüst eigene Veränderungen an der Engine vorgenommen haben, um beispielsweise die Nutzer-Privatsphäremöglichkeiten zu erweitern.  
-
-SOmit lassen sich beispielsweise vorhandene Tools anderer Forscher für den persönlichen Gebrauch mithilfe von Forks weiterentwickeln, oder eigener Code aus bestehenden Repositories für zukünftige Projekte nutzen. Die Besitzer des ursprünglichen Repositories können dabei ähnlich wie bei Branches jederzeit die Änderungen einer Fork in das Hauptprojekt mit aufnehmen (dies läuft ebenso wie merges über *Pull requests*). Somit bieten sich Forks auch an, um beispielsweise Bugfixes für Repos fremder Besitzer vorzuschlagen.  
-(Der *request* ist dabei, dass der Besitzer deine Veränderungen in den Hauptbranch *pullt*, um den Namen zu erklären.)
-
-## Was nun? {#Future}  
-
-Du kennst nun die grundlegende Funktionsweise von Git und GitHub und weißt, wie du sie aus RStudio zur Versionskontrolle benutzen kannst.  
-DIe Nutzung von Git ermöglicht dir zusätzlich noch eine ganze Reihe weiterer Möglichkeiten. So kannst du beispielsweise mit mehreren anderen Nutzern an demselben Projekt arbeiten, und deine und ihre Commits einfach synchronisieren. Außerdem bietet Git dir die Möglichkeit, ein einzelnen Programm in mehreren `branches` zu entwickeln, sodass du beispielsweise eine stabile Version deines Codes öffentlich anderen Nutzern verfügbar machen kannst, während du in einem anderen Branch experimentell mit neuen Ideen und Inhalten experimentierst. Diese Branches lassen sich bei abgeschlossenem Experiment jederzeit miteinander zusammenführen, die genaue Durchführung dieser und anderer Nutzungsmethoden sprengt jedoch den Rahmen dieser kurzen Einführung.  
-Ich wünsche viel Erfolg in der Nutzung von Git und Happy Coding!  
-
-
-
+# Branches: More control over your project
 
 
 
