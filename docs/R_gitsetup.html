@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basics of Statistics and R - Working With RStudio and Git(Hub)</title>
+<title>Basics of Statistics and R - 3&nbsp; Working With RStudio and Git(Hub)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_gitsetup.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="./R_gitsetup.html">Working With RStudio and Git(Hub)</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R_gitsetup.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="./R_gitsetup.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,13 +139,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gitsetup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Working With RStudio and Git(Hub)</span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./R_gituse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Using Git(Hub) in RStudio</span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
   </div>
 </li>
       </ul>
@@ -174,9 +174,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#version-2-git-on-your-system-and-in-rstudio" id="toc-version-2-git-on-your-system-and-in-rstudio" class="nav-link" data-scroll-target="#version-2-git-on-your-system-and-in-rstudio">Version 2: Git on your system and in RStudio</a>
   <ul class="collapse">
   <li><a href="#step-1-installing-git" id="toc-step-1-installing-git" class="nav-link" data-scroll-target="#step-1-installing-git">Step 1: Installing Git</a></li>
-  <li><a href="#git-on-linuxunix" id="toc-git-on-linuxunix" class="nav-link" data-scroll-target="#git-on-linuxunix">Git on Linux/Unix</a></li>
-  <li><a href="#git-on-macos" id="toc-git-on-macos" class="nav-link" data-scroll-target="#git-on-macos">Git on MacOS</a></li>
-  <li><a href="#git-on-windows" id="toc-git-on-windows" class="nav-link" data-scroll-target="#git-on-windows">Git on Windows</a></li>
   <li><a href="#step-2-git-and-rstudio" id="toc-step-2-git-and-rstudio" class="nav-link" data-scroll-target="#step-2-git-and-rstudio">Step 2: Git and RStudio</a></li>
   <li><a href="#step-3-configuring-git-and-github" id="toc-step-3-configuring-git-and-github" class="nav-link" data-scroll-target="#step-3-configuring-git-and-github">Step 3: Configuring Git and GitHub</a></li>
   </ul></li>
@@ -189,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working With RStudio and Git(Hub)</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></h1>
 </div>
 
 
@@ -205,12 +202,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>This is about installing/setting up Git and R. If you have already done so or have your own solution, feel free to ignore the following content.</p>
-<section id="this-page-contains" class="level4">
-<h4 class="anchored" data-anchor-id="this-page-contains">This page contains …</h4>
+<section id="this-page-contains" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="this-page-contains">This page contains …</h4>
 <p>… a quick overview of how to set up a GitHub (or whatever tool you want to use) on your machine. I’ll show you two ways of doing it - which one you choose is up to you (you can even run both, as I do). If you just want to experiment, I recommend the desktop client at first, but for people who are serious about working with R or code in general, the second version might provide a better workflow.</p>
 </section>
-<section id="why-git" class="level1">
-<h1>Why Git?</h1>
+<section id="why-git" class="level1 unnumbered">
+<h1 class="unnumbered">Why Git?</h1>
 <p>Have you ever accidentally deleted a file and then not found a way to restore it? Have you ever overwritten some important detail in a document and not been able to recover it? Do these situations still haunt you in your dreams? It doesn’t have to be like that! Git is a type of <strong>version control</strong> for your machine, allowing you to manually set <strong>Checkpoints</strong> for your progress that you can restore at any time for the entire folder or individual files within it.</p>
 <p>Going even further, GitHub is a online database where you can upload these checkpoints. While GitHub is the most popular repository, there are many others that build on Git or similar structures to offer version control of your files. Now you may ask yourself: “Why would I want to upload my personal projects to the internet?” Well, here are some of the arguments:</p>
 <ul>
@@ -220,48 +217,84 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Issue tracking:</strong> If you build something that other people can use, GitHub can be a great way to collect and keep track of feedback and error reports. If you’re lucky, some of your users might even contribute their own improvements to your project!</p></li>
 </ul>
 </section>
-<section id="installing-git" class="level1">
-<h1>Installing Git</h1>
-<section id="step-0-make-an-account" class="level3">
-<h3 class="anchored" data-anchor-id="step-0-make-an-account">Step 0: Make an account</h3>
-<p>This should go without saying, but if you want to use GitHub, you need a GitHub account (don’t worry, it’s free and the basic version is more than enough). If you want to use another service, you’ll probably need an account there - and if you don’t want to use anything, you can obviously skip this step. Whatever you use, I implore you to <strong>think about your username</strong>! It should be pretty recognizable and unique to you <em>while at the same time being at least somewhat professional</em>!<br>
-<strong>Side Note:</strong> Did you know that as a student, you can get GitHub Pro for free? <a href="https://education.github.com/discount_requests/application">See here</a> for more information!</p>
+<section id="installing-git" class="level1 unnumbered">
+<h1 class="unnumbered">Installing Git</h1>
+<section id="step-0-make-an-account" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="step-0-make-an-account">Step 0: Make an account</h3>
+<p>This should go without saying, but if you want to use GitHub, you need a GitHub account (don’t worry, it’s free and the basic version is more than enough). If you want to use another service, you’ll probably need an account there - and if you don’t want to use anything, you can obviously skip this step. Whatever you use, I implore you to <strong>think about your username</strong>! It should be pretty recognizable and unique to you <em>while at the same time being at least somewhat professional</em>!</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Did you know that as a student, you can get GitHub Pro for free? <a href="https://education.github.com/discount_requests/application">See here</a> for more information!</p>
+</div>
+</div>
 </section>
-<section id="version-1-git-over-a-desktop-client" class="level2">
-<h2 class="anchored" data-anchor-id="version-1-git-over-a-desktop-client">Version 1: Git over a desktop client</h2>
+<section id="version-1-git-over-a-desktop-client" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="version-1-git-over-a-desktop-client">Version 1: Git over a desktop client</h2>
 <p>In this version, all the interactions with GitHub will be handled automatically by a chosen software, and you won’t have to worry about anything. While this can be very convenient, keep in mind that in this way <strong>version control only works with this client</strong>! Meaning that if you want to sync something not intended by the developers, you might be in for an annoying time.</p>
 <p>If you want to go this way, there is a whole boatload of potential desktop clients to choose from. If you for example already use <em>VS Code</em> for other projects, there’s a <a href="https://code.visualstudio.com/docs/sourcecontrol/github">Git integration built in</a> and you’ll find plenty of resources online to set that up, as well as plenty of plugins to expand it. Going beyond VS Code, GitHub has <a href="https://desktop.github.com/">it’s own desktop client</a> that’s able to sync any folder on your device. However, the last time I used it, I found it to be very annoying and clunky. The better alternative in my view and the one I use pretty regularly is <a href="https://www.gitkraken.com/">GitKraken</a>. The Team behind GitKraken is also responsible for the VS Code GitLens extension if you want to upgrade its capabilities.</p>
 </section>
-<section id="version-2-git-on-your-system-and-in-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="version-2-git-on-your-system-and-in-rstudio">Version 2: Git on your system and in RStudio</h2>
-<section id="step-1-installing-git" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-installing-git">Step 1: Installing Git</h3>
+<section id="version-2-git-on-your-system-and-in-rstudio" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="version-2-git-on-your-system-and-in-rstudio">Version 2: Git on your system and in RStudio</h2>
+<section id="step-1-installing-git" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="step-1-installing-git">Step 1: Installing Git</h3>
 <p>As mentioned previously, GitHub is only a web service for hosting you checkpoints and data. To communicate with GitHub, you can use a range of standardized commands and operations made available via a software called <em>Git</em>. Unfortunately (and this is the reason why desktop clients exist), Git is code-only and requires a Unix-terminal to function properly - which means Windows users have to jump through a few hoops when compared with everyone else.</p>
-</section>
-<section id="git-on-linuxunix" class="level3">
-<h3 class="anchored" data-anchor-id="git-on-linuxunix">Git on Linux/Unix</h3>
+<section id="git-on-linuxunix" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="git-on-linuxunix">Git on Linux/Unix</h4>
 <p>Based on your chosen distro, Git can easily be installed via package managers or built from source. For an installation overview for many of the more common distros see: <a href="https://git-scm.com/download/linux" class="uri">https://git-scm.com/download/linux</a></p>
 </section>
-<section id="git-on-macos" class="level3">
-<h3 class="anchored" data-anchor-id="git-on-macos">Git on MacOS</h3>
+<section id="git-on-macos" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="git-on-macos">Git on MacOS</h4>
 <p>If you’re lucky, Git might already be installed on your machine from the get-go. To check if this is the case, simply open the terminal app and enter <code>git --version</code>. If a version number is displayed, git is installed on your machine - and if not, MacOS <em>should</em> ask you if it should install it now.</p>
 </section>
-<section id="git-on-windows" class="level3">
-<h3 class="anchored" data-anchor-id="git-on-windows">Git on Windows</h3>
+<section id="git-on-windows" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="git-on-windows">Git on Windows</h4>
 <p>Windows - unlike the other two options - does not have built-in Unix support, which means we also have to install a Unix terminal. Fortunately, Git comes with a built-in terminal (<em>Git Bash</em>) if you install it from the <a href="https://git-scm.com/">official website</a></p>
-<p><strong>Side Note:</strong> Git will ask you during installation for a standard editor. In priniple this choice shouldn’t matter, as that editor will only be used in case of errors, which you shouldn’t encounter when using Git through RStudio or desktop clients. Still, if you don’t know what you’re doing and have never heard of <em>VI</em> or <em>VIM</em>, it’s probably best to switch this to something like <em>Nano</em> or <em>Notepad++</em> (if installed). All other installation steps can be left as default for normal use.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Git will ask you during installation for a standard editor. In principle this choice shouldn’t matter, as that editor will only be used in case of errors, which you shouldn’t encounter when using Git through RStudio or desktop clients. Still, if you don’t know what you’re doing and have never heard of <em>VI</em> or <em>VIM</em>, it’s probably best to switch this to something like <em>Nano</em> or <em>Notepad++</em> (if installed). All other installation steps can be left as default for normal use.</p>
+</div>
+</div>
 </section>
-<section id="step-2-git-and-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-git-and-rstudio">Step 2: Git and RStudio</h3>
+</section>
+<section id="step-2-git-and-rstudio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="step-2-git-and-rstudio">Step 2: Git and RStudio</h3>
 <p>After you install Git, RStudio should automatically detect it. To check, you can go to <code>Tools -&gt; Global Options -&gt; GIT/SVN</code> and see if it is listed there. If it isn’t listed there, you can manually add it by specifying the path: <code>yourGitFolder/bin/git.exe</code>. Restarting RStudio might also lead to a Git detection, especially if RStudio was opened during the Git installation process.</p>
 </section>
-<section id="step-3-configuring-git-and-github" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-configuring-git-and-github">Step 3: Configuring Git and GitHub</h3>
+<section id="step-3-configuring-git-and-github" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="step-3-configuring-git-and-github">Step 3: Configuring Git and GitHub</h3>
 <p>All the following steps can be done via the previously installed <em>Git Bash</em> terminal - however, this is (in my view) an unintuitive and error-prone process for casual users. Luckily, there is a way to configure Git in a more user-friendly way using R’s <code>usethis</code> package. After installing and loading <code>usethis</code>, you can open Git’s configuration directly using the <code>edit_git_config</code> command. Enter your name and the mail address of your GitHub account as follows:</p>
 <pre><code>[user]
     name = Your Name
     email = github@mail-adress.com</code></pre>
-<p><strong>Side Note:</strong> The name you set here can be anything you like - however, keep in mind that it will appear whenever you upload something to GitHub from this device. You could for example give a name like <code>Paul work laptop</code>, to easily track which device made the changes.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The name you set here can be anything you like - however, keep in mind that it will appear whenever you upload something to GitHub from this device. You could for example give a name like <code>Paul work laptop</code>, to easily track which device made the changes.</p>
+</div>
+</div>
 <p>After this step, Git is ready to serve as a local version control. However, to sync your changes with GitHub, one more step of authentication is needed - after all, if it were only about name and mail address, anyone could commit changes in your name.<br>
 Luckily, the <code>usethis</code> package can help us here once again: Running the function <code>create_github_token()</code> should open up the correct GitHub website to create your own so-called <strong>Personal Access Token</strong>. Here, you can also specify whether this token should only be active for a limited time (useful when working on other people’s machines) or what privileges this machine should have (touch this if you know what you’re doing, otherwise defaults should be fine). After completing this step, GitHub should present you with a token of the format <code>ghp_...</code>.<br>
 <strong>Note down this token somewhere, as you will never see it again once you close the site!</strong></p>
@@ -269,7 +302,7 @@ Luckily, the <code>usethis</code> package can help us here once again: Running t
 <p>Congratulations! You should now (hopefully) have everything set up and ready to use version controlling and GitHub! In the next step, we’ll be looking at actually working with Git inside RStudio, as there is a lot of neat functionality built-in to take work off of you.<br>
 If you want to know more or take a deep dive on using R and Git - or if you encounter any problems that require a more thorough explanations - I recommend you have a look at <a href="https://happygitwithr.com/" class="uri">https://happygitwithr.com/</a></p>
 <hr>
-<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-23 12:59</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-24 10:38</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
 <strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/R_gitsetup.qmd">here</a>.</p>
 
 
@@ -519,7 +552,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./R_gituse.html" class="pagination-link">
-        <span class="nav-page-text">Using Git(Hub) in RStudio</span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

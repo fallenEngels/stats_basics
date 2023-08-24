@@ -22,6 +22,8 @@ bibliography: references.bib
 format:
   html:
     theme: darkly
+    grid:
+      body-width: 1000px
   pdf:
     documentclass: scrreprt
 

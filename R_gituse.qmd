@@ -5,15 +5,15 @@ library(reticulate)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#### This page contains ...
+#### This page contains ... {.unnumbered}
 
 ... a how-to of using Git and GitHub as version controls from inside RStudio, as basically everything important is built into it already. If you've opted to use a desktop client instead, most of the core concepts and workflows should still be relevant for you, although the steps to achieve them might vary between applications. I'll also discuss some more of Git's features like branches and modifying other people's code.
 
-# Starting a project
+# Starting a project {.unnumbered}
 
 To have Git integration work from inside RStudio, it is **strictly necessary** to work inside an RStudio *project* rather than just a loose collection of code files scattered around your machine. This is because RStudio seems to treat the .Rproj file as an anchor point to build the file management around. While there are many ways to start a project, I want to highlight two different ways of doing things - although both boil down to the same method in the end.
 
-## New project that started on GitHub
+## New project that started on GitHub {.unnumbered}
 
 This in my view is the cleanest way of organizing version control, as much of the setup headaches get handled automatically for you:
 
@@ -23,17 +23,27 @@ This in my view is the cleanest way of organizing version control, as much of th
 
 -   Open RStudio, start a new project (`File -> New Project`), select `Version Control -> Git` and enter the link you copied into the `Repository URL` field.
 
-**Side Note:** To keep things organized, I highly recommend selecting a dedicated folder for coding projects on your machine: If you input this folder at `Create Project as subdirectory of`, RStudio will remember this and automatically select it the next time you generate a new project.
+::: {.callout-note title="Side Note"}
+To keep things organized, I highly recommend selecting a dedicated folder for coding projects on your machine: If you input this folder at `Create project as subdirectory of`, RStudio will remember this and automatically select it the next time you generate a new project.
+:::
 
 ![](rsc/git//Repo_clone.gif){fig-align="center"}
 
 The big advantage of doing things this way is that the selected GitHub repository will be seen as the `origin` without needing manual setup. In this way, the project should immediately be usable, without having to worry about manually `push`ing or `pull`ing files. If there are already files in your chosen repository, these will also automatically be downloaded and made available locally.
 
-## Preexisting local project
+## Preexisting local project {.unnumbered}
 
 Do you already have some old project lying around that you want to update and share and/or save on GitHub? Then this is the step for you! The core idea in this step is the same as before: We follow the instructions above to generate an (empty) repository and generate it locally as a new project. The trick with this approach is that you can now go ahead and - after opening the project's folder in a file manager of your choice - simply copy all your old files into this new folder. RStudio's Git integration will recognize these files as new to the project, and you will be able to work with them as if you had just created them inside the project.
 
-# Working with Git in RStudio
+# Working with Git in RStudio {.unnumbered}
+
+::: column-margin
+::: {#fig-xkcd_git}
+<a href="https://xkcd.com/1597/"> <img src="https://imgs.xkcd.com/comics/git.png" width="250" align="left"/></img> </a>
+
+Obligatory xkcd
+:::
+:::
 
 Now that you've opened your Git-synced project in RStudio, you might have already noticed something new: The `Environment` tab (usually top right) features a new tab simply labeled `Git`. When working with Git in RStudio, this tab is where all the magic happens - and everything that you otherwise would have to execute manually via the aforementioned Unix-terminal. Don't be scared, but I will now show you a graphic visualizing the basic working steps in Git that I stole from Reddit:
 
@@ -51,7 +61,9 @@ You should already know many of the `area`s mentioned in this image, although ma
 
 -   Going further, if you've made changes to your project from another machine (or someone else in your project updated some files), you can easily `pull` these changes from GitHub to your `working tree` so your code stays up-to-date and clean.
 
-**Side Note:** While you should save often and therefore also commit your changes often in case of emergency, you don't have to push your changes every time you update something. It can be entirely valid to collect multiple changes and push them all in one go, especially when you're still toying around with something half-baked that doesn't entirely work yet. Similarly, if you're using some automation, pushing often might be a bad idea. For example, this web interface gets automatically generated from the files I provide in the associated repo. If I were to push every little change, it would constantly re-compile and re-deploy this website for every minor spelling mistake - which would be annoying, energy-inefficient and would probably make Microsoft reconsider keeping this functionality as a free feature.
+::: {.callout-note title="Side Note"}
+While you should save often and therefore also commit your changes often in case of emergency, you don't have to push your changes every time you update something. It can be entirely valid to collect multiple changes and push them all in one go, especially when you're still toying around with something half-baked that doesn't entirely work yet. Similarly, if you're using some automation, pushing often might be a bad idea. For example, this web interface gets automatically generated from the files I provide in the associated repo. If I were to push every little change, it would constantly re-compile and re-deploy this website for every minor spelling mistake - which would be annoying, energy-inefficient and would probably make Microsoft reconsider keeping this functionality as a free feature. However, if you're dealing with these kinds of issues, you should probably think about using branches (see below) instead of not committing at all.
+:::
 
 Now, if you've already made some changes to your new R project, you might notice that things start to appear inside the `git`-tab un RStudio. Based on the type of change, you should see a coloured symbol appear in the "Status" column: ?(New file), A(dded), M(odified), D(eleted) and R(enamed) will probably be the ones you'll encounter most frequently. This window is RStudio's pendant to the `staging area` I just mentioned - here, files are being prepared for a git synchronization. What the command `git add` does in the image above can be achieved here by clicking the check box:
 
@@ -61,13 +73,39 @@ To commit your selected files, you simply have to click the aptly named "Commit"
 
 Congratulations! You now know how to use Git for version control! All that remains now is syncing your files with GitHub - something RStudio directly lets you know by complaining that your local branch is ahead of GitHub (here called origin/main) in it's update history. To rectify this, simply press the green, upwards pointing arrow. In the opposite situation, where GitHub is further ahead than your local machine, RStudio would still complain, and you would pull by pressing the blue, downwards pointing arrow.
 
-# Repo-Branches, Forks, Merges {#Branch}  
+# Repo-Branches, Forks, Merges {.unnumbered}
 
-# Branches: More control over your project
+## Branches: More control over your project {.unnumbered}
+
+When you start a new project, you end up with one linearly developing history of changes, usually called a `main branch` (or "master" if following older conventions). However, it might not always be a good idea to work inside this main branch. For example if you're only testing features and you're not yet sure if they make it into the final project (or if they are horribly unstable), it might not be a good idea to include them in your main code database where they might ruin stuff or at the very least fill up your change history. Another case would be if you wanted to try and compare multiple different approaches to the same problem - you can't really have both in the same file at the same time usually, as they are exclusive.
+
+Luckily, Git's designers have thought of this and introduced the concept of "branches": versions of your code that "split off" from the main branch and can develop in differing directions, allowing you to try out all the wildest ideas without ruining your project. For a practical use case, as I've mentioned before, ths website updates automatically whenever I commit something to the underlying repository. Now, I don't want this to happen any time I make and commit some minor change, which is why I actually commit to a different branch called "indev" - and once I'm satisfied with my progress, I simply carry over all my changes to the main branch in one fell swoop.
+
+::: {.callout-note title="Side Note"}
+Even if you're not dealing with these kinds of issues, it is probably always best to work with a separate testing branch, and **NEVER** commit untested code directly to the main branch - who knows what you might break in the process ...
+:::
+
+When working in R, I found it easiest to employ the following workflow for new branches:
+
+-   commit all outstanding changes to the branch you want to branch off from
+
+-   create a new branch on GitHub
+
+-   Pull in GitHub. Since you're up-to-date, no files should be overwritten, but the new branch should be detected. You can now switch local branches inside the Git tab (where it says "main" in the image above), and all changes should automatically be attributed to this branch from now on.
+
+## Forks: What's yours is mine {.unnumbered}
+
+If you've ever taken a stroll through the wonderful world of open-source software or had the time to look at GitHub's "Explore" section, you might have noticed something: There is a whole boat load of complete, incomplete and abandoned software available out there. In fact, if you're looking to solve a specific problem, you might find that someone has already started working on it - or completed a somewhat similar project that just needs some slight tweaking for your use case. This is where `fork`s come in.
+
+Forks are basically just like branches, with the main difference being that you're not creating a new branch inside the same repository, but instead creating a new repository based on someone else's work. That way, you start out with all the work they've already committed and can then go on to tweak it to your liking. For a practical example, the [engine underlying the Firefox web browser](https://github.com/mozilla/gecko-dev) has almost 2.000 forks from users modifying security settings to their liking or [building their own web browsers](https://github.com/adonais/iceweasel) from the provided baseline (not an endorsement, just an example).
+
+## Merging: Why can't we be friends? {.unnumbered}
+Now that you've substantially improved someone else's code (or toyed around in a separate branch and want to update the main branch), another step is necessary: merging the changes.
+If you're the owner of both the original and the new and improved branch, this is not an issue and can be done with relative ease. Out of convenience, I will demonstrate this using GitHub, but as before, you can also use [Git via terminal](https://happygitwithr.com/git-branches).
 
 
 
-As before, if you're still unsure about how things work or want to learn more about the possibilities Git and R offer, I recommend you look at: <https://happygitwithr.com/index.html>  
+As before, if you're still unsure about how things work or want to learn more about the possibilities Git and R offer, I recommend you look at: <https://happygitwithr.com/index.html>
 
 ------------------------------------------------------------------------
 
