@@ -1,4 +1,4 @@
-# Document Title here {.unnumbered}
+# Frequency Plots and Distributions {.unnumbered}
 
 ```{r setup, include=FALSE}
 library(reticulate)

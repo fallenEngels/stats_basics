@@ -27,7 +27,7 @@ This in my view is the cleanest way of organizing version control, as much of th
 To keep things organized, I highly recommend selecting a dedicated folder for coding projects on your machine: If you input this folder at `Create project as subdirectory of`, RStudio will remember this and automatically select it the next time you generate a new project.
 :::
 
-![](../rsc/git/Repo_clone.gif){fig-align="center"}
+![](../_rsc/git/Repo_clone.gif){fig-align="center"}
 
 The big advantage of doing things this way is that the selected GitHub repository will be seen as the `origin` without needing manual setup. In this way, the project should immediately be usable, without having to worry about manually `push`ing or `pull`ing files. If there are already files in your chosen repository, these will also automatically be downloaded and made available locally.
 
@@ -48,10 +48,7 @@ Obligatory xkcd
 Now that you've opened your Git-synced project in RStudio, you might have already noticed something new: The `Environment` tab (usually top right) features a new tab simply labeled `Git`. When working with Git in RStudio, this tab is where all the magic happens - and everything that you otherwise would have to execute manually via the aforementioned Unix-terminal. Don't be scared, but I will now show you a graphic visualizing the basic working steps in Git that I stole from Reddit:
 
 ::: {#img-reddit_git}
-<a href="https://www.reddit.com/r/git/comments/99ul9f/git_workflow_diagram_showcasing_the_role_of/"> 
-  <img src="../rsc/git/reddit_git.png" width = "900"></img>
-</a>
-
+<a href="https://www.reddit.com/r/git/comments/99ul9f/git_workflow_diagram_showcasing_the_role_of/"> ![](../_rsc/git/reddit_git.png)</img> </a>
 :::
 
 You should already know many of the `area`s mentioned in this image, although maybe not by this name: The `remote branch` is the repo saved on GitHub, while the `working branch` is the file structure on your current machine. The other layers in between are what makes Git so powerful for version control (and so irritating in the beginning). Here's how it works on a basic level:
@@ -72,7 +69,7 @@ While you should save often and therefore also commit your changes often in case
 
 Now, if you've already made some changes to your new R project, you might notice that things start to appear inside the `git`-tab un RStudio. Based on the type of change, you should see a coloured symbol appear in the "Status" column: ?(New file), A(dded), M(odified), D(eleted) and R(enamed) will probably be the ones you'll encounter most frequently. This window is RStudio's pendant to the `staging area` I just mentioned - here, files are being prepared for a git synchronization. What the command `git add` does in the image above can be achieved here by clicking the check box:
 
-![](../rsc/git/Rstudio_staging.png){width="50%"}
+![](../_rsc/git/Rstudio_staging.png){width="50%"}
 
 To commit your selected files, you simply have to click the aptly named "Commit" button, leave an informative commit message as to what you did and why (so you know what happened when you look back in a few weeks/months/years) in the now open window, and then press "Commit" there as well.
 

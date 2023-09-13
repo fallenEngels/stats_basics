@@ -1,0 +1,95 @@
+# Data and Variables {.unnumbered}
+
+```{r setup, include=FALSE}
+library(reticulate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### This page contains ... {.unnumbered}
+
+... a general overview of the most common data types encountered in data collecting processes, what their differences are and how they can be used in statistical analysis. Although at the end of it, everything will be treated as numbers, knowing how and why to use a certain variable in a certain way can be important for improving result quality, choosing the correct model or avoiding errors.
+
+## Variables {.unnumbered}
+
+As already stated on the last page, a **variable** is anything that features a set and unchanging global definition, easy to interpret labels for the values it can have and some degree of variation between these labels. Some examples to illustrate what I mean:
+
+-   A person's height is a variable because it has a set definition (or unit of measurement) that can be easily interpreted (we can make a pretty good guess what the answer "2m" means) different people have differing heights.
+
+-   A survey respondent's rating on a specified scale ("On a scale from 1 to 5, how highly do you rate ... ?") can also be a variable, because the context, question and scale are entirely under our control and identical for all respondents, while we can assume variation based on the fact that different people have different preferences.
+
+-   Even text can be treated as a variable if the context is the same (i.e. all answers are in response to the same question or from the same source), although some more processing of the texts might be needed in order to assert an easier interpretation of the labels. Unsurprisingly, text varies because no two responses will be exactly identical.
+
+While some variables might not adhere to the same concepts if you get them from respondents (for example, height could be given in "meter" or "inch"), they can still be usable if you are able to transform them to use the same underlying definition and value scale. Similarly, you could transform text by coding it into logical groups depending on the answers, thereby giving it a set value range and easy to interpret labels.
+
+### Variable classification {.unnumbered}
+
+In statistics, any variable can be used in one of three ways when it comes to analysis: Dependent variables, independent variables and control variables.
+
+-   A **dependent variable** is the variable we are interested in explaining through the use of our statistical methods. It is the representation of whatever our underlying theory stipulates to be influenced by something else. Most analysis methods focus on only one dependent variable instead of multiple, as the math gets incredibly complex when you introduce multiple phenomenons that need explaining - however, this doesn't mean it's impossible (SEM can do it, for example). You may also see this being called the *outcome variable* in some research designs.
+
+-   An **independent variable** is giving the presumed cause (or multiple probable causes) for variations in the dependent variable. How many independent variables to use is generally up to you, but I would advise against using too many at once, as it might complicate things unnecessarily. Having only one independent variable can also be a valid study design if your hypothesis calls for it! You may also see this being called the *predictor variable* in some research designs.
+
+-   A **control variable** is another presumed cause for variations in the dependent variable, although its main focus lies on controlling the effect of the independent variable when more complexity is introduced. As such, the focus lies not on the control variable itself, but rather on changes in the relationship between dependent and independent variables as more complexity is introduced. As such, you can easily end up with way more control variables than independent variables, although you should still set a sensible limit on the number of controls, in order to avoid overcomplicating things for no reason.
+
+Usually, dependent and independent variables can be directly extracted from your hypothesis: In our previous example ("An increase in education leads to an increased income"), income is the dependent variable as the hypothesis states that it depends on education, the independent variable. Control variables are not directly referenced in most hypotheses and instead have to be inferred from the question "What else could influence my dependent variable?" In our case, other factors influencing income could be variables like a respondent's work experience, the average regional income or the respondent's work arrangements (full-time vs. part-time).
+
+## Data Types
+
+As we have seen above, data can come in a variety of shapes and sizes, from numbers to rankings or even text. As such, it is important to keep in mind the *type* of a given variable, as that will influence the statistical methods available to you in your analysis.
+
+![](../_rsc/stats/datatypes.png)\
+At the most general level, a variable can be either *categorical* or *numeric*. Whereas for numeric variables, the numbers associated with a given case have an actual inherent numerical meaning (ex. a height of "1.84m"), categorical values use numbers only as representations of categories, with the actually chosen number being completely arbitrary. These general categories can be further broken down into the following sub-categories:
+
+-   Nominal variables are variables where the only difference between categories lies in the name of the category, with no set ranking order. As such, the ranking order of nominal variables is completely arbitrary and can be changed at any time. An example of this (cf. Field [-@Field2012] sec. 1.5.1.2) would be "species": Possible values might be "human", "cat", "dog" or "seal", but more values as well as a different order are entirely possible and logically sensible (ex. human - seal - dog - cat), as there is no inherent quality ranking one above the other.\
+    Ideally, nominal variables should be constructed in an *exclusive* way, i.e. every case should be classified as exactly one of the given categories (going back to Field's species example, you can be only one species, no matter how hard you try to be bat-man or cat-woman). While nominal variables can have as many values as you want - our text answers example above probably has as many unique values as there are responses - it's usually good to break these down into groups or (even more extreme) a binary selection like "Is human? Yes/No" for easier analysis.
+
+-   Categorical variables already introduce some degree of ranking into the variable. These variables are what you're probably most familiar with when answering survey questions: Returning this type of data are questions like "On this given scale, how would you rate your agreement to the following statements?" Answers to these questions already come with a pre-determined order of answers built-in (here, probably something like "strongly disagree" - "somewhat disagree" - "somewhat agree" - "strongly agree").\
+    Non-survey-related examples of categorical variables are things like tournament placements in sports competitions. These also show the flaw in categorical data: While we can use the results of a tournament to definitively state that the 2nd place team performed better than the 4th place team, we still don't know anything about the *actual distance* between the two teams - we only know that one did better than the other, but not by how much. It could have been an obvious domination of the top two teams over the entire competition or a hard-fought battle in all encounters, but we have no way of telling based solely on the categorical ranking.
+
+-   Over in the numeric realm, discrete data describes variables where an underlying value with numeric meaning exists. However (and as the name implies), values are still discrete and clearly separated from each other. As such, variables of this form usually (but not always) take whole numbers as the only valid format (ex. star ratings from 0 to 5 - although each rank is clearly separated from the others, rankings like 1.5 stars are still possible in some rating systems).
+
+-   To address this problem, continuous data can take values of any specificity and is only limited by your ability to measure whatever you're studying. Height or age are great examples for that, because for height you could in theory go down to the subatomic level if you tried, while your age always changes, no matter how exactly you measure it. This also means that we never "truly" measure continuous data as exact as possible - instead we abstract it to some minimum level of measurement, where it is quasi-discrete again.
+
+-   Sometimes you will even encounter special cases of discrete or continuous variables described as **ratio variables**. These are defined by also sporting a *true and meaningful zero point* in addition to their other properties. As an example, your age has a true zero point (when you were born), and every change since then has some meaning relative to that zero point. In contrast, variables like "temperature" have an entirely arbitrary zero point (unless you're measuring in Kelvin), and as such are not ratio scaled. The same goes for "years" in a general context, outside of a person's age - It may be 2023 as I write this, but the year 0 is chosen entirely arbitrary and has no inherent meaning (sorry, Christians).
+
+### Why does this matter? {.unnumbered}
+
+Because statistics is math and math wants to deal with numbers, having numeric data is always preferred, as it leads to relatively clean and simple mathematical operations as well as straight-forward interpretation of results. This also means that the actual type of numerical data (discrete or continuous) does not matter for the statistical matter itself, and they are largely interchangeable - where it does matter is for the interpretation of results, as continuous results for discrete values like "a person coming from this social background is estimated to have 1.4 children" make no logical sense without critical discussion.
+
+In contrast, categorical data's number equivalents are entirely arbitrary and therefore, math can be complicated or impossible. To borrow more from Andy Field: If player A with the number 10 on a football team is the best at converting penalty kicks into scoring goals, but player A is currently injured, the trainer "would not get his number 4 to give number 6 a piggy-back and then take the kick". A more sensible approach in this case would be to look at frequencies (see section 2 for more on that) and figure out which player has the second-best penalty conversion rate, since the players' numbers are generally arbitrary.\
+The same holds for the classic categorical case of ranking scales (like the agreement scale) - there might be an inherent order, with "strongly agree" representing more agreement than "somewhat agree", but the distance between the two cases is entirely arbitrary. In the worst case, two respondents could still disagree on a given issue, even though they both picked the same value on the scale!
+
+## Transforming categorical data for statistical analyses {.unnumbered}
+
+### Quasi-numeric categorical values {.unnumbered}
+
+With how prevalent and easy to implement ordinal rating scales are in surveys, scientists have come up with a work-around for this type of categorical data that allows them to be treated as numeric for the purposes of statistical analysis. The reasoning is as follows: If we give respondents **enough categories** to choose from and frame the labels of these categories in a way so that **all categories are roughly equally distant**, we can treat them as if they were normal numbers. The convention in this case is to have at least 5 different categories, as less leads to a sharp drop in result quality - in the case of our agreement scale we would therefore be lacking a scale item, which is usually solved by including a "neutral" category: "strongly disagree" - "somewhat disagree" - "indifferent" - "somewhat agree" - "strongly agree".\
+Keep in mind that even this way, the numbers used to represent the labels are entirely arbitrary. We could label them 0 to 4or 1 to 5 (or if we want to retain the positive/negative dynamic, -2 to 2). Best practice is to have the values take up consecutive numbers (i.e. not 1-3-5-7-9), and to not include a 0, as this might screw with the math later on(as `1*5` and `1*4` stay different values, whereas `0*5` and `0*4` do not).
+
+::: {.callout-warning title="Important"}
+While this conversion constitutes standard practice in social sciences, it is widely contested in other fields, as you're introducing the equal distance between and objective value of your categories out of thin air, thereby artificially enriching your data. While there is some research showing that this is generally not a problem (ex. Robitzsch [-@Robitzsch2020]), be careful where you mention that you do this, as you might spark a heated discussion [like this one](https://www.researchgate.net/post/Is_a_Likert-type_scale_ordinal_or_interval_data)!
+:::
+
+### Dummy variables {.unnumbered}
+
+But what about nominal values that can't be ordered? If transforming ordinal data is already this contested, surely it's going to be even worse for nominal data, right? In short, yes - which is why we will use a different approach.\
+You see, if we follow the ideal I set above, then every nominal category should be exclusive, with every case clearly assigned to one category. If this is indeed the case, we can transform our variable into several so-called *dummy variables* that each capture a proportion of the data in a usable form. In essence, we're transforming the categories into several yes/no questions, to which we then assign the numeric values 1 for "yes" and 0 for "no". This way, we transformed our data into a numeric form without introducing artificial differentiations - we're simply measuring presence or absence of a given category.\
+This method can also be used for categorical data, if you still want to use it for analyses but don't have the five answer categories or can't argue that there is equal distance between the categories (education is the example of choice here - there are differences between different education levels and degrees, but these sure aren't equally distant from each other)
+
+However, we won't transform every case in our data in this way. Instead, we will set one of our cases as a *reference*, and then code the rest as dummy variables. In practice and going back to our species list, this would mean that if we set "human" as the reference category, we would create the variables "dummy_cat" with 1 for cats and 0 for everything else, as well as "dummy_dog" and "dummy_seal", contrasting dogs and seals with everyone else respectively. While we lose data in the individual variables (after all, we only know "cat" or "no cat"), we still retain all information if we put them together. This is also why we can exclude the reference category - it is implicitly present in the new encodings (a case that is not a cat, not a dog *and* not a seal has to be a human after all - at least in this data).
+
+::: {.callout-note title="Side Note"}
+Choosing the right reference category is an art in and of itself. Out of consideration for the statistical methods we use later on, your reference category should comprise a large part of the data (rule of thumb: \~10% at least) and be meaningful as a reference category. Usually the most frequently present case should be used, but especially for ordinal data it can make sense to choose the highest- or lowest-ranked category to make interpreting the statistical results that much easier.
+:::
+
+------------------------------------------------------------------------
+
+```{python sys, include = F}
+import os
+from datetime import datetime
+lastmodified = datetime.fromtimestamp(os.stat('LINK_HERE.qmd').st_mtime)
+lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD HH:MM'
+```
+
+**Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/LINK_HERE.qmd">here</a>.
