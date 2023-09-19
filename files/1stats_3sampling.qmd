@@ -9,13 +9,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ... information on sampling, why it (unfortunately) is usually something we have to deal with, and why we can get away with only asking a few hundred or thousand people.
 
-## We can't ask everyone
+## We can't ask everyone {.unnumbered}
 
 The unfortunate truth when doing social science research is that we can't ask everyone we are interested in about their opinions on and reasons for whatever we are interested in. I've touched on this in a previous section, but will expand on this here.
 
 In fact, the number of survey respondents may sometimes be significantly lower than the actual number of people they seem to represent. For example, German political polls like the [Sonntagsfrage](https://www.wahlrecht.de/umfragen/) usually consist of 1,000-2,000 respondents, yet should somehow represent the [60ish million](https://www.bundeswahlleiterin.de/info/presse/mitteilungen/bundestagswahl-2021/01_21_wahlberechtigte-geschaetzt.html) people voting in Germany. How can this be?
 
-### The Theoretical Population (Grundgesamtheit)
+### The Theoretical Population (Grundgesamtheit) {.unnumbered}
 
 There are some hard limits we have to deal with that we can never avoid, even if we have all the resources we would want. These limits are usually of a methodological nature: The surveys we design *can* only be answered by people who understand the language and concepts used, and *should* only be answered by people who have relevant information about our interests, in order to avoid producing large amounts of useless data.
 
@@ -26,7 +26,7 @@ Thus, every translation (or more general broadening of the population) leads to 
 
 Figuring out this theoretical maximum is usually the first step in the data collecting process, and the absolute theoretical maximum of how many people you can ask. Unfortunately, it gets even worse from here on out as you further develop your survey methodology.
 
-### Limitation: Access
+### Limitation: Access {.unnumbered}
 
 There are multiple kinds of survey methods you can employ to reach people. We're probably all still familiar with street or telephone interviews, where you randomly get approached by people wanting to ask you questions. Over the last years, the balance has continuously shifted to instead use online surveys.\
 Online surveys have many benefits for researchers and respondents: They allow dynamic questioning flow (randomizing question order or only showing questions based on previous answers), provide an easily-scalable way of reaching a lot of people, usually provide data in a easily-usable format once the data collection is done, and - arguably most important - allow respondents to answer the questions whenever they find the time to do so while being very cheap to implement.
@@ -36,7 +36,7 @@ Of course, we could combine all these different modes of surveying to reach as m
 
 This limits our theoretical population further to the people we can actually access and provide a means to contribute to our data collection process to. Based on what you want to study, this may be more or less of an issue, but often people don't even think about this being the case!
 
-### Limitation: Interest and Effort
+### Limitation: Interest and Effort {.unnumbered}
 
 Even if we manage to reach people, there's no guarantee that they will answer our questions or participate in what we want to do. This disinterest can be rooted in several (non-exclusive) reasons, some of which might be:
 
@@ -52,27 +52,27 @@ While interest is not something we can directly influence as it's usually a core
 **The group of people we are interested in and are targeting with our questionnaire design, subsetted by the people we can actually reach with our chosen data collection method**\
 You may wonder why I harp on about this. Trust me, it will all make sense in a moment, once we actually talk about ...
 
-## Sampling
+## Sampling {.unnumbered}
 
 Even if we have a clearly delineated theoretical population and a robust research methodology, we still won't be able to ask everyone we care about. Going back to the Sonntagsfrage example, imagine the insanity of calling every landline telephone user in Germany on a weekly (or even monthly) basis to ask them about their political preferences. The time and financial costs would be extraordinary.
 
 Luckily, we can employ randomness in order to reduce the amount of effort needed. To explore this, we should first establish why we would even need to ask 60 million people to get insight into the vote distribution of 10 or less parties.
 
-### Triangulation
+### Triangulation {.unnumbered}
 
 No two people are alike. Everyone comes from a different social and familial background, brings their own experiences with them and has their own moral and philosophical worldviews reinforcing their beliefs. All these factors make every person relevant for our survey if we want to find out what influences their responses.\
 However, we're usually not interested in the entire, complex reality, but instead in a simplified subset of variables that can adequately explain most of what we see. To illustrate this, regression takes potentially complex interactions and breaks them down to a linear dependency - no matter how complex an interaction, the result of a linear regression is "Every increase in A increases B by X points."
 
 Because of this methodological simplification in our analysis, we can also simplify the types of people we are interested in. As long as we ask enough people (and these people are different enough) to give us a wide distribution over every variable and variable combination, we can get away with a way smaller amount of respondents that allow us to triangulate the actual dynamics in a simplified way.
 
-### Randomness
+### Randomness {.unnumbered}
 
 Unfortunately (notice a pattern?), we will never know all relevant variables needed for this triangulation before the fact. As such, if we manually try to pick the most varied respondents, we run the risk of artificially crippling our data on many on these *un*known dimensions, potentially producing wrong results! We need a process that ensures that we get a lot of respondents that all feature a wide range of answering behaviours on all known and unknown dimensions. This is where randomness comes in.
 
 If we simply pick random people from our total population to answer our survey, we may not be able to guarantee that every value of every variable of interest will be represented. But because of the randomness, we can be sure that almost any known and unknown influences are randomly distributed and therefore do not exert a systematic influence on our calculations and estimations.\
 At the same time, the issue of missing values in the distribution can be solved by simply increasing the number of people we ask: If we randomly select more people, the chance of encountering many of the possible variable combinations increases significantly.
 
-## Differences between Sample and Population
+## Differences between Sample and Population {.unnumbered}
 
 Because we randomly draw respondents from all possible respondents, it is entirely possible that we only encounter a skewed proportion of responses.\
 Let's say we wanted to find out how many people are left-handed. We could simply go out and ask all people we can reach whether they are right- or left-handed, but there remains a certain chance that we will (purely coincidentally) only encounter right-handed respondents. In fact, we can quantify this chance: Given the fact that left-handedness seems to have a prevalence of about 10% [see @deKovel2019], if we ask ten people, we will have a `r round(0.9^10*100, 2)`% chance of only encountering right-handed people. In fact, with only one variable to look at and a somewhat reasonable distribution, we only have to ask 100 people to bring the "risk" of only encountering right-handed people down to `r round(0.9^100*100, 4)`%!
@@ -80,13 +80,13 @@ Let's say we wanted to find out how many people are left-handed. We could simply
 However, this is not the whole story, as even if we encounter left-handed people, we could still be way off the "true" 10% value - we might find 5% left-handedness, or 15% or even 50% (although that is even less likely). In fact, we can simulate the proportions of left-handedness for multiple samples and different sample sizes. Here's what happens if we draw samples of 10, 100, 1,000 and 10,000 people and ask them if they're left-handed:
 
 ```{r left_sim, warning=F, message=F}
-#| layout-nrow: 1
+#| layout-nrow: 2
 library(ggplot2)
 # samples to draw
 sample <- 250
 # sampling function
-sample_left = function(rep_n, sample_n){
-  df <- data.frame(sample = seq(1, sample), perc = NA)
+sample_left <- function(rep_n, sample_n){
+  df <- data.frame(sample = seq(1, sample_n), perc = NA)
   for(i in 1:sample){
     left <- sample(c(1, 0), rep_n, replace = T, prob = c(0.1, 0.9))
     df$perc[i] <- mean(left)
@@ -101,23 +101,27 @@ left_10000 <- sample_left(10000, sample)
 
 ggplot(left_10, aes(x = perc)) + geom_histogram(bins = 5,
                                             fill = "gray", colour = "black") + 
-  theme_minimal() + labs(x = "Prevalence of left-handedness", y = "count")
+  geom_vline(xintercept = 0.1) + theme_minimal() + 
+  labs(x = "Prevalence of left-handedness", y = "count")
 ggplot(left_100, aes(x = perc)) + geom_density(bins = 16,
                                             fill = "gray", colour = "black") + 
-  theme_minimal() + labs(x = "Prevalence of left-handedness", y = "count") +
+  geom_vline(xintercept = 0.1) + theme_minimal() + 
+  labs(x = "Prevalence of left-handedness", y = "count") +
   scale_x_continuous(limits = c(-0, 0.4))
 ggplot(left_1000, aes(x = perc)) + geom_density(bins = 30,
                                             fill = "gray", colour = "black") + 
-  theme_minimal() + labs(x = "Prevalence of left-handedness", y = "count") +
+  geom_vline(xintercept = 0.1) + theme_minimal() + 
+  labs(x = "Prevalence of left-handedness", y = "count") +
   scale_x_continuous(limits = c(-0, 0.4))
 ggplot(left_10000, aes(x = perc)) + geom_density(bins = 50,
                                             fill = "gray", colour = "black") + 
-  theme_minimal() + labs(x = "Prevalence of left-handedness", y = "count") +
+  geom_vline(xintercept = 0.1) + theme_minimal() + 
+  labs(x = "Prevalence of left-handedness", y = "count") +
   scale_x_continuous(limits = c(-0, 0.4))
 
 ```
 
-### Getting Close to the Unknowable
+### Getting Close to the Unknowable {.unnumbered}
 
 As you can see in the simulations above, a low sample size leads to an extremely broad spread in possible values for left-handedness (it's between 0% and 40% with only 10 cases!), whereas an increased sample size produces values that are very close to the "true" value we chose.\
 While there may still be cases where we mis-judge the proportion of left-handedness, a larger sample size means that these mistakes are closer to the "true" value, as extreme values get way less likely. As you can also see, the gains in accuracy provide diminishing returns at a certain point, with 1,000 responses already providing a pretty accurate picture.
@@ -128,7 +132,7 @@ This example not only works for variables with a known distribution. If we only 
 \*Again: See the topic on significance for more on this.
 :::
 
-### What Does our Sample Represent
+### What Does our Sample Represent {.unnumbered}
 
 I've previously mentioned that the total population (Grundgesamtheit) represents the amount of people we theoretically want to reach and physically can reach. While the first part is usually pretty clear and thought about when doing research, the second part is sometimes forgotten, with dire implications for the underlying model.
 
@@ -146,9 +150,9 @@ It is an unfortunate truth that people use pre-selected samples to make generali
 ```{python sys, include = F}
 import os
 from datetime import datetime
-lastmodified = datetime.fromtimestamp(os.stat('1stats_2sampling.qmd').st_mtime)
+lastmodified = datetime.fromtimestamp(os.stat('1stats_3sampling.qmd').st_mtime)
 lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD HH:MM'
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/1stats_2sampling.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/1stats_3sampling.qmd">here</a>.

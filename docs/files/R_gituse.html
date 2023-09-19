@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basics of Statistics and R - 5&nbsp; Using Git(Hub) in RStudio</title>
+<title>Basics of Statistics and R - 10&nbsp; Using Git(Hub) in RStudio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../files/R_ggplot.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="../files/R_gituse.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../files/R_ggplot.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="../files/R_gituse.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -121,8 +121,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../files/1stats_2sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  <a href="../files/1stats_2datatypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_3sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Populations and Sampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_4significance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Effect Significance</span></span></a>
   </div>
 </li>
       </ul>
@@ -130,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">R: Packages and General Deep Dives</span></a>
+ <span class="menu-text">2: Descriptive Statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -138,20 +150,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../files/2desc_1basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing Things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_2summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_3plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Frequency Plots and Distributions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">R: Packages and General Deep Dives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../files/R_ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../files/R_gitsetup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../files/R_gituse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
   </div>
 </li>
       </ul>
@@ -192,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></h1>
 </div>
 
 
@@ -237,7 +278,7 @@ Side Note
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../rsc/git/Repo_clone.gif" class="img-fluid figure-img"></p>
+<p><img src="../_rsc/git/Repo_clone.gif" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>The big advantage of doing things this way is that the selected GitHub repository will be seen as the <code>origin</code> without needing manual setup. In this way, the project should immediately be usable, without having to worry about manually <code>push</code>ing or <code>pull</code>ing files. If there are already files in your chosen repository, these will also automatically be downloaded and made available locally.</p>
@@ -254,12 +295,12 @@ Side Note
 <div id="fig-xkcd_git" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><a href="https://xkcd.com/1597/"> <img src="https://imgs.xkcd.com/comics/git.png" width="250" align="left" class="figure-img"> </a></p>
-<figcaption class="figure-caption">Figure&nbsp;5.1: Obligatory xkcd</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;10.1: Obligatory xkcd</figcaption>
 </figure>
 </div>
 </div></div><p>Now that you’ve opened your Git-synced project in RStudio, you might have already noticed something new: The <code>Environment</code> tab (usually top right) features a new tab simply labeled <code>Git</code>. When working with Git in RStudio, this tab is where all the magic happens - and everything that you otherwise would have to execute manually via the aforementioned Unix-terminal. Don’t be scared, but I will now show you a graphic visualizing the basic working steps in Git that I stole from Reddit:</p>
 <div id="img-reddit_git">
-<p><a href="https://www.reddit.com/r/git/comments/99ul9f/git_workflow_diagram_showcasing_the_role_of/"> <img src="../rsc/git/reddit_git.png" width="900"> </a></p>
+<p><a href="https://www.reddit.com/r/git/comments/99ul9f/git_workflow_diagram_showcasing_the_role_of/"> <img src="../_rsc/git/reddit_git.png" class="img-fluid"> </a></p>
 </div>
 <p>You should already know many of the <code>area</code>s mentioned in this image, although maybe not by this name: The <code>remote branch</code> is the repo saved on GitHub, while the <code>working branch</code> is the file structure on your current machine. The other layers in between are what makes Git so powerful for version control (and so irritating in the beginning). Here’s how it works on a basic level:</p>
 <ul>
@@ -283,7 +324,7 @@ Side Note
 </div>
 </div>
 <p>Now, if you’ve already made some changes to your new R project, you might notice that things start to appear inside the <code>git</code>-tab un RStudio. Based on the type of change, you should see a coloured symbol appear in the “Status” column: ?(New file), A(dded), M(odified), D(eleted) and R(enamed) will probably be the ones you’ll encounter most frequently. This window is RStudio’s pendant to the <code>staging area</code> I just mentioned - here, files are being prepared for a git synchronization. What the command <code>git add</code> does in the image above can be achieved here by clicking the check box:</p>
-<p><img src="../rsc/git/Rstudio_staging.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="../_rsc/git/Rstudio_staging.png" class="img-fluid" style="width:50.0%"></p>
 <p>To commit your selected files, you simply have to click the aptly named “Commit” button, leave an informative commit message as to what you did and why (so you know what happened when you look back in a few weeks/months/years) in the now open window, and then press “Commit” there as well.</p>
 <p>Congratulations! You now know how to use Git for version control! All that remains now is syncing your files with GitHub - something RStudio directly lets you know by complaining that your local branch is ahead of GitHub (here called origin/main) in it’s update history. To rectify this, simply press the green, upwards pointing arrow. In the opposite situation, where GitHub is further ahead than your local machine, RStudio would still complain, and you would pull by pressing the blue, downwards pointing arrow.</p>
 </section>
@@ -339,7 +380,7 @@ Side Note
 <p>If nothing went horribly wrong in your branch management, you should also be presented with a big green “New pull request” GitHub should automatically open a overview site for the new pull request, where you simply have to approve the changes to incorporate them to the main branch (or whichever branch you want to merge to). This is also where requests from other users that worked on your code will appear for your approval (and where your pull requests will appear on other users’ projects.</p>
 <p>As before, if you’re still unsure about how things work or want to learn more about the possibilities Git and R offer, I recommend you look at: <a href="https://happygitwithr.com/index.html" class="uri">https://happygitwithr.com/index.html</a></p>
 <hr>
-<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-24 14:56</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-09-07 11:44</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
 <strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/R_gituse.qmd">here</a>.</p>
 
 
@@ -583,7 +624,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../files/R_gitsetup.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
