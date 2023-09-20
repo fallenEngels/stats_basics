@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -71,10 +90,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,6 +144,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Basics of Statistics and R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -328,18 +352,20 @@ We therefore need to extend our results reporting by another measure, which shou
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> sample<span class="sc">$</span>mean, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.07</span>, <span class="fl">0.16</span>)) <span class="sc">+</span> </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Prevalence of left-handedness"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># plot estimated distribution</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_1000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"gray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> sample<span class="sc">$</span>mean, <span class="at">sd =</span> sample<span class="sc">$</span>se)) <span class="sc">+</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"dark gray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> sample<span class="sc">$</span>mean, <span class="at">sd =</span> sample<span class="sc">$</span>se),</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, sample<span class="sc">$</span>mean <span class="sc">+</span> (sample<span class="sc">$</span>mean <span class="sc">-</span> <span class="fl">0.1</span>))) <span class="sc">+</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> sample<span class="sc">$</span>mean, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.07</span>, <span class="fl">0.16</span>)) <span class="sc">+</span> </span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Est. prevalence of left-handedness"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Prevalence of left-handedness"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># plot estimated distribution</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_1000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"gray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> sample<span class="sc">$</span>mean, <span class="at">sd =</span> sample<span class="sc">$</span>se)) <span class="sc">+</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"dark gray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> sample<span class="sc">$</span>mean, <span class="at">sd =</span> sample<span class="sc">$</span>se),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, sample<span class="sc">$</span>mean <span class="sc">+</span> (sample<span class="sc">$</span>mean <span class="sc">-</span> <span class="fl">0.1</span>))) <span class="sc">+</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> sample<span class="sc">$</span>mean, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.07</span>, <span class="fl">0.16</span>)) <span class="sc">+</span> </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Est. prevalence of left-handedness"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -378,14 +404,14 @@ However, we can use what we’ve now created and theorized to create an approxim
 <li><p>We then stated that this sample is <em>presumably</em> <strong>representative of the average sample</strong> drawn from our population.</p></li>
 </ul>
 <p>What this gives us is an <strong>estimated value</strong> for our chosen parameter as well as a <strong>probability distribution</strong> for deviating values. Based on these values, we can now go ahead and calculate the likelihood of specific values to appear given our sample.<br>
-Here’s what I mean by this: As we’ve seen here and in our previous simulations, if the sample size is big enough, most samples seem to fall very close to the actual population’s value. In fact, manyof the samples almost perfectly overlap with the actual population mean, while deviations from the population mean in all directions get less and less likely the more extreme they are. This bell-shaped curve we can observe here has it’s own name - the <strong>Normal Distribution</strong> - and we will encounter it pretty often in the following pages.</p>
+Here’s what I mean by this: As we’ve seen here and in our previous simulations, if the sample size is big enough, most samples seem to fall very close to the actual population’s value. In fact, many of the samples almost perfectly overlap with the actual population mean, while deviations from the population mean in all directions get less and less likely the more extreme they are. This bell-shaped curve we can observe here has it’s own name - the <strong>Normal Distribution</strong> - and we will encounter it pretty often in the following pages.</p>
 <p>If we take our sample value (it’s 11.4% left-handedness by the way) as the center of a simulated distribution - meaning we treat it <em>as if were</em> the true population value, other samples would tend to fall relatively close to it, just like with the the true value in our previous simulations.<br>
 That means if someone else comes along with an estimated 12% of left-handedness, we can accept that as pretty likely, since it’s relatively close to our sample’s result. If however another study claims 50% left-handedness, that should raise some red flags - differences this large are extremely unlikely, and therefore someone has probably fucked up somewhere.</p>
 </section>
 </section>
 <section id="quantifying-differences" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="quantifying-differences">Quantifying Differences</h2>
-<p>I’ve said before that these estimates can form the base of a <strong>probability distribution</strong> - and now you can probably see why: While most samples tend to land close to the true value, there is still no guarantee that any random sample will actually hit the true value perfectly (i.e.&nbsp;we get a sample that exactly results in our “true” value of 10.0000…% left-handedness) or at all. We therefore operate on a continuum betwee a 0% chance of perfectly hitting the truth down to every decimal and a 100% chance of getting any result at all.<br>
+<p>I’ve said before that these estimates can form the base of a <strong>probability distribution</strong> - and now you can probably see why: While most samples tend to land close to the true value, there is still no guarantee that any random sample will actually hit the true value perfectly (i.e.&nbsp;we get a sample that exactly results in our “true” value of 10.0000…% left-handedness) - or even at all. We therefore operate on a continuum between a 0% chance of perfectly hitting the truth down to every decimal and a 100% chance of getting any result at all.<br>
 The only footholds we have is that it seems based on our simulations that a) most samples end up very close to the actual value and b) deviations in both directions are equally likely.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Side Note">
 <div class="callout-header d-flex align-content-center">
@@ -397,14 +423,14 @@ Side Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You might have noticed that I’ve started dropping the quotation marks around the “true” population value. This is because the “true” population value with quotations is an unknowable value in a specific distribution - in our case left-handedness - while the true population value without quotations is the description for a hypothetical concept that may be conceivable, but has no actual value.</p>
+<p>You might have noticed that I’ve started dropping the quotation marks around the “true” population value. This is because they refer to different concepts: the “true” population value (with quotations) is an unknowable value in a specific distribution - in our case left-handedness - while the true population value (without quotations) is describing a hypothetical concept that may be conceivable, but has no actual, measurable value.</p>
 </div>
 </div>
-<p>Using these footholds, we can calculate the probability of any sample ending up in a specified range around our distribution’s center. Using our sampled 11.4% and the associated <strong>standard error</strong> based on the sample’s size, we could for example calculate the estimated probability of another sample returning a value between 11% and 12% left-handedness. In this case, 11% and 12% would be the <em>cut-off values</em> for our calculation.<br>
-Because we established that sample deviations seem to appear equally in both directions, we usually take the same cut-off value for both sides and set it relative to the calculated distribution’s mean. In our example, this would mean that rather than calculate the probability of landing between 11% and 12%, we would instead calculate the probabilities between 11% and 11.8% or 10.8 and 12% left-handedness respectively, to keep both sides even. This also makes our reporting job easier, as we only have to report the deviation, instead of the actual values (which would be 0.4% and 0.6% respectively here).</p>
-<p>Of course, these <em>cutoff points</em> can be completely arbitrary based on our needs. We could for example take the “true” value of 10% as a cut-off point, meaning that our probability interval would go from 10% on one side to 12.8% on the other. In our plot above, this would be the shaded area, with the black line serving as cut-off at the “true” value of 10%.<br>
-If we now calculate what proportion of space under the distribution is inside the line vs.&nbsp;the total (i.e.&nbsp;the dark gray shaded area vs.&nbsp;everything dark and light gray) we get a percentage value (ex. 70% of the area is dark gray). This percentage value tells us the <strong>proportion of (theoretical) samples from the total population</strong> that we expect to land <strong>inside the darker shaded area</strong> delineated by the cutoff-point, with the cutoff-point being any arbitrary value on the variable’s scale. We can also flip this around to claim that with 70% “inside” the area, this means that there is only a 30% chance of a sample being as far or farther from our mean than our chosen cut-off points!</p>
-<p>Here’s where we can start to quantify our results: although we may not know anything about the actual, “true” distribution of left-handedness, we could for example make educated guesses based on previous research. If we found that previous research stated a left-handedness value of 8%, we could treat this value as one such cutoff-point, and see where it falls on the proportion scale. If we found out that - based on our sample’s distribution - 99% of predicted samples would fall in the interval 8%-(11.4%)-14.8%, this would mean that about 1% of samples would lie as far out as the previous research’s 8%! Because this is a very unlikely result, we would have grounds to claim that something is wrong here.</p>
+<p>With these footholds and our previous estimations, we can calculate the probability of any sample ending up in a specified range around our distribution’s center. Using our sampled 11.4% and the associated <strong>standard error</strong> based on the sample’s size, we could for example calculate the estimated probability of another sample returning a value between 11% and 12% left-handedness. In this case, 11% and 12% would be the <em>cut-off values</em> for our calculation.<br>
+Because we established that sample deviations seem to appear equally in both directions, we usually take the same cut-off value for both sides and set it relative to the calculated distribution’s mean. In our example, this would mean that rather than calculating the probability of landing between 11% and 12%, we would instead calculate the probabilities between 11% and 11.8% or 10.8% and 12% left-handedness respectively, to keep both sides even. This also makes our reporting job easier, as we only have to report the deviation, instead of the actual values (which would be 0.4% and 0.6% respectively here).</p>
+<p>Of course, these <em>cut-off points</em> can be completely arbitrary based on our needs. We could for example take the “true” value of 10% as a cut-off point, meaning that our probability interval would go from 10% on one side to 12.8% on the other. In our plot above, this would be the dark gray area, with the black line serving as cut-off at the “true” value of 10%.<br>
+If we now calculate what proportion of space under the distribution is smaller than the cut-off vs.&nbsp;the total (i.e.&nbsp;the dark gray shaded area vs.&nbsp;everything dark and light gray) we get a percentage value (ex. 70% of the area is dark gray). This percentage value tells us the <strong>proportion of (theoretical) samples from the total population</strong> that we expect to land <strong>inside the darker shaded area</strong> delineated by the cutoff-point, with the cutoff-point being any arbitrary value on the variable’s scale. We can also flip this around to claim that with 70% “inside” the area, this means that there is only a 30% chance of a sample being as far or farther from our mean than our chosen cut-off points!</p>
+<p>Here’s where we can start to quantify our results: although we may not know anything about the actual, “true” distribution of left-handedness, we could for example make educated guesses based on previous research. If we found that previous research stated a left-handedness value of 8%, we could treat this value as one such cutoff-point, and see where it falls on the proportion scale. If we found out that - based on our sample’s distribution - 99% of predicted samples would fall in the interval 8%-(11.4%)-14.8%, this would mean that about 1% of samples would <em>lie as far or farther away</em> from our results as the previous research’s 8%! Because this is a very unlikely result, we would have grounds to claim that something is wrong here.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Important">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -421,7 +447,7 @@ Important
 <p>If you think back to the first chapters, this might seem familiar to you. In fact, what we’re doing here is applied <em>falsification</em>: As discussed previously, we can never claim to have found the “proven” or “true” value of left-handedness, but we can try our best to disprove the established proportion given by prior research (or any other value for the proportion). In this case, we can use the 1% probability to convincingly argue that the prior value of 8% is probably an underestimation - although even that can never be decisively proven!</p>
 <section id="confidence-intervals" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="confidence-intervals">Confidence Intervals</h3>
-<p>Depending on the field and research tradition you’re in, there are different guidelines for how different something has to be in order for you to claim that a difference is significant. Usually, values should lie outside a zone than encapsulates at least 95% of the calculated sample distribution in order to claim significant difference:</p>
+<p>Depending on the field and research tradition you’re in, there are custom guidelines for how different something has to be in order for you to claim that a difference is significant. Usually, values should lie outside a zone than encapsulates at least 95% of the calculated sample distribution in order to claim significant difference:</p>
 <div>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># actual value within probability range (difference not significant)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_1000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span></span>
@@ -430,29 +456,32 @@ Important
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"gray"</span>,<span class="at">colour =</span> <span class="st">"black"</span>,</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>)) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)) <span class="sc">+</span> </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Value distribution with 95% intervals"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># actual value outside probability range (difference significant)</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_1000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"gray"</span>,<span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>)) <span class="sc">+</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="sc">-</span><span class="fl">1.8</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">2.5</span>) <span class="sc">+</span> </span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)) <span class="sc">+</span> </span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Value distribution with 95% intervals"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># actual value outside probability range, one-sided (difference significant)</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_1000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"gray"</span>,<span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.645</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="sc">-</span><span class="fl">1.8</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)) <span class="sc">+</span> </span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Value distribution with 95% intervals"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Value distribution with 95% intervals"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">24</span>)) </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># actual value outside probability range (difference significant)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_1000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"gray"</span>,<span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>)) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="sc">-</span><span class="fl">1.8</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">2.5</span>) <span class="sc">+</span> </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)) <span class="sc">+</span> </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Value distribution with 95% intervals"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">24</span>)) </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># actual value outside probability range, one-sided (difference significant)</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_1000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">"function"</span>, <span class="at">fun =</span> dnorm, <span class="at">fill =</span> <span class="st">"gray"</span>,<span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.645</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="sc">-</span><span class="fl">1.8</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>)) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Value distribution with 95% intervals"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">24</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
@@ -467,17 +496,31 @@ Important
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Depending on the quality of your data and the severity of your conclusion, you can argue for different confidence levels, as they are - again - entirely arbitrary. Especially for statistical analyses with low case numbers (&lt; 500), you will find some studies going to 90% confidence (you can tweak this even further with one-sided tests, see below).<br>
+If you’re dealing with life-and-death situations like in medical trials or with something that has the potential to revolutionize science as we know it (nuclear physics, …), it might be better to opt for a stricter confidence level of 99% or even 99.9%, to decrease the risk of mis-interpretation.</p>
+</div>
+</div>
 <p>In these examples, the gray area encompasses 95% of the probable sample distribution. In the first case, our cut-off point is not different enough to land outside of the confidence interval, meaning any difference between it and our sample values <em>could still be coincidental, based on different samples from the same data</em> and therefore isn’t significant.<br>
 The second case shows two cutoff-points, of which one lies outside the 95%-range while the other does not. In this case, we could claim reasonable confidence in a difference between our sample and the right-side cutoff-point. While there is still a chance that all three values (sample mean and both cutoff-points) come from the same underlying data, this difference is big enough to suspect that something is probably amiss.</p>
 <p>The third example shows something else entirely: Here, we rephrased our question about significance somewhat: Instead of testing both sides of the distribution (i.e.&nbsp;asking “is something significantly smaller or larger than our result?”) we only focus on one side, and ignore the other side.<br>
-This leads to an improvement in confidence intervals: 95% confidence and an equal split leaves 2.5% of samples below and 2.5% of cases above our calculated value. If we only focus on one side (i.e.&nbsp;we ask “is something significantly smaller than our result?”), we can shift the entire 5% “rest” over to that side. This is what’s shown here. Because we only focus on if something is significantly smaller, the right-side line is now non-significant, while the left-side line lies outside the gray zone - even though the right-side line is farther from our sample’s mean! Because of the way they’re constructed, these types of tests are also called <strong>two-tailed</strong> or <strong>one-tailed significance tests</strong> (with two tails if measuring in both directions).</p>
+This leads to an improvement in confidence intervals: 95% confidence and an equal split leaves 2.5% of samples below and 2.5% of cases above our calculated value. If we only focus on one side (i.e.&nbsp;we ask “is something significantly smaller than our result?”), we can shift the entire 5% “rest” over to that side. This is what’s shown here. Because we only focus on if something is significantly smaller, the right-side line is now non-significant, while the left-side line lies outside the gray zone - even though the right-side line is farther from our sample’s mean! Based on the way they’re constructed, these types of tests are also called <strong>two-sided</strong> or <strong>one-sided significance tests</strong>, with two sides (or tails) if measuring in both directions, and one if contrasting to only one direction.</p>
 </section>
 <section id="seeing-stars" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="seeing-stars">Seeing stars</h3>
 <p>Instead of comparing data against arbitrary cut-off points, statistical programs usually compare your results against a pre-defined cut-off point: 0.<br>
 This is because most statistical analyses revolve around the answer to the question “Does X have an effect on Y?”, and since we can’t prove this (recall falsification), we instead try to dis-prove that X has <em>no</em> effect on Y - making zero the cut-off point we ideally want to fall outside of our confidence interval. This also covers inverted effects, since any journey from positive to negative (or vice versa) needs to cross 0 at some point.</p>
 <p>As you might imagine, 0 will basically never line up perfectly with any pre-set confidence interval like “95%”, instead potentially producing weird or very small values. As such, it has become custom to represent significance with stars in analysis results, where more stars correspond to a “harder” test.<br>
-You will usually see these stars explained below the table of results, in a form like this: <code>*p&lt;.1. **p&lt;.05. ***p&lt;.01</code>. In this example, one star (*) would mean that the remaining probability of randomly arriving at a value as far away as 0 based on the given result was <code>0.1*100</code>=10% or smaller - a 90% confidence interval - with the same going for 95% (**) and 99% (***) confidence respectively.</p>
+You will usually see these stars explained below the table of results, in a form like this: <code>*p&lt;.1. **p&lt;.05. ***p&lt;.01</code>. In this example, one star (*) would mean that the remaining probability of randomly arriving at a value as far away as 0 based on the given result was 10% or smaller - a 90% confidence interval - with the same going for 95% (**) and 99% (***) confidence intervals respectively.</p>
 </section>
 </section>
 <section id="the-limits-of-significance" class="level2 unnumbered">
@@ -485,21 +528,58 @@ You will usually see these stars explained below the table of results, in a form
 <p>Bear with me, this is going to be annoying.<br>
 You see, because significance is such a cool concept and because stars are easy to communicate (notice how I don’t use “understand” here), this is what many people look at whenever they use statistical methods without further thinking about the result. This also makes them the de-facto standard of any scientific reporting. But as you might have noticed already, this concept of significance is built on a foundation that can only be described as rickety at best and imaginary at worst.</p>
 <p>This refers back to all the assumptions we made during the process of getting to the concept of significance. You know, the ideas of us reaching our target population, getting results that are representative of the actual average, presuming that we can generalize a probability distribution from our sample and all that jazz.<br>
-It turns out, it’s basically never the case that all these assumptions are met. Something is always going on somewhere that leads to skewed data or mis-interpretation of results. Does that mean everything we do is worthless? No.&nbsp;But it does mean that <strong>even the confidence intervals themselves are just estimations and not hard cutoffs</strong>! You can never be certain that your calculated 95% are the actual 95%!</p>
+It turns out, it’s basically never the case that all these assumptions are met. Something is always going on somewhere that leads to skewed data or mis-interpretation of results. Does that mean everything we do is worthless? No.&nbsp;But it does mean that <strong>even the confidence intervals themselves are just estimations and not hard cutoffs</strong>! You can never be certain that your <em>calculated</em> 95% are the <em>actual</em> 95%!</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can estimate how likely it is for you to detect an actually real effect based on the effect’s theorized strength, your sample size and a couple other parameters. We will talk more in-depth about this concept (called <strong>statistical power</strong>) at a later time, but I want to mention it here already.<br>
+Still, just like everything else, this is a probability - and based on how much science is out there, even the most unlikely things will have happened somewhere at some point!</p>
+</div>
+</div>
 <p>But wait, it gets even worse. This is where interpretation of the probability values matter (and also where we clear up my messy wordings in the last few paragraphs). You see, testing with a 95% confidence interval <em>does not mean</em> that we are 95% confident that the result we calculated is the correct result! Instead, all we state is that <strong>if one were to draw a similar sample and conduct the same analysis again, we would land inside our “gray area” 95% of the time!<br>
-</strong>Now you might argue that your regression did not produce a meager 95% confidence result, but instead left you with a confidence value of 99.99999%! To that I say “Great, good for you! But what does this actually <em>mean</em>?” All you’ve established now is that your calculated value is really, really likely to be not 0. What does this tell us? What benefit do we get from knowing that?</p>
+</strong>Now you might argue that your regression did not produce a meager 95% confidence result, but instead left you with a confidence value of 99.99999%! To that I say “Great, good for you! But what does this actually <em>mean</em>?” All you’ve established now is that your calculated value is really, really likely to be less far away from your result than 0 is. What does this tell us? What benefit do we get from knowing that?</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that we have everything in place, we can concisely state what confidence intervals and significance entail:<br>
+<strong>Given a set probability, a confidence interval is the range of potential values we would expect hypothetical re-calculations of our analysis based on other samples from the underlying population to take. This probability distribution is based on the assumptions that<br>
+a) our sample is representative of the “true” population values and distributions and<br>
+b) that all remaining dynamics in the sampling process are completely random and non-systematic.<br>
+Confidence is usually measured against the value “0” and states the <em>proportion of random samples that would be less far away from our calculated value than the distance between 0 and this value.</em></strong></p>
+</div>
+</div>
 <p>Here’s an interesting implication if you think this to it’s logical conclusion: Presuming a best-case where all our procedural assumptions about sampling hold as well as a 95% confidence interval, this would mean that around 5% of all published research depicts effects that are not actually “true” effects. Instead they are simply unlikely enough to have happened to be outside a non-effect’s 95% confidence interval!</p>
-<p>And that’s the best case. Things can and will go wrong, if you notice them or not. There may be some unknown systematic effects that change the true population you can make claims about (people without internet, households where everyone works during your call times, …). Our sample could be filled with only one-sided outliers, ruining our results. Or, worst of all, we cherry-picked or data to achieve significant effects in the ways we wanted in order to achieve the stars required to get our work into scientific journals (this is also called <em>p-hacking</em>, and it’s an issue)!</p>
+<p>And that’s the best case. Things can and will go wrong, if you notice them or not. There may be some unknown systematic effects that change the true population you can make claims about (people without internet, households where everyone works during your call times, …), or our sample could be filled with only one-sided outliers, ruining our results. Or, worst of all, we cherry-picked or data to achieve significant effects in the ways we wanted in order to achieve the stars required to get our work into scientific journals (this is also called <em>p-hacking</em>, and it’s an issue)!</p>
 <section id="but-then-what-shall-we-do" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="but-then-what-shall-we-do">But then what shall we do?</h3>
-<p>In short? I have no idea. Significance might not be the ideal measure of what’s going on inside our data, but it is readily-available in almost all statistical programs and functions, easy to interpret and - unfortunately - the currency that makes the scientific world spin.</p>
+<p>In short? I have no idea. Significance might not be the ideal measure of what’s going on inside our data, but it is readily-available in almost all statistical programs and functions, easy to interpret and - unfortunately - the currency that makes the scientific world spin.<br>
+I’m also not the first one to notice and address this issue: Over the years, scientists have cautioned against trusting significance too much (see ex. Cohen’s [-@Cohen1994] paper with the great title “The Earth Is Round (p &lt; .05)”), and a semi-recent plea <span class="citation" data-cites="Amrhein2019">(<a href="references.html#ref-Amrhein2019" role="doc-biblioref">Amrhein, Greenland, and McShane 2019</a>)</span> to be more careful about mis-interpretation of statistical significance gathered widespread support.</p>
 <p>There are other approaches to measuring the meaning of an effect, but until they catch on, significance still reigns supreme. The only thing we can do is be cautious when we encounter effects that seem too good to be true, as there might be something fishy going on.<br>
-And also, don’t blindly trust stars (this goes for real life and statistics!) - Just because one gets a star and the other doesn’t, that does not mean that an effect with a 90% confidence interval is so much better than an effect with a 89.9% confidence interval. Use your head and think about your results!</p>
+And also, don’t blindly trust in stars (this goes for real life and statistics!) - Just because one gets a star and the other doesn’t, that does not mean that an effect with a 90.01% confidence level is so much better than an effect with a 89.99% confidence level. In the same vein, non-effects <strong>do not necessarily disprove</strong> previous studies that found effects! Use your head and think about your results!</p>
 <hr>
-<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-09-19 16:12</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
-<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/1stats_4significance.qmd">here</a>.</p>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-09-20 11:15</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/1stats_4significance.qmd">here</a>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Amrhein2019" class="csl-entry" role="listitem">
+Amrhein, Valentin, Sander Greenland, and Blake McShane. 2019. <span>“Scientists Rise up Against Statistical Significance.”</span> <em>Nature</em> 567. <a href="https://doi.org/10.1038/d41586-019-00857-9">https://doi.org/10.1038/d41586-019-00857-9</a>.
+</div>
+</div>
 </section>
 </section>
 
@@ -524,6 +604,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

@@ -41,7 +41,7 @@ With the role that numbers and optimizations play in today's world, statistics c
 
 This is another reason why statistical literacy is an important skill. If it's that easy to generate or make up data and results, we should be able to at least roughly judge whether these results are credible or not.
 
-### Minimal Theory: Falsification
+### Minimal Theory: Falsification {.unnumbered}
 
 Turns out, I lied to you previously: There is some minimal amount of theory about theory validation that we have to address before we jump into actually doing stuff. This is due to an unfortunate truth that anyone collecting data has to deal with - although us social scientists have it worse than for example physicists, as we have to deal with humans and their answering behaviour:\
 **We will never know the entire, objective truth about the things we want to analyze. Our data will always be flawed or incomplete in some way**
@@ -78,4 +78,4 @@ lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD 
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/1stats_1basics.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/1stats_1basics.qmd">here</a>.

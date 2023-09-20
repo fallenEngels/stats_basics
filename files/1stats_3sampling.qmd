@@ -100,24 +100,24 @@ left_1000 <- sample_left(1000, sample)
 left_10000 <- sample_left(10000, sample)
 
 ggplot(left_10, aes(x = perc)) + geom_histogram(bins = 5,
-                                            fill = "gray", colour = "black") + 
-  geom_vline(xintercept = 0.1) + theme_minimal() + 
-  labs(x = "Prevalence of left-handedness", y = "count")
+  fill = "gray", colour = "black") + geom_vline(xintercept = 0.1) + 
+  labs(x = "Prevalence of left-handedness", y = "count") +
+  theme_minimal() + theme(text=element_text(size=20)) 
 ggplot(left_100, aes(x = perc)) + geom_density(bins = 16,
-                                            fill = "gray", colour = "black") + 
-  geom_vline(xintercept = 0.1) + theme_minimal() + 
+  fill = "gray", colour = "black") + geom_vline(xintercept = 0.1) + 
   labs(x = "Prevalence of left-handedness", y = "count") +
-  scale_x_continuous(limits = c(-0, 0.4))
+  scale_x_continuous(limits = c(-0, 0.4)) +
+  theme_minimal() + theme(text=element_text(size=20)) 
 ggplot(left_1000, aes(x = perc)) + geom_density(bins = 30,
-                                            fill = "gray", colour = "black") + 
-  geom_vline(xintercept = 0.1) + theme_minimal() + 
+  fill = "gray", colour = "black") + geom_vline(xintercept = 0.1) + 
   labs(x = "Prevalence of left-handedness", y = "count") +
-  scale_x_continuous(limits = c(-0, 0.4))
+  scale_x_continuous(limits = c(-0, 0.4)) +
+  theme_minimal() + theme(text=element_text(size=20)) 
 ggplot(left_10000, aes(x = perc)) + geom_density(bins = 50,
-                                            fill = "gray", colour = "black") + 
-  geom_vline(xintercept = 0.1) + theme_minimal() + 
+  fill = "gray", colour = "black") + geom_vline(xintercept = 0.1) + 
   labs(x = "Prevalence of left-handedness", y = "count") +
-  scale_x_continuous(limits = c(-0, 0.4))
+  scale_x_continuous(limits = c(-0, 0.4)) +
+  theme_minimal() + theme(text=element_text(size=20)) 
 
 ```
 
@@ -155,4 +155,4 @@ lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD 
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/1stats_3sampling.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/1stats_3sampling.qmd">here</a>.

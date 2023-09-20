@@ -33,7 +33,7 @@ In statistics, any variable can be used in one of three ways when it comes to an
 
 Usually, dependent and independent variables can be directly extracted from your hypothesis: In our previous example ("An increase in education leads to an increased income"), income is the dependent variable as the hypothesis states that it depends on education, the independent variable. Control variables are not directly referenced in most hypotheses and instead have to be inferred from the question "What else could influence my dependent variable?" In our case, other factors influencing income could be variables like a respondent's work experience, the average regional income or the respondent's work arrangements (full-time vs. part-time).
 
-## Data Types
+## Data Types {.unnumbered}
 
 As we have seen above, data can come in a variety of shapes and sizes, from numbers to rankings or even text. As such, it is important to keep in mind the *type* of a given variable, as that will influence the statistical methods available to you in your analysis.
 
@@ -92,4 +92,4 @@ lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD 
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/1stats_2datatypes.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/1stats_2datatypes.qmd">here</a>.
