@@ -1,4 +1,4 @@
-# Document Title here {.unnumbered}
+# Frequency Plots and Distributions
 
 ```{r setup, include=FALSE}
 library(reticulate)
@@ -10,9 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{python sys, include = F}
 import os
 from datetime import datetime
-lastmodified = datetime.fromtimestamp(os.stat('LINK_HERE.qmd').st_mtime)
+lastmodified = datetime.fromtimestamp(os.stat('2desc_3plots.qmd').st_mtime)
 lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD HH:MM'
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/LINK_HERE.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/2desc_3plots.qmd">here</a>.

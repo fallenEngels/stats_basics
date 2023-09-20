@@ -5,6 +5,69 @@ library(reticulate)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#### This page contains ... {.unnumbered}
+
+... a general overview of why we do statistics, what statistics even *is* in the first place, as well as some wild rambling and editorializing about how statistics is used and mis-used in all areas of society.
+
+## Defining statistics {.unnumbered}
+
+Although they all broadly revolve around the same general idea and underlying concept, you will find hundreds - if not thousands - of different definitions for the term "statistics" out there. In order for us to be able to move forward with the rest of this collection of ideas (I try my best to not call it a book as well, okay?), we should agree on a minimal definition for what we're about to do.
+
+The most basic and all-encapsulating definition of statistics I can come up with goes like this:\
+**Statistics is the use of mathematical methods to simplify structured data in a search for patterns and dynamics.**
+
+Depending on your prior knowledge, this definition may run counter to your perception of statistics. That is intentional, because the world is big and my aim is to keep these pages as short as possible. However, before we can move on, I should probably elaborate on parts of this definition, in order to avoid any misconceptions down the road:
+
+-   **Mathematics:** As I've already stated in the intro, I will try my best not to throw complex mathematical formulas and notations at you. Luckily, you won't even have to *do* that much math yourself, as many functions in R automate the number crunching part. Still, math underlies all and we can't avoid it, whether we work with numbers or anything else (which will have to be treated as numbers anyway for the math to work).
+
+-   **Methods:** Statistics is not about interpreting the result, it is only about obtaining it. Does that mean that interpretation doesn't matter? Hell no! Interpretation is probably *the* most important step of any analysis. However, statistics can only provide clues about the relations between numbers. You have to figure out what these numbers mean depending on the context - and also, whether the methods you choose to use actually make sense in your case in the first place!
+
+-   **Simplification:** Whatever the data we work with looks like, it will probably feature a lot of observations and traits (or respondents and values, or whatever they're called) contained in a 2- or more-dimensional data structure. While complex structures are nice for *recording* data, they are very hard to *represent*. As such, we use statistics to simplify whatever data we have down to general trends and easily-communicated numbers. This way, we can represent entire columns or even more complex data structures with just a few values, making it even easier to communicate.
+
+-   **Patterns and dynamics:** Statistics can be split into several categories (more on that later), but in general we can either *describe* patterns in the data we collect, or we can take one step further and try to *infer* what dynamics cause these patterns in the first pace (caution: "infer" is not used in the statistical sense here). While description can work with one variable or more, inference **needs** other variables to explain the variation seen in the data.
+
+-   **Structure:** This is here mostly to distinguish between so-called *quantitative* and *qualitative* research paradigms. We here in the quantitative world work with large quantities of data that (generally) follow a set and unchanging structure, unlike those silly qualitative people with their interviews and text analyses. (Don't hurt me, qualitative people - this is a joke. Also, the two realms are not as separated as they once were: Mixed-Methods approaches can combine both to achieve unique results, and increasing computational power can bring qualitative data into the quantitative realm, as well as quantitative maths to qualitative methods).
+
+-   **Data:** Perhaps the hardest out of all the concepts in this definition, even though it seems very easy. The truth is that data can be pretty much anything you want to use - all you need is a way to express what you're interested in as a **variable**, meaning that it needs to a) have a set and unchanging global definition, b) easy to interpret labels for the values this variable can have and c) some degree of variation between these labels. We will touch on this further in the "Data types" section in a few minutes.
+
+-   **Research:** Wait, this wasn't even in the definition?! Yes, and that's why it's important to address it here. You see, while statistics is most definitely a part of research, you really don't *have to* have a rigorous research methodology in mind for data analysis. Therefore, I have opted to leave all the parts about developing ideas and hypotheses mostly out of these pages, and am instead focusing solely on the statistical methods. Don't worry, we will still talk about *statistically* validating results as well as how to use them to evaluate your hypotheses, but there will not be a theory chapter in these pages.
+
+### The reasons behind it all {.unnumbered}
+
+With all that in mind, why do we even *use* statistics?\
+In a world as complex and interconnected as ours, it can be very hard to figure out what caused certain events to take place. Similarly, every event is potentially influenced by a wide range of external factors, making it very hard to predict the results of implementing a new idea or method into practice. In these situations, statistics can be a tool to shine a light upon these hidden dynamics, either to figure out why something happened the way it did after the fact, or to predict what might possibly be the results of some action (or inaction), were it to be implemented. In the context of capitalism as it exists today, statistics is an important way to both measure performance when compared to the competition, as well as a tool to search for ways to improve one's own business. In extreme cases, companies like Google and Meta probably build most of their value out of the monetization of predicted user behaviour (i.e. serving personalized advertisement) - using collected user information as the core data set for complex statistical methods.
+
+With the role that numbers and optimizations play in today's world, statistics can also be used to justify some sort of action to third parties - or to impress people (think of claims like "9 out of 10 doctors recommend our toothpaste!"). The important thing to recognize here is that **statistics and truth are two different things**! If you want to, you can use statistics to make up credibility for anything you want to convey (in fact, a whopping 83.4% of statistics are made up!) - and even if you don't, you might accidentally end up in this position by miscalculating or mis-applying a statistical concept.
+
+This is another reason why statistical literacy is an important skill. If it's that easy to generate or make up data and results, we should be able to at least roughly judge whether these results are credible or not.
+
+### Minimal Theory: Falsification {.unnumbered}
+
+Turns out, I lied to you previously: There is some minimal amount of theory about theory validation that we have to address before we jump into actually doing stuff. This is due to an unfortunate truth that anyone collecting data has to deal with - although us social scientists have it worse than for example physicists, as we have to deal with humans and their answering behaviour:\
+**We will never know the entire, objective truth about the things we want to analyze. Our data will always be flawed or incomplete in some way**
+
+Imagine a world where we are blessed with infinite resources for our research (i.e. mostly time and money). In theory, we should be able to research everything we want and figure out exactly why people started their businesses (or whatever our research question is). Because of our infinite resources, we can simply go out and ask every startup founder about their reasons and then produce the most all-encompassing and rigorous analysis possible, right? Wrong.\
+Even though we might have infinite resources, our analysis is still limited by several potential factors: Do we even know every founder - what if we miss someone? Do we really ask all the right questions to get what we need - what if we miss an aspect of founding that could have been important? And worst of all: Do we actually trust the people we ask to tell us the entire, honest truth about their founding story?
+
+At least one of these points is always a potential issue. And unfortunately, due to limited resources, we can't even be *this rigorous* in our data collection to begin with! This leads to the central issue: If we can't ask everyone the correct question, how can we claim that the statistical results we produce are an accurate representation of the world?
+
+There are two things we can do to address this problem: One lies in the way we construct our statistical methods, and we will touch on this later (look for the concept of "significance"). The other one lies in the way we construct our theories. The core idea here is the following: Because of the uncertainty in our data collection, we can't actually *verify* any claim we make - but we can get closer to the truth by trying our best to *falsify* an opposing theory, thereby adding credence to our theory.
+
+The classic example in this context is about swans. The theory "all swans are white" is something we can never verify, because we can never know "all swans" - there might always be some off-colour swan somewhere on this planet, hidden from our view or not yet born, but still disproving our hypothesis.\
+What we can do, however, is build and falsify a counter-hypothesis like "there exist non-white swans". This way, we don't have to deal with a claim of maximal specificity (ALL swans) and can instead be satisfied as soon as we find at least one non-white swan. This one swan is enough to prove our counter-theory (usually called a *Null-hypothesis*) and thereby invalidate our original theory, no matter how general or specific we might have been when constructing it.
+
+In the world of statistics, this usually works out like this: We might assume that something has a positive influence on something else, for example "An increase in education leads to an increased income". However, even though we might find in our statistical analysis that every level of education increases salaries by 250€ on average, we can't state this as a definite claim because of all the uncertainty discussed above (Did we miss people/industries/regions/cultures/... where this is not the case? Were people honest about their education and/or salaries?). Therefore, we build the counter-claim ("Education has a negative/no effect on salaries") and try our best to disprove this. In our case, we have shown that an effect (probably\*) exists, disproving the counter-hypothesis and strengthening our theory.
+
+This also means that because there is no definite proof for any theory, nothing can ever be known to be "true". Instead, science represents our current *best guess* as to what is going on in the world - until this guess is itself disproven and/or a better guess comes along. If you want to know more about this method of falsification and why we use it, Popper [-@Popper2002] is your guy. If you can speak German, I'd highly advise searching for the original texts rather than English translations though.
+
+::: {.callout-note title="Side Note"}
+\*This is where statistical significance and probability come into play, see the chapter on those for more information.
+:::
+
+## Contents of this chapter {.unnumbered}
+
+But how do we even get to this point of calculating statistical analyses? To start us off, this chapter will focus on laying the ground work for what is to come. We will continue by talking about different data types (i.e. "what is the data? What do we want to measure?") and ways of getting it (i.e. "who do we ask? How do we measure our data?"), two central concepts for most of what is to follow.
+
 ------------------------------------------------------------------------
 
 ```{python sys, include = F}
@@ -15,4 +78,4 @@ lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD 
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/1stats_1basics.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/1stats_1basics.qmd">here</a>.

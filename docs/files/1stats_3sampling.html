@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Basics of Statistics and R - 3&nbsp; Populations and Sampling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../files/1stats_4significance.html" rel="next">
+<link href="../files/1stats_2datatypes.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../files/1stats_1basics.html">1: Basics of Statistics</a></li><li class="breadcrumb-item"><a href="../files/1stats_3sampling.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Populations and Sampling</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Basics of Statistics and R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface - Aim and Scope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">1: Basics of Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_1basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Basic Idea of Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_2datatypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_3sampling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Populations and Sampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_4significance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Effect Significance</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">2: Descriptive Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_1basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing Things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_2summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_3plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Frequency Plots and Distributions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">R: Packages and General Deep Dives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_gitsetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_gituse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#we-cant-ask-everyone" id="toc-we-cant-ask-everyone" class="nav-link active" data-scroll-target="#we-cant-ask-everyone">We can’t ask everyone</a>
+  <ul class="collapse">
+  <li><a href="#the-theoretical-population-grundgesamtheit" id="toc-the-theoretical-population-grundgesamtheit" class="nav-link" data-scroll-target="#the-theoretical-population-grundgesamtheit">The Theoretical Population (Grundgesamtheit)</a></li>
+  <li><a href="#limitation-access" id="toc-limitation-access" class="nav-link" data-scroll-target="#limitation-access">Limitation: Access</a></li>
+  <li><a href="#limitation-interest-and-effort" id="toc-limitation-interest-and-effort" class="nav-link" data-scroll-target="#limitation-interest-and-effort">Limitation: Interest and Effort</a></li>
+  </ul></li>
+  <li><a href="#sampling" id="toc-sampling" class="nav-link" data-scroll-target="#sampling">Sampling</a>
+  <ul class="collapse">
+  <li><a href="#triangulation" id="toc-triangulation" class="nav-link" data-scroll-target="#triangulation">Triangulation</a></li>
+  <li><a href="#randomness" id="toc-randomness" class="nav-link" data-scroll-target="#randomness">Randomness</a></li>
+  </ul></li>
+  <li><a href="#differences-between-sample-and-population" id="toc-differences-between-sample-and-population" class="nav-link" data-scroll-target="#differences-between-sample-and-population">Differences between Sample and Population</a>
+  <ul class="collapse">
+  <li><a href="#getting-close-to-the-unknowable" id="toc-getting-close-to-the-unknowable" class="nav-link" data-scroll-target="#getting-close-to-the-unknowable">Getting Close to the Unknowable</a></li>
+  <li><a href="#what-does-our-sample-represent" id="toc-what-does-our-sample-represent" class="nav-link" data-scroll-target="#what-does-our-sample-represent">What Does our Sample Represent</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Populations and Sampling</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="this-page-contains" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="this-page-contains">This page contains …</h4>
+<p>… information on sampling, why it (unfortunately) is usually something we have to deal with, and why we can get away with only asking a few hundred or thousand people.</p>
+</section>
+<section id="we-cant-ask-everyone" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="we-cant-ask-everyone">We can’t ask everyone</h2>
+<p>The unfortunate truth when doing social science research is that we can’t ask everyone we are interested in about their opinions on and reasons for whatever we are interested in. I’ve touched on this in a previous section, but will expand on this here.</p>
+<p>In fact, the number of survey respondents may sometimes be significantly lower than the actual number of people they seem to represent. For example, German political polls like the <a href="https://www.wahlrecht.de/umfragen/">Sonntagsfrage</a> usually consist of 1,000-2,000 respondents, yet should somehow represent the <a href="https://www.bundeswahlleiterin.de/info/presse/mitteilungen/bundestagswahl-2021/01_21_wahlberechtigte-geschaetzt.html">60ish million</a> people voting in Germany. How can this be?</p>
+<section id="the-theoretical-population-grundgesamtheit" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-theoretical-population-grundgesamtheit">The Theoretical Population (Grundgesamtheit)</h3>
+<p>There are some hard limits we have to deal with that we can never avoid, even if we have all the resources we would want. These limits are usually of a methodological nature: The surveys we design <em>can</em> only be answered by people who understand the language and concepts used, and <em>should</em> only be answered by people who have relevant information about our interests, in order to avoid producing large amounts of useless data.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While it might seem as an easy fix to simply translate our survey/research questions to multiple languages to expand this theoretical population, keep in mind that you can never be 100% certain that concepts translate well between languages, as words or ideas might mean different things to different population - or in the worst case, some words might have no reasonable equivalent in the target languages!<br>
+Thus, every translation (or more general broadening of the population) leads to respondents bringing different contexts to how they answer your questions. You will get more data this way, but the quality of your theoretical underpinning might suffer significant damage in the process!</p>
+</div>
+</div>
+<p>Figuring out this theoretical maximum is usually the first step in the data collecting process, and the absolute theoretical maximum of how many people you can ask. Unfortunately, it gets even worse from here on out as you further develop your survey methodology.</p>
+</section>
+<section id="limitation-access" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="limitation-access">Limitation: Access</h3>
+<p>There are multiple kinds of survey methods you can employ to reach people. We’re probably all still familiar with street or telephone interviews, where you randomly get approached by people wanting to ask you questions. Over the last years, the balance has continuously shifted to instead use online surveys.<br>
+Online surveys have many benefits for researchers and respondents: They allow dynamic questioning flow (randomizing question order or only showing questions based on previous answers), provide an easily-scalable way of reaching a lot of people, usually provide data in a easily-usable format once the data collection is done, and - arguably most important - allow respondents to answer the questions whenever they find the time to do so while being very cheap to implement.</p>
+<p>However, choosing a survey methodology always limits us to a given group of respondents: We can only ask the people we actually encounter in the streets, if we conduct telephone interviews - who answers unknown calls nowadays (or even has a land line telephone anymore)? And if we conduct online surveys, what about all those people that don’t have access to the internet or a computer in the first place?<br>
+Of course, we could combine all these different modes of surveying to reach as many people as possible, but then we run into the issue of potentially asking the same person multiple times - not to mention the insane costs of doing everything.</p>
+<p>This limits our theoretical population further to the people we can actually access and provide a means to contribute to our data collection process to. Based on what you want to study, this may be more or less of an issue, but often people don’t even think about this being the case!</p>
+</section>
+<section id="limitation-interest-and-effort" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="limitation-interest-and-effort">Limitation: Interest and Effort</h3>
+<p>Even if we manage to reach people, there’s no guarantee that they will answer our questions or participate in what we want to do. This disinterest can be rooted in several (non-exclusive) reasons, some of which might be:</p>
+<ul>
+<li>Some people just generally don’t care about or want to participate in surveys. Maybe they don’t want to put in the effort, maybe they distrust you or some general institution, or maybe they just had a shit day and don’t want to deal with people right now.</li>
+<li>Some people might not have the time right now, but will certainly do it later. Unfortunately (and this might sound familiar to some of you), people tend to forget what they planned or promised. It might be a good idea to keep track of who answered your questions already and send periodical reminders to the rest. This way, you might even get some people from the first group to respond, just so that you stop annoying them (or you may get blocked by them instead).</li>
+<li>Some people might want to answer your survey, but then they open it up, complete the first tow pages only to see that they’re stuck at 2% on the progress bar and decide that they don’t have time for this right now. There are several things you can do to counteract this: a) lie on the progress bar and make the first few pages contribute more than the rest. b) keep your survey as short as humanly possible. c) provide an estimated duration in the beginning so that respondents can plan their time accordingly.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Important: If you provide an estimated duration, don’t be too optimistic! Being stuck at 50% progress at the estimated completion time might again drive potential respondents away. Approach it conservatively and consider whether there are words or phrases that might confuse respondents, slowing down their response times!</p>
+</div>
+</div>
+<p>While interest is not something we can directly influence as it’s usually a core personality trait of our potential respondents, the first two factors are something we can deal with. Therefore, the theoretical population (Grundgesamtheit) for any given research question can usually be defined as:<br>
+<strong>The group of people we are interested in and are targeting with our questionnaire design, subsetted by the people we can actually reach with our chosen data collection method</strong><br>
+You may wonder why I harp on about this. Trust me, it will all make sense in a moment, once we actually talk about …</p>
+</section>
+</section>
+<section id="sampling" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sampling">Sampling</h2>
+<p>Even if we have a clearly delineated theoretical population and a robust research methodology, we still won’t be able to ask everyone we care about. Going back to the Sonntagsfrage example, imagine the insanity of calling every landline telephone user in Germany on a weekly (or even monthly) basis to ask them about their political preferences. The time and financial costs would be extraordinary.</p>
+<p>Luckily, we can employ randomness in order to reduce the amount of effort needed. To explore this, we should first establish why we would even need to ask 60 million people to get insight into the vote distribution of 10 or less parties.</p>
+<section id="triangulation" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="triangulation">Triangulation</h3>
+<p>No two people are alike. Everyone comes from a different social and familial background, brings their own experiences with them and has their own moral and philosophical worldviews reinforcing their beliefs. All these factors make every person relevant for our survey if we want to find out what influences their responses.<br>
+However, we’re usually not interested in the entire, complex reality, but instead in a simplified subset of variables that can adequately explain most of what we see. To illustrate this, regression takes potentially complex interactions and breaks them down to a linear dependency - no matter how complex an interaction, the result of a linear regression is “Every increase in A increases B by X points.”</p>
+<p>Because of this methodological simplification in our analysis, we can also simplify the types of people we are interested in. As long as we ask enough people (and these people are different enough) to give us a wide distribution over every variable and variable combination, we can get away with a way smaller amount of respondents that allow us to triangulate the actual dynamics in a simplified way.</p>
+</section>
+<section id="randomness" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="randomness">Randomness</h3>
+<p>Unfortunately (notice a pattern?), we will never know all relevant variables needed for this triangulation before the fact. As such, if we manually try to pick the most varied respondents, we run the risk of artificially crippling our data on many on these <em>un</em>known dimensions, potentially producing wrong results! We need a process that ensures that we get a lot of respondents that all feature a wide range of answering behaviours on all known and unknown dimensions. This is where randomness comes in.</p>
+<p>If we simply pick random people from our total population to answer our survey, we may not be able to guarantee that every value of every variable of interest will be represented. But because of the randomness, we can be sure that almost any known and unknown influences are randomly distributed and therefore do not exert a systematic influence on our calculations and estimations.<br>
+At the same time, the issue of missing values in the distribution can be solved by simply increasing the number of people we ask: If we randomly select more people, the chance of encountering many of the possible variable combinations increases significantly.</p>
+</section>
+</section>
+<section id="differences-between-sample-and-population" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="differences-between-sample-and-population">Differences between Sample and Population</h2>
+<p>Because we randomly draw respondents from all possible respondents, it is entirely possible that we only encounter a skewed proportion of responses.<br>
+Let’s say we wanted to find out how many people are left-handed. We could simply go out and ask all people we can reach whether they are right- or left-handed, but there remains a certain chance that we will (purely coincidentally) only encounter right-handed respondents. In fact, we can quantify this chance: Given the fact that left-handedness seems to have a prevalence of about 10% <span class="citation" data-cites="deKovel2019">(see <a href="references.html#ref-deKovel2019" role="doc-biblioref">Kovel, Carrión-Castillo, and Francks 2019</a>)</span>, if we ask ten people, we will have a 34.87% chance of only encountering right-handed people. In fact, with only one variable to look at and a somewhat reasonable distribution, we only have to ask 100 people to bring the “risk” of only encountering right-handed people down to 0.0027%!</p>
+<p>However, this is not the whole story, as even if we encounter left-handed people, we could still be way off the “true” 10% value - we might find 5% left-handedness, or 15% or even 50% (although that is even less likely). In fact, we can simulate the proportions of left-handedness for multiple samples and different sample sizes. Here’s what happens if we draw samples of 10, 100, 1,000 and 10,000 people and ask them if they’re left-handed:</p>
+<div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># samples to draw</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sampling function</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sample_left <span class="ot">&lt;-</span> <span class="cf">function</span>(rep_n, sample_n){</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sample =</span> <span class="fu">seq</span>(<span class="dv">1</span>, sample_n), <span class="at">perc =</span> <span class="cn">NA</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>sample){</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    left <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), rep_n, <span class="at">replace =</span> T, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>perc[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(left)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>left_10 <span class="ot">&lt;-</span> <span class="fu">sample_left</span>(<span class="dv">10</span>, sample)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>left_100 <span class="ot">&lt;-</span> <span class="fu">sample_left</span>(<span class="dv">100</span>, sample)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>left_1000 <span class="ot">&lt;-</span> <span class="fu">sample_left</span>(<span class="dv">1000</span>, sample)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>left_10000 <span class="ot">&lt;-</span> <span class="fu">sample_left</span>(<span class="dv">10000</span>, sample)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_10, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="st">"gray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Prevalence of left-handedness"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_100, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">bins =</span> <span class="dv">16</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="st">"gray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Prevalence of left-handedness"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">0</span>, <span class="fl">0.4</span>)) <span class="sc">+</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_1000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">bins =</span> <span class="dv">30</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="st">"gray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Prevalence of left-handedness"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">0</span>, <span class="fl">0.4</span>)) <span class="sc">+</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(left_10000, <span class="fu">aes</span>(<span class="at">x =</span> perc)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">bins =</span> <span class="dv">50</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="st">"gray"</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Prevalence of left-handedness"</span>, <span class="at">y =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">0</span>, <span class="fl">0.4</span>)) <span class="sc">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="1stats_3sampling_files/figure-html/left_sim-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="1stats_3sampling_files/figure-html/left_sim-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="1stats_3sampling_files/figure-html/left_sim-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="1stats_3sampling_files/figure-html/left_sim-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+<section id="getting-close-to-the-unknowable" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="getting-close-to-the-unknowable">Getting Close to the Unknowable</h3>
+<p>As you can see in the simulations above, a low sample size leads to an extremely broad spread in possible values for left-handedness (it’s between 0% and 40% with only 10 cases!), whereas an increased sample size produces values that are very close to the “true” value we chose.<br>
+While there may still be cases where we mis-judge the proportion of left-handedness, a larger sample size means that these mistakes are closer to the “true” value, as extreme values get way less likely. As you can also see, the gains in accuracy provide diminishing returns at a certain point, with 1,000 responses already providing a pretty accurate picture.</p>
+<p>This example not only works for variables with a known distribution. If we only draw enough random respondents from our pool, sheer randomness will almost* guarantee that we’ll end up with a distribution similar to the “true” distribution. Of course, the more variables (=dimensions) we want our data to be representative on, the bigger our sample needs to be - after all, we’re not only introducing a new variable as an additional range, but also every possible value combination between variables. This is another reason to keep the core research model (dependent and independent vars) as small as possible, in order to reduce the needed sample size.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>*Again: See the topic on significance for more on this.</p>
+</div>
+</div>
+</section>
+<section id="what-does-our-sample-represent" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="what-does-our-sample-represent">What Does our Sample Represent</h3>
+<p>I’ve previously mentioned that the total population (Grundgesamtheit) represents the amount of people we theoretically want to reach and physically can reach. While the first part is usually pretty clear and thought about when doing research, the second part is sometimes forgotten, with dire implications for the underlying model.</p>
+<p>You see, our random selection only works for people that can <em>theoretically</em> participate in our surveys. The personality traits of people who can’t even clear that hurdle cannot be randomized and are therefore probably not well-represented in the final data. This goes back to what I’ve said about data collection methods in the beginning: If you conduct an online survey, you will systematically miss certain parts of the population that do not have stable internet access or engage with online surveys (predominantly old people or socially disadvantaged). Therefore, our sample can <strong>only be representative for the people that <em>would have</em> participated</strong> if given the option.</p>
+<p>While this is probably obvious when conduction your own research, where this really matters is when working with other people’s data. You should always ask yourself “What was the data collection process and what groups were targeted?”, since it’s <em>technically</em> only these groups that your data can make claims about.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I will ramble more about this on the next page, because this issue is of central importance when it comes to significance.<br>
+It is an unfortunate truth that people use pre-selected samples to make generalized out-of-sample claims that they should not make based on the underlying methodology. While this usually works out fine anyway (surprisingly, when you simplify the world to general trends, many of the complexities of humanity fall away in the process), it is something you should keep in mind when you see someone making weird, over-generalized claims somewhere - they might be full of methodological shit.</p>
+</div>
+</div>
+<hr>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-09-20 11:14</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/1stats_3sampling.qmd">here</a>.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-deKovel2019" class="csl-entry" role="listitem">
+Kovel, Carolien G. F. de, Amaia Carrión-Castillo, and Clyde Francks. 2019. <span>“A Large-Scale Population Study of Early Life Factors Influencing Left-Handedness.”</span> <em>Scientific Reports</em> 9. <a href="https://doi.org/10.1038/s41598-018-37423-8">https://doi.org/10.1038/s41598-018-37423-8</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../files/1stats_2datatypes.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../files/1stats_4significance.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Effect Significance</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

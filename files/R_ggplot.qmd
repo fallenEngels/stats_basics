@@ -46,11 +46,10 @@ This complexita is by design, as ggplot2 builds upon an underlying and standardi
 `ggplot2` follows a modular design. This means that the final plot will not be calculated in one step, but instead built up through multiple overlaying partial commands. The amount and design of these commands is entirely up to you, and both the commands you pick as well as their order will impact the final plot. This enables you to build insanely complex plots if you invest the time and energy to learn the underlying ideas and structures.
 
 ### Setting the stage: `ggplot()` {.unnumbered}
-Core of this modular approach is the `ggplot()` command, which serves two functions: On one hand it specifies that everything following is part of a plot and outlines the general canvas, and on the other it can be used to specify global commands and settings that should be true for the entire plot. 
-If you for example want to use the same core data set for all elements in your plot, you could specify this data set for each element individually, or you could include it in the `ggplot()` function, where you only have to type it out once.
 
-To visualize:
-Executing an empty `ggplot()` command produces an empty canvas, in effect only providing a background for your plot (left). If you already include a data set as well as variables (don't worry, we'll look at this in detail in a second), you also already get axes overlayed depending on the scaling of your variables:
+Core of this modular approach is the `ggplot()` command, which serves two functions: On one hand it specifies that everything following is part of a plot and outlines the general canvas, and on the other it can be used to specify global commands and settings that should be true for the entire plot. If you for example want to use the same core data set for all elements in your plot, you could specify this data set for each element individually, or you could include it in the `ggplot()` function, where you only have to type it out once.
+
+To visualize: Executing an empty `ggplot()` command produces an empty canvas, in effect only providing a background for your plot (left). If you already include a data set as well as variables (don't worry, we'll look at this in detail in a second), you also already get axes overlayed depending on the scaling of your variables:
 
 ```{r base_modular_demo}
 #| layout-nrow: 1
@@ -73,18 +72,18 @@ ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_point() + geom_smooth()
 ```
 
 ::: {.callout-note title="Side Notes"}
-1. As you can see, if you include parameters in the ggplot() functions, you can use the tidyverse way of giving only column names, whereas the individual functions need a direct reference to the data set used.
-2. You can also combine both approaches, for example if you want to use the same data set (specified in global function) but different colour palettes for different elements (specified in the local functions) or if you want on element to use an entirely different data source.
+1.  As you can see, if you include parameters in the ggplot() functions, you can use the tidyverse way of giving only column names, whereas the individual functions need a direct reference to the data set used.
+2.  You can also combine both approaches, for example if you want to use the same data set (specified in global function) but different colour palettes for different elements (specified in the local functions) or if you want on element to use an entirely different data source.
 :::
 
-As you can see, we can now easily expand our core canvas by chaining further functions with a `+` at the end of the `ggplot()` function.
-The command chain `ggplot() + geom_histogram() + labs()` would create a canvas (`ggplot()`), draw a histogram of the specified data on top of it (`geom_histogram()`) and then overwrite the automatically generated names for parts of the plot with the names specified in `labs()`. Because each element is evaluated separate from the others, it is important to **close all opened brackets before a** `+`!
+As you can see, we can now easily expand our core canvas by chaining further functions with a `+` at the end of the `ggplot()` function. The command chain `ggplot() + geom_histogram() + labs()` would create a canvas (`ggplot()`), draw a histogram of the specified data on top of it (`geom_histogram()`) and then overwrite the automatically generated names for parts of the plot with the names specified in `labs()`. Because each element is evaluated separate from the others, it is important to **close all opened brackets before a** `+`!
 
 ### Used data and aesthetics: `aes()` {.unnumbered}
-As can be seen above, used data and other aesthetic arguments have to be specified within a `aes()` command nested inside the command for an element (or the global command). Correctly nesting this function is an **essential step** and usually the primary source of issues if something doesn't work with your code.
-The `aes()` command can take not only variables to display on the x and y axis, but also variables that should be used to define other attributes of the plot, like colour or fill and a whole host of further options.
 
-HOWEVER: Just because arguments like `colour` and `fill` **can** be specified inside `aes()`, that doesn't mean they have to. You can also specify these aspects outside of `aes()` if you want to set them to a specific value rather than base them on a variable: 
+As can be seen above, used data and other aesthetic arguments have to be specified within a `aes()` command nested inside the command for an element (or the global command). Correctly nesting this function is an **essential step** and usually the primary source of issues if something doesn't work with your code. The `aes()` command can take not only variables to display on the x and y axis, but also variables that should be used to define other attributes of the plot, like colour or fill and a whole host of further options.
+
+HOWEVER: Just because arguments like `colour` and `fill` **can** be specified inside `aes()`, that doesn't mean they have to. You can also specify these aspects outside of `aes()` if you want to set them to a specific value rather than base them on a variable:
+
 ```{r aes}
 #| layout-nrow: 1
 # colour inside aes -> colour based on variable
@@ -104,17 +103,16 @@ mpg %>% mutate(cyl = as.factor(cyl)) %>%
 ```
 
 ::: {.callout-warning title="Important"}
-To preempt upcoming confusions: You will get errors when you specify a variable colour outside `aes()`, but you won't when you specify a definite colour inside `aes()`.
-Instead, code like `geom_point(aes(colour = "blue"))` will make R look for the variable `blue` in your data - and if that doesn't exist, it will simply treat all cases as having the same value for this attribute and assign the first colour of the standard colour palette - which is red.
-So, if you ever wonder why "blue" appears as red in your plot, this might be why.
+To preempt upcoming confusions: You will get errors when you specify a variable colour outside `aes()`, but you won't when you specify a definite colour inside `aes()`. Instead, code like `geom_point(aes(colour = "blue"))` will make R look for the variable `blue` in your data - and if that doesn't exist, it will simply treat all cases as having the same value for this attribute and assign the first colour of the standard colour palette - which is red. So, if you ever wonder why "blue" appears as red in your plot, this might be why.
 :::
 
 ::: {.callout-note title="Side Note"}
-Knowing when to use `colour` or `fill` is a whole headache in and of it self and depends on the chosen visualization method. Generally, `fill` is used for the inside fill of an element, while `colour` is used for borders and edges - with `geom_point()` being the most prominent exception and using only the `colour` attribute for points. 
+Knowing when to use `colour` or `fill` is a whole headache in and of it self and depends on the chosen visualization method. Generally, `fill` is used for the inside fill of an element, while `colour` is used for borders and edges - with `geom_point()` being the most prominent exception and using only the `colour` attribute for points.
 :::
 
 ### Visualization elements: `geom_...` {.unnumbered}
-As you have seen in the previous examples, `geom_...`functions build on the defined canvas and offer the meat of data visualization. If you enter "geom_" in RStudio, you will see that the autocomplete function offers you a wide array of different options for plotting your data, from lines up to entire maps.
+
+As you have seen in the previous examples, `geom_...`functions build on the defined canvas and offer the meat of data visualization. If you enter "geom\_" in RStudio, you will see that the autocomplete function offers you a wide array of different options for plotting your data, from lines up to entire maps.
 
 ::: {.callout-warning title="Important"}
 When choosing a visualization element for your plots, always keep an eye on the arguments the associated function takes! Especially bar plots and histograms only take an `x` variable as input and derive `y` from frequency distributions of `x`. Manually specifying `y` in the `geom`-function (or the global `ggplot`-function) will lead to errors and annoyances.
@@ -138,16 +136,17 @@ mpg %>% mutate(cyl = as.factor(cyl)) %>%
 ```
 
 ### Other central building blocks {.unnumbered}
-Aside from `geom_...` functions, ggplot packs a whole load of additional functions to improve and/or modify the way you display your data. I have already used the `labs()`function in multiple plots to specify my own names for for axes, legends or the entire plot, rather than the defaults, which are derived from variable names in your input data.
-Further options using additional functions are scale transformations (using for example `scale_x_log10()` or `scale_y_data()`), different colour palettes (ex. `scale_colour_gradient()` or `scale_fill_manual()`for custom palettes), as well as overarching design themes for the entire plot, like `theme_minimal()`.
+
+Aside from `geom_...` functions, ggplot packs a whole load of additional functions to improve and/or modify the way you display your data. I have already used the `labs()`function in multiple plots to specify my own names for for axes, legends or the entire plot, rather than the defaults, which are derived from variable names in your input data. Further options using additional functions are scale transformations (using for example `scale_x_log10()` or `scale_y_data()`), different colour palettes (ex. `scale_colour_gradient()` or `scale_fill_manual()`for custom palettes), as well as overarching design themes for the entire plot, like `theme_minimal()`.
 
 ::: {.callout-note title="Side Note"}
 Don't know if you've noticed, but these functions are available in many different versions for many different use cases. Anything you find under `scale_x_...` will have an equivalent under `scale_y_...` depending on which variable you want to transform. Same goes for the other arguments, with `scale_colour_...` and `scale_fill_...` containing much of the same functions, only applied in different contexts.
 :::
 
 ## Everything all at once - information overload {.unnumbered}
-As I've said before, you can tweak a wide array of elements to your liking - I've simply focused on colour and fill as I think these will be the two most frequently used elements. 
-But you can go further: Tweak the shape of points, the thickness of lines, the opacity of bars or whatever else you want! Heck, put it all together on one plot and make everything entirely unreadable - but undeniably unique:
+
+As I've said before, you can tweak a wide array of elements to your liking - I've simply focused on colour and fill as I think these will be the two most frequently used elements. But you can go further: Tweak the shape of points, the thickness of lines, the opacity of bars or whatever else you want! Heck, put it all together on one plot and make everything entirely unreadable - but undeniably unique:
+
 ```{r overload, warning=FALSE}
 mpg %>% mutate(cyl = as.factor(cyl), year = as.factor(year)) %>%
   ggplot(aes(x = displ, y = hwy)) + # X and Y variable
@@ -164,12 +163,12 @@ mpg %>% mutate(cyl = as.factor(cyl), year = as.factor(year)) %>%
 ```
 
 ## Presentation and colours {.unnumbered}
+
 As you have already seen multiple times by now, you can change basically the entirety of a plot's presentation and resulting graphics. This can be of great help when it comes to generating plots that present large amounts of data in a readable format. I want to use this short section to highlight two different approaches to make this customization even more powerful:
 
-For colours, I very much like using [Brewer palettes](https://jmsallan.netlify.app/blog/the-brewer-palettes/) (use `scale_..._brewer(palette="Name")` in ggplot) for discrete values and [viridis palettes](https://sjmgarnier.github.io/viridis/) (use `scale_..._viridis_c(option=LetterOrName)`) for continuous values (viridis can also handle binned or discrete scales with ..._b and ..._d respectively).
+For colours, I very much like using [Brewer palettes](https://jmsallan.netlify.app/blog/the-brewer-palettes/) (use `scale_..._brewer(palette="Name")` in ggplot) for discrete values and [viridis palettes](https://sjmgarnier.github.io/viridis/) (use `scale_..._viridis_c(option=LetterOrName)`) for continuous values (viridis can also handle binned or discrete scales with ...\_b and ...\_d respectively).
 
-Although I am partial to minimalism and therefore like `theme_minimal()` a lot, you can also expand the range of available plot themes with something like [ggthemes](https://exts.ggplot2.tidyverse.org/ggthemes.html) if you like excel too much.
-You can also create and use your own theme if you like. For an easier time, have a look at the [ggCorpIdent](https://github.com/INWTlab/ggCorpIdent) package - however, keep in mind that Tufte [-@Tufte2001] is right when he says that minimal and clear visualizations are often superior to everything else.
+Although I am partial to minimalism and therefore like `theme_minimal()` a lot, you can also expand the range of available plot themes with something like [ggthemes](https://exts.ggplot2.tidyverse.org/ggthemes.html) if you like excel too much. You can also create and use your own theme if you like. For an easier time, have a look at the [ggCorpIdent](https://github.com/INWTlab/ggCorpIdent) package - however, keep in mind that Tufte [-@Tufte2001] is right when he says that minimal and clear visualizations are often superior to everything else.
 
 ::: {.callout-note title="Side Note"}
 To get on my little soap box for a moment, I think that everyone who wants to create good visualizations should read Tufte [-@Tufte2001] at some point. Not because you should follow everything he says, but simply to raise awareness for some of the issues in data communication. Don't worry, the book isn't that long and it features a whole range of pretty images. :)
@@ -178,8 +177,8 @@ To get on my little soap box for a moment, I think that everyone who wants to cr
 ## Special use cases and tricks {.unnumbered}
 
 ### Sub-plots based on variables {.unnumbered}
-Using `facet_grid()` (or the [less strict](https://www.statology.org/facet_wrap-vs-facet_grid-in-r/) `facet_wrap()`), you can create subgraphs based on variables in your data set. That way, you could for example compare value distributions between different points in time. This is another way to display additional data without visual clutter as we've seen it in the above image.
-Based on your specifications, you can enter up to two variables to build subplots out of, using the formula `facet_grid(verticalVariable ~ horizontalVariable)` - however, you can leave one argument empty, if you just want one variable to control the split: `facet_grid( ~ horizontalVariable)`:
+
+Using `facet_grid()` (or the [less strict](https://www.statology.org/facet_wrap-vs-facet_grid-in-r/) `facet_wrap()`), you can create subgraphs based on variables in your data set. That way, you could for example compare value distributions between different points in time. This is another way to display additional data without visual clutter as we've seen it in the above image. Based on your specifications, you can enter up to two variables to build subplots out of, using the formula `facet_grid(verticalVariable ~ horizontalVariable)` - however, you can leave one argument empty, if you just want one variable to control the split: `facet_grid( ~ horizontalVariable)`:
 
 ```{r facet, warning = F, message = F}
 # facet_wrap based on year
@@ -201,15 +200,16 @@ mpg %>% mutate(cyl = as.factor(cyl)) %>%
   facet_grid(cyl~year)
 
 ```
+
 ::: {.callout-note title="Side Note"}
 In a case like this one, it would probably better not to use global axes, in order to better see differences within groups at the cost of visual differences between groups. to achieve this, you can set a `scales` parameter inside `facet_...` to "free_x", "free_y" or "free" (both).
 :::
 
 ### Different axes in one plot {.unnumbered}
+
 This is a niche case you may or may not encounter eventually, but I've had to deal with it twice and have been annoyed every time - which means I write this mostly for myself, so I can easily find it again.
 
-As mentioned in the beginning, axes in ggplot are calculated globally depending on your data - even if you plug in different data sources, the result is a single, global scale depending on the minimum of the smaller variable and the maximum of the larger variable. To display data on two different scales at the same time, a bit of annoying trickery is needed:
-You simply have to scale up the second variable so that it fits inside the scale of the first variable, add a second axis for this variable, and re-transform the labels on this axis back to the original size via a command like `scale_y_continuous(sec.axis = sec_axis(~ . FORMEL))`. In practice:
+As mentioned in the beginning, axes in ggplot are calculated globally depending on your data - even if you plug in different data sources, the result is a single, global scale depending on the minimum of the smaller variable and the maximum of the larger variable. To display data on two different scales at the same time, a bit of annoying trickery is needed: You simply have to scale up the second variable so that it fits inside the scale of the first variable, add a second axis for this variable, and re-transform the labels on this axis back to the original size via a command like `scale_y_continuous(sec.axis = sec_axis(~ . FORMEL))`. In practice:
 
 ```{r axes, warning = F}
 # data frame with two y values and x value "month"
@@ -228,11 +228,12 @@ climate %>% mutate(precip = precip / 8) %>% # recode precipitation to temp scale
   
 
 ```
-### Going even further beyond {.unnumbered}
-As you can see, the possibilities ggplot offers are (nearly) endless! And if you add [further R-packages](https://exts.ggplot2.tidyverse.org/gallery/) to the mix, you can build plots that are even more insane. If you want to be inspired, have a look at this: https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html 
 
-If you want to learn more, I encourage you to just toy around a bit with ggplot. Once you understand the core format and the underlying grammar, you'll be able to generate great plots in no time. And if you're ever stuck, the internet has a wealth of knowledge around solving specific issues, whatever they may be.
-For further reading on ggplot, I'd also encourage you to have a look at the [ggplot2 webseite](https://ggplot2.tidyverse.org/) and the [R-Cookbook for graphs](http://www.cookbook-r.com/Graphs/). Oh and read Tufte [-@Tufte2001]!
+### Going even further beyond {.unnumbered}
+
+As you can see, the possibilities ggplot offers are (nearly) endless! And if you add [further R-packages](https://exts.ggplot2.tidyverse.org/gallery/) to the mix, you can build plots that are even more insane. If you want to be inspired, have a look at this: https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+
+If you want to learn more, I encourage you to just toy around a bit with ggplot. Once you understand the core format and the underlying grammar, you'll be able to generate great plots in no time. And if you're ever stuck, the internet has a wealth of knowledge around solving specific issues, whatever they may be. For further reading on ggplot, I'd also encourage you to have a look at the [ggplot2 webseite](https://ggplot2.tidyverse.org/) and the [R-Cookbook for graphs](http://www.cookbook-r.com/Graphs/). Oh and read Tufte [-@Tufte2001]!
 
 ------------------------------------------------------------------------
 
@@ -244,4 +245,4 @@ lastmodified = lastmodified.strftime('%Y-%m-%d %H:%M')  # Format as 'YYYY-MM-DD 
 ```
 
 **Last modified:** [`r py$lastmodified`]{style="color:#00bc8c"}, R version [`r getRversion()`]{style="color:#00bc8c"}\
-**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/R_ggplot.qmd">here</a>.
+**Source data for this page** can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/R_ggplot.qmd">here</a>.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basics of Statistics and R - References</title>
+<title>Basics of Statistics and R - 2&nbsp; Data and Variables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,7 +49,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../files/R_gituse.html" rel="prev">
+<link href="../files/1stats_3sampling.html" rel="next">
+<link href="../files/1stats_1basics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -93,7 +94,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../files/references.html">References</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../files/1stats_1basics.html">1: Basics of Statistics</a></li><li class="breadcrumb-item"><a href="../files/1stats_2datatypes.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -144,7 +145,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../files/1stats_2datatypes.html" class="sidebar-item-text sidebar-link">
+  <a href="../files/1stats_2datatypes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></span></a>
   </div>
 </li>
@@ -222,7 +223,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../files/references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../files/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -232,14 +233,32 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#variables" id="toc-variables" class="nav-link active" data-scroll-target="#variables">Variables</a>
+  <ul class="collapse">
+  <li><a href="#variable-classification" id="toc-variable-classification" class="nav-link" data-scroll-target="#variable-classification">Variable classification</a></li>
+  </ul></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types">Data Types</a>
+  <ul class="collapse">
+  <li><a href="#why-does-this-matter" id="toc-why-does-this-matter" class="nav-link" data-scroll-target="#why-does-this-matter">Why does this matter?</a></li>
+  </ul></li>
+  <li><a href="#transforming-categorical-data-for-statistical-analyses" id="toc-transforming-categorical-data-for-statistical-analyses" class="nav-link" data-scroll-target="#transforming-categorical-data-for-statistical-analyses">Transforming categorical data for statistical analyses</a>
+  <ul class="collapse">
+  <li><a href="#quasi-numeric-categorical-values" id="toc-quasi-numeric-categorical-values" class="nav-link" data-scroll-target="#quasi-numeric-categorical-values">Quasi-numeric categorical values</a></li>
+  <li><a href="#dummy-variables" id="toc-dummy-variables" class="nav-link" data-scroll-target="#dummy-variables">Dummy variables</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></h1>
 </div>
 
 
@@ -254,42 +273,105 @@ div.csl-indent {
 
 </header>
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-Amrhein2019" class="csl-entry" role="listitem">
-Amrhein, Valentin, Sander Greenland, and Blake McShane. 2019.
-<span>“Scientists Rise up Against Statistical Significance.”</span>
-<em>Nature</em> 567. <a href="https://doi.org/10.1038/d41586-019-00857-9">https://doi.org/10.1038/d41586-019-00857-9</a>.
+<section id="this-page-contains" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="this-page-contains">This page contains …</h4>
+<p>… a general overview of the most common data types encountered in data collecting processes, what their differences are and how they can be used in statistical analysis. Although at the end of it, everything will be treated as numbers, knowing how and why to use a certain variable in a certain way can be important for improving result quality, choosing the correct model or avoiding errors.</p>
+</section>
+<section id="variables" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="variables">Variables</h2>
+<p>As already stated on the last page, a <strong>variable</strong> is anything that features a set and unchanging global definition, easy to interpret labels for the values it can have and some degree of variation between these labels. Some examples to illustrate what I mean:</p>
+<ul>
+<li><p>A person’s height is a variable because it has a set definition (or unit of measurement) that can be easily interpreted (we can make a pretty good guess what the answer “2m” means) different people have differing heights.</p></li>
+<li><p>A survey respondent’s rating on a specified scale (“On a scale from 1 to 5, how highly do you rate … ?”) can also be a variable, because the context, question and scale are entirely under our control and identical for all respondents, while we can assume variation based on the fact that different people have different preferences.</p></li>
+<li><p>Even text can be treated as a variable if the context is the same (i.e.&nbsp;all answers are in response to the same question or from the same source), although some more processing of the texts might be needed in order to assert an easier interpretation of the labels. Unsurprisingly, text varies because no two responses will be exactly identical.</p></li>
+</ul>
+<p>While some variables might not adhere to the same concepts if you get them from respondents (for example, height could be given in “meter” or “inch”), they can still be usable if you are able to transform them to use the same underlying definition and value scale. Similarly, you could transform text by coding it into logical groups depending on the answers, thereby giving it a set value range and easy to interpret labels.</p>
+<section id="variable-classification" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variable-classification">Variable classification</h3>
+<p>In statistics, any variable can be used in one of three ways when it comes to analysis: Dependent variables, independent variables and control variables.</p>
+<ul>
+<li><p>A <strong>dependent variable</strong> is the variable we are interested in explaining through the use of our statistical methods. It is the representation of whatever our underlying theory stipulates to be influenced by something else. Most analysis methods focus on only one dependent variable instead of multiple, as the math gets incredibly complex when you introduce multiple phenomenons that need explaining - however, this doesn’t mean it’s impossible (SEM can do it, for example). You may also see this being called the <em>outcome variable</em> in some research designs.</p></li>
+<li><p>An <strong>independent variable</strong> is giving the presumed cause (or multiple probable causes) for variations in the dependent variable. How many independent variables to use is generally up to you, but I would advise against using too many at once, as it might complicate things unnecessarily. Having only one independent variable can also be a valid study design if your hypothesis calls for it! You may also see this being called the <em>predictor variable</em> in some research designs.</p></li>
+<li><p>A <strong>control variable</strong> is another presumed cause for variations in the dependent variable, although its main focus lies on controlling the effect of the independent variable when more complexity is introduced. As such, the focus lies not on the control variable itself, but rather on changes in the relationship between dependent and independent variables as more complexity is introduced. As such, you can easily end up with way more control variables than independent variables, although you should still set a sensible limit on the number of controls, in order to avoid overcomplicating things for no reason.</p></li>
+</ul>
+<p>Usually, dependent and independent variables can be directly extracted from your hypothesis: In our previous example (“An increase in education leads to an increased income”), income is the dependent variable as the hypothesis states that it depends on education, the independent variable. Control variables are not directly referenced in most hypotheses and instead have to be inferred from the question “What else could influence my dependent variable?” In our case, other factors influencing income could be variables like a respondent’s work experience, the average regional income or the respondent’s work arrangements (full-time vs.&nbsp;part-time).</p>
+</section>
+</section>
+<section id="data-types" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="data-types">Data Types</h2>
+<p>As we have seen above, data can come in a variety of shapes and sizes, from numbers to rankings or even text. As such, it is important to keep in mind the <em>type</em> of a given variable, as that will influence the statistical methods available to you in your analysis.</p>
+<p><img src="../_rsc/stats/datatypes.png" class="img-fluid"><br>
+At the most general level, a variable can be either <em>categorical</em> or <em>numeric</em>. Whereas for numeric variables, the numbers associated with a given case have an actual inherent numerical meaning (ex. a height of “1.84m”), categorical values use numbers only as representations of categories, with the actually chosen number being completely arbitrary. These general categories can be further broken down into the following sub-categories:</p>
+<ul>
+<li><p>Nominal variables are variables where the only difference between categories lies in the name of the category, with no set ranking order. As such, the ranking order of nominal variables is completely arbitrary and can be changed at any time. An example of this (cf.&nbsp;Field <span class="citation" data-cites="Field2012">(<a href="references.html#ref-Field2012" role="doc-biblioref">2012</a>)</span> p.&nbsp;8) would be “species”: Possible values might be “human”, “cat”, “dog” or “seal”, but more values as well as a different order are entirely possible and logically sensible (ex. human - seal - dog - cat), as there is no inherent quality ranking one above the other.<br>
+Ideally, nominal variables should be constructed in an <em>exclusive</em> way, i.e.&nbsp;every case should be classified as exactly one of the given categories (going back to Field’s species example, you can be only one species, no matter how hard you try to be bat-man or cat-woman). While nominal variables can have as many values as you want - our text answers example above probably has as many unique values as there are responses - it’s usually good to break these down into groups or (even more extreme) a binary selection like “Is human? Yes/No” for easier analysis.</p></li>
+<li><p>Categorical variables already introduce some degree of ranking into the variable. These variables are what you’re probably most familiar with when answering survey questions: Returning this type of data are questions like “On this given scale, how would you rate your agreement to the following statements?” Answers to these questions already come with a pre-determined order of answers built-in (here, probably something like “strongly disagree” - “somewhat disagree” - “somewhat agree” - “strongly agree”).<br>
+Non-survey-related examples of categorical variables are things like tournament placements in sports competitions. These also show the flaw in categorical data: While we can use the results of a tournament to definitively state that the 2nd place team performed better than the 4th place team, we still don’t know anything about the <em>actual distance</em> between the two teams - we only know that one did better than the other, but not by how much. It could have been an obvious domination of the top two teams over the entire competition or a hard-fought battle in all encounters, but we have no way of telling based solely on the categorical ranking.</p></li>
+<li><p>Over in the numeric realm, discrete data describes variables where an underlying value with numeric meaning exists. However (and as the name implies), values are still discrete and clearly separated from each other. As such, variables of this form usually (but not always) take whole numbers as the only valid format (ex. star ratings from 0 to 5 - although each rank is clearly separated from the others, rankings like 1.5 stars are still possible in some rating systems).</p></li>
+<li><p>To address this problem, continuous data can take values of any specificity and is only limited by your ability to measure whatever you’re studying. Height or age are great examples for that, because for height you could in theory go down to the subatomic level if you tried, while your age always changes, no matter how exactly you measure it. This also means that we never “truly” measure continuous data as exact as possible - instead we abstract it to some minimum level of measurement, where it is quasi-discrete again.</p></li>
+<li><p>Sometimes you will even encounter special cases of discrete or continuous variables described as <strong>ratio variables</strong>. These are defined by also sporting a <em>true and meaningful zero point</em> in addition to their other properties. As an example, your age has a true zero point (when you were born), and every change since then has some meaning relative to that zero point. In contrast, variables like “temperature” have an entirely arbitrary zero point (unless you’re measuring in Kelvin), and as such are not ratio scaled. The same goes for “years” in a general context, outside of a person’s age - It may be 2023 as I write this, but the year 0 is chosen entirely arbitrary and has no inherent meaning (sorry, Christians).</p></li>
+</ul>
+<section id="why-does-this-matter" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="why-does-this-matter">Why does this matter?</h3>
+<p>Because statistics is math and math wants to deal with numbers, having numeric data is always preferred, as it leads to relatively clean and simple mathematical operations as well as straight-forward interpretation of results. This also means that the actual type of numerical data (discrete or continuous) does not matter for the statistical matter itself, and they are largely interchangeable - where it does matter is for the interpretation of results, as continuous results for discrete values like “a person coming from this social background is estimated to have 1.4 children” make no logical sense without critical discussion.</p>
+<p>In contrast, categorical data’s number equivalents are entirely arbitrary and therefore, math can be complicated or impossible. To borrow more from Andy Field: If player A with the number 10 on a football team is the best at converting penalty kicks into scoring goals, but player A is currently injured, the trainer “would not get his number 4 to give number 6 a piggy-back and then take the kick”. A more sensible approach in this case would be to look at frequencies (see section 2 for more on that) and figure out which player has the second-best penalty conversion rate, since the players’ numbers are generally arbitrary.<br>
+The same holds for the classic categorical case of ranking scales (like the agreement scale) - there might be an inherent order, with “strongly agree” representing more agreement than “somewhat agree”, but the distance between the two cases is entirely arbitrary. In the worst case, two respondents could still disagree on a given issue, even though they both picked the same value on the scale!</p>
+</section>
+</section>
+<section id="transforming-categorical-data-for-statistical-analyses" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="transforming-categorical-data-for-statistical-analyses">Transforming categorical data for statistical analyses</h2>
+<section id="quasi-numeric-categorical-values" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="quasi-numeric-categorical-values">Quasi-numeric categorical values</h3>
+<p>With how prevalent and easy to implement ordinal rating scales are in surveys, scientists have come up with a work-around for this type of categorical data that allows them to be treated as numeric for the purposes of statistical analysis. The reasoning is as follows: If we give respondents <strong>enough categories</strong> to choose from and frame the labels of these categories in a way so that <strong>all categories are roughly equally distant</strong>, we can treat them as if they were normal numbers. The convention in this case is to have at least 5 different categories, as less leads to a sharp drop in result quality - in the case of our agreement scale we would therefore be lacking a scale item, which is usually solved by including a “neutral” category: “strongly disagree” - “somewhat disagree” - “indifferent” - “somewhat agree” - “strongly agree”.<br>
+Keep in mind that even this way, the numbers used to represent the labels are entirely arbitrary. We could label them 0 to 4or 1 to 5 (or if we want to retain the positive/negative dynamic, -2 to 2). Best practice is to have the values take up consecutive numbers (i.e.&nbsp;not 1-3-5-7-9), and to not include a 0, as this might screw with the math later on(as <code>1*5</code> and <code>1*4</code> stay different values, whereas <code>0*5</code> and <code>0*4</code> do not).</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div id="ref-Field2012" class="csl-entry" role="listitem">
-Field, Andy P., Jeremy Miles, and Zoë Field. 2012. <em>Discovering
-Statistics Using <span>R</span></em>. London ; Thousand Oaks, Calif:
-Sage.
+<div class="callout-title-container flex-fill">
+Important
 </div>
-<div id="ref-deKovel2019" class="csl-entry" role="listitem">
-Kovel, Carolien G. F. de, Amaia Carrión-Castillo, and Clyde Francks.
-2019. <span>“A Large-Scale Population Study of Early Life Factors
-Influencing Left-Handedness.”</span> <em>Scientific Reports</em> 9. <a href="https://doi.org/10.1038/s41598-018-37423-8">https://doi.org/10.1038/s41598-018-37423-8</a>.
 </div>
-<div id="ref-Robitzsch2020" class="csl-entry" role="listitem">
-Robitzsch, Alexander. 2020. <span>“Why Ordinal Variables Can (Almost)
-Always Be Treated as Continuous Variables: Clarifying Assumptions of
-Robust Continuous and Ordinal Factor Analysis Estimation
-Methods.”</span> <em>Frontiers in Education</em> 5. <a href="https://doi.org/10.3389/feduc.2020.589965">https://doi.org/10.3389/feduc.2020.589965</a>.
+<div class="callout-body-container callout-body">
+<p>While this conversion constitutes standard practice in social sciences, it is widely contested in other fields, as you’re introducing the equal distance between and objective value of your categories out of thin air, thereby artificially enriching your data. While there is some research showing that this is generally not a problem (ex. Robitzsch <span class="citation" data-cites="Robitzsch2020">(<a href="references.html#ref-Robitzsch2020" role="doc-biblioref">2020</a>)</span>), be careful where you mention that you do this, as you might spark a heated discussion <a href="https://www.researchgate.net/post/Is_a_Likert-type_scale_ordinal_or_interval_data">like this one</a>!</p>
 </div>
-<div id="ref-Popper2002" class="csl-entry" role="listitem">
-<em>The Logic of Scientific Discovery (Routledge Classics)</em>. 2002.
-Routledge.
 </div>
-<div id="ref-Tufte2001" class="csl-entry" role="listitem">
-Tufte, Edward R. 2001. <em>The Visual Display of Quantitative
-Information, 2nd Ed.</em> Graphics Press.
+</section>
+<section id="dummy-variables" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="dummy-variables">Dummy variables</h3>
+<p>But what about nominal values that can’t be ordered? If transforming ordinal data is already this contested, surely it’s going to be even worse for nominal data, right? In short, yes - which is why we will use a different approach.<br>
+You see, if we follow the ideal I set above, then every nominal category should be exclusive, with every case clearly assigned to one category. If this is indeed the case, we can transform our variable into several so-called <em>dummy variables</em> that each capture a proportion of the data in a usable form. In essence, we’re transforming the categories into several yes/no questions, to which we then assign the numeric values 1 for “yes” and 0 for “no”. This way, we transformed our data into a numeric form without introducing artificial differentiations - we’re simply measuring presence or absence of a given category.<br>
+This method can also be used for categorical data, if you still want to use it for analyses but don’t have the five answer categories or can’t argue that there is equal distance between the categories (education is the example of choice here - there are differences between different education levels and degrees, but these sure aren’t equally distant from each other)</p>
+<p>However, we won’t transform every case in our data in this way. Instead, we will set one of our cases as a <em>reference</em>, and then code the rest as dummy variables. In practice and going back to our species list, this would mean that if we set “human” as the reference category, we would create the variables “dummy_cat” with 1 for cats and 0 for everything else, as well as “dummy_dog” and “dummy_seal”, contrasting dogs and seals with everyone else respectively. While we lose data in the individual variables (after all, we only know “cat” or “no cat”), we still retain all information if we put them together. This is also why we can exclude the reference category - it is implicitly present in the new encodings (a case that is not a cat, not a dog <em>and</em> not a seal has to be a human after all - at least in this data).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Choosing the right reference category is an art in and of itself. Out of consideration for the statistical methods we use later on, your reference category should comprise a large part of the data (rule of thumb: ~10% at least) and be meaningful as a reference category. Usually the most frequently present case should be used, but especially for ordinal data it can make sense to choose the highest- or lowest-ranked category to make interpreting the statistical results that much easier.</p>
 </div>
 </div>
 <hr>
-<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-09-20 11:16</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
-<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/references.qmd">here</a>.</p>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-09-20 11:14</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/1stats_2datatypes.qmd">here</a>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Field2012" class="csl-entry" role="listitem">
+Field, Andy P., Jeremy Miles, and Zoë Field. 2012. <em>Discovering Statistics Using <span>R</span></em>. London ; Thousand Oaks, Calif: Sage.
+</div>
+<div id="ref-Robitzsch2020" class="csl-entry" role="listitem">
+Robitzsch, Alexander. 2020. <span>“Why Ordinal Variables Can (Almost) Always Be Treated as Continuous Variables: Clarifying Assumptions of Robust Continuous and Ordinal Factor Analysis Estimation Methods.”</span> <em>Frontiers in Education</em> 5. <a href="https://doi.org/10.3389/feduc.2020.589965">https://doi.org/10.3389/feduc.2020.589965</a>.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -642,11 +724,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../files/R_gituse.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span>
+      <a href="../files/1stats_1basics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Basic Idea of Statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../files/1stats_3sampling.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Populations and Sampling</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

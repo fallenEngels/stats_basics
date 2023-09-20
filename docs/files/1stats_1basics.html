@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,17 +49,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../files/1stats_2sampling.html" rel="next">
+<link href="../files/1stats_2datatypes.html" rel="next">
 <link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -89,6 +110,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Basics of Statistics and R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -121,8 +145,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../files/1stats_2sampling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  <a href="../files/1stats_2datatypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_3sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Populations and Sampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_4significance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Effect Significance</span></span></a>
   </div>
 </li>
       </ul>
@@ -130,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">R: Packages and General Deep Dives</span></a>
+ <span class="menu-text">2: Descriptive Statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -138,20 +174,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../files/2desc_1basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing Things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_2summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_3plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Frequency Plots and Distributions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">R: Packages and General Deep Dives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../files/R_ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../files/R_gitsetup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../files/R_gituse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
   </div>
 </li>
       </ul>
@@ -168,7 +233,18 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#defining-statistics" id="toc-defining-statistics" class="nav-link active" data-scroll-target="#defining-statistics">Defining statistics</a>
+  <ul class="collapse">
+  <li><a href="#the-reasons-behind-it-all" id="toc-the-reasons-behind-it-all" class="nav-link" data-scroll-target="#the-reasons-behind-it-all">The reasons behind it all</a></li>
+  <li><a href="#minimal-theory-falsification" id="toc-minimal-theory-falsification" class="nav-link" data-scroll-target="#minimal-theory-falsification">Minimal Theory: Falsification</a></li>
+  </ul></li>
+  <li><a href="#contents-of-this-chapter" id="toc-contents-of-this-chapter" class="nav-link" data-scroll-target="#contents-of-this-chapter">Contents of this chapter</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -190,11 +266,73 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="this-page-contains" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="this-page-contains">This page contains …</h4>
+<p>… a general overview of why we do statistics, what statistics even <em>is</em> in the first place, as well as some wild rambling and editorializing about how statistics is used and mis-used in all areas of society.</p>
+</section>
+<section id="defining-statistics" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="defining-statistics">Defining statistics</h2>
+<p>Although they all broadly revolve around the same general idea and underlying concept, you will find hundreds - if not thousands - of different definitions for the term “statistics” out there. In order for us to be able to move forward with the rest of this collection of ideas (I try my best to not call it a book as well, okay?), we should agree on a minimal definition for what we’re about to do.</p>
+<p>The most basic and all-encapsulating definition of statistics I can come up with goes like this:<br>
+<strong>Statistics is the use of mathematical methods to simplify structured data in a search for patterns and dynamics.</strong></p>
+<p>Depending on your prior knowledge, this definition may run counter to your perception of statistics. That is intentional, because the world is big and my aim is to keep these pages as short as possible. However, before we can move on, I should probably elaborate on parts of this definition, in order to avoid any misconceptions down the road:</p>
+<ul>
+<li><p><strong>Mathematics:</strong> As I’ve already stated in the intro, I will try my best not to throw complex mathematical formulas and notations at you. Luckily, you won’t even have to <em>do</em> that much math yourself, as many functions in R automate the number crunching part. Still, math underlies all and we can’t avoid it, whether we work with numbers or anything else (which will have to be treated as numbers anyway for the math to work).</p></li>
+<li><p><strong>Methods:</strong> Statistics is not about interpreting the result, it is only about obtaining it. Does that mean that interpretation doesn’t matter? Hell no! Interpretation is probably <em>the</em> most important step of any analysis. However, statistics can only provide clues about the relations between numbers. You have to figure out what these numbers mean depending on the context - and also, whether the methods you choose to use actually make sense in your case in the first place!</p></li>
+<li><p><strong>Simplification:</strong> Whatever the data we work with looks like, it will probably feature a lot of observations and traits (or respondents and values, or whatever they’re called) contained in a 2- or more-dimensional data structure. While complex structures are nice for <em>recording</em> data, they are very hard to <em>represent</em>. As such, we use statistics to simplify whatever data we have down to general trends and easily-communicated numbers. This way, we can represent entire columns or even more complex data structures with just a few values, making it even easier to communicate.</p></li>
+<li><p><strong>Patterns and dynamics:</strong> Statistics can be split into several categories (more on that later), but in general we can either <em>describe</em> patterns in the data we collect, or we can take one step further and try to <em>infer</em> what dynamics cause these patterns in the first pace (caution: “infer” is not used in the statistical sense here). While description can work with one variable or more, inference <strong>needs</strong> other variables to explain the variation seen in the data.</p></li>
+<li><p><strong>Structure:</strong> This is here mostly to distinguish between so-called <em>quantitative</em> and <em>qualitative</em> research paradigms. We here in the quantitative world work with large quantities of data that (generally) follow a set and unchanging structure, unlike those silly qualitative people with their interviews and text analyses. (Don’t hurt me, qualitative people - this is a joke. Also, the two realms are not as separated as they once were: Mixed-Methods approaches can combine both to achieve unique results, and increasing computational power can bring qualitative data into the quantitative realm, as well as quantitative maths to qualitative methods).</p></li>
+<li><p><strong>Data:</strong> Perhaps the hardest out of all the concepts in this definition, even though it seems very easy. The truth is that data can be pretty much anything you want to use - all you need is a way to express what you’re interested in as a <strong>variable</strong>, meaning that it needs to a) have a set and unchanging global definition, b) easy to interpret labels for the values this variable can have and c) some degree of variation between these labels. We will touch on this further in the “Data types” section in a few minutes.</p></li>
+<li><p><strong>Research:</strong> Wait, this wasn’t even in the definition?! Yes, and that’s why it’s important to address it here. You see, while statistics is most definitely a part of research, you really don’t <em>have to</em> have a rigorous research methodology in mind for data analysis. Therefore, I have opted to leave all the parts about developing ideas and hypotheses mostly out of these pages, and am instead focusing solely on the statistical methods. Don’t worry, we will still talk about <em>statistically</em> validating results as well as how to use them to evaluate your hypotheses, but there will not be a theory chapter in these pages.</p></li>
+</ul>
+<section id="the-reasons-behind-it-all" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="the-reasons-behind-it-all">The reasons behind it all</h3>
+<p>With all that in mind, why do we even <em>use</em> statistics?<br>
+In a world as complex and interconnected as ours, it can be very hard to figure out what caused certain events to take place. Similarly, every event is potentially influenced by a wide range of external factors, making it very hard to predict the results of implementing a new idea or method into practice. In these situations, statistics can be a tool to shine a light upon these hidden dynamics, either to figure out why something happened the way it did after the fact, or to predict what might possibly be the results of some action (or inaction), were it to be implemented. In the context of capitalism as it exists today, statistics is an important way to both measure performance when compared to the competition, as well as a tool to search for ways to improve one’s own business. In extreme cases, companies like Google and Meta probably build most of their value out of the monetization of predicted user behaviour (i.e.&nbsp;serving personalized advertisement) - using collected user information as the core data set for complex statistical methods.</p>
+<p>With the role that numbers and optimizations play in today’s world, statistics can also be used to justify some sort of action to third parties - or to impress people (think of claims like “9 out of 10 doctors recommend our toothpaste!”). The important thing to recognize here is that <strong>statistics and truth are two different things</strong>! If you want to, you can use statistics to make up credibility for anything you want to convey (in fact, a whopping 83.4% of statistics are made up!) - and even if you don’t, you might accidentally end up in this position by miscalculating or mis-applying a statistical concept.</p>
+<p>This is another reason why statistical literacy is an important skill. If it’s that easy to generate or make up data and results, we should be able to at least roughly judge whether these results are credible or not.</p>
+</section>
+<section id="minimal-theory-falsification" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="minimal-theory-falsification">Minimal Theory: Falsification</h3>
+<p>Turns out, I lied to you previously: There is some minimal amount of theory about theory validation that we have to address before we jump into actually doing stuff. This is due to an unfortunate truth that anyone collecting data has to deal with - although us social scientists have it worse than for example physicists, as we have to deal with humans and their answering behaviour:<br>
+<strong>We will never know the entire, objective truth about the things we want to analyze. Our data will always be flawed or incomplete in some way</strong></p>
+<p>Imagine a world where we are blessed with infinite resources for our research (i.e.&nbsp;mostly time and money). In theory, we should be able to research everything we want and figure out exactly why people started their businesses (or whatever our research question is). Because of our infinite resources, we can simply go out and ask every startup founder about their reasons and then produce the most all-encompassing and rigorous analysis possible, right? Wrong.<br>
+Even though we might have infinite resources, our analysis is still limited by several potential factors: Do we even know every founder - what if we miss someone? Do we really ask all the right questions to get what we need - what if we miss an aspect of founding that could have been important? And worst of all: Do we actually trust the people we ask to tell us the entire, honest truth about their founding story?</p>
+<p>At least one of these points is always a potential issue. And unfortunately, due to limited resources, we can’t even be <em>this rigorous</em> in our data collection to begin with! This leads to the central issue: If we can’t ask everyone the correct question, how can we claim that the statistical results we produce are an accurate representation of the world?</p>
+<p>There are two things we can do to address this problem: One lies in the way we construct our statistical methods, and we will touch on this later (look for the concept of “significance”). The other one lies in the way we construct our theories. The core idea here is the following: Because of the uncertainty in our data collection, we can’t actually <em>verify</em> any claim we make - but we can get closer to the truth by trying our best to <em>falsify</em> an opposing theory, thereby adding credence to our theory.</p>
+<p>The classic example in this context is about swans. The theory “all swans are white” is something we can never verify, because we can never know “all swans” - there might always be some off-colour swan somewhere on this planet, hidden from our view or not yet born, but still disproving our hypothesis.<br>
+What we can do, however, is build and falsify a counter-hypothesis like “there exist non-white swans”. This way, we don’t have to deal with a claim of maximal specificity (ALL swans) and can instead be satisfied as soon as we find at least one non-white swan. This one swan is enough to prove our counter-theory (usually called a <em>Null-hypothesis</em>) and thereby invalidate our original theory, no matter how general or specific we might have been when constructing it.</p>
+<p>In the world of statistics, this usually works out like this: We might assume that something has a positive influence on something else, for example “An increase in education leads to an increased income”. However, even though we might find in our statistical analysis that every level of education increases salaries by 250€ on average, we can’t state this as a definite claim because of all the uncertainty discussed above (Did we miss people/industries/regions/cultures/… where this is not the case? Were people honest about their education and/or salaries?). Therefore, we build the counter-claim (“Education has a negative/no effect on salaries”) and try our best to disprove this. In our case, we have shown that an effect (probably*) exists, disproving the counter-hypothesis and strengthening our theory.</p>
+<p>This also means that because there is no definite proof for any theory, nothing can ever be known to be “true”. Instead, science represents our current <em>best guess</em> as to what is going on in the world - until this guess is itself disproven and/or a better guess comes along. If you want to know more about this method of falsification and why we use it, Popper <span class="citation" data-cites="Popper2002">(<a href="references.html#ref-Popper2002" role="doc-biblioref">2002</a>)</span> is your guy. If you can speak German, I’d highly advise searching for the original texts rather than English translations though.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>*This is where statistical significance and probability come into play, see the chapter on those for more information.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="contents-of-this-chapter" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="contents-of-this-chapter">Contents of this chapter</h2>
+<p>But how do we even get to this point of calculating statistical analyses? To start us off, this chapter will focus on laying the ground work for what is to come. We will continue by talking about different data types (i.e.&nbsp;“what is the data? What do we want to measure?”) and ways of getting it (i.e.&nbsp;“who do we ask? How do we measure our data?”), two central concepts for most of what is to follow.</p>
 <hr>
-<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-08-24 12:14</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
-<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats-basics/blob/main/files/1stats_1basics.qmd">here</a>.</p>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-09-20 11:14</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/1stats_1basics.qmd">here</a>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Popper2002" class="csl-entry" role="listitem">
+<em>The Logic of Scientific Discovery (Routledge Classics)</em>. 2002. Routledge.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -217,6 +355,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -437,8 +690,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../files/1stats_2sampling.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sampling</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../files/1stats_2datatypes.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
