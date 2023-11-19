@@ -19,6 +19,7 @@ book:
       - files/2desc_3plots.qmd
     - part: "R: Packages and General Deep Dives"
       chapters:
+      - files/R_basics.qmd
       - files/R_ggplot.qmd
       - files/R_gitsetup.qmd
       - files/R_gituse.qmd

@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Basics of Statistics and R - Getting to know R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../files/R_ggplot.html" rel="next">
+<link href="../files/2desc_3plots.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../files/R_basics.html">R: Packages and General Deep Dives</a></li><li class="breadcrumb-item"><a href="../files/R_basics.html">Getting to know R</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Basics of Statistics and R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface - Aim and Scope</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">1: Basics of Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_1basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Basic Idea of Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_2datatypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data and Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_3sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Populations and Sampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/1stats_4significance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Effect Significance</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">2: Descriptive Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_1basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing Things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_2summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/2desc_3plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Frequency Plots and Distributions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">R: Packages and General Deep Dives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_basics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Getting to know R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_gitsetup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Working With RStudio and Git(Hub)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/R_gituse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Using Git(Hub) in RStudio</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../files/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#launching-r" id="toc-launching-r" class="nav-link active" data-scroll-target="#launching-r">Launching R</a>
+  <ul class="collapse">
+  <li><a href="#restrictions-of-using-r-only" id="toc-restrictions-of-using-r-only" class="nav-link" data-scroll-target="#restrictions-of-using-r-only">Restrictions of using R only</a></li>
+  </ul></li>
+  <li><a href="#Rstudio" id="toc-Rstudio" class="nav-link" data-scroll-target="#Rstudio">A better environment: RStudio</a></li>
+  <li><a href="#navigating-r" id="toc-navigating-r" class="nav-link" data-scroll-target="#navigating-r">Navigating R</a>
+  <ul class="collapse">
+  <li><a href="#assigning-data-variables" id="toc-assigning-data-variables" class="nav-link" data-scroll-target="#assigning-data-variables">Assigning data: Variables</a></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
+  <li><a href="#matrices-and-data-frames" id="toc-matrices-and-data-frames" class="nav-link" data-scroll-target="#matrices-and-data-frames">Matrices and data frames</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types">Data types</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  </ul></li>
+  <li><a href="#expanding-r-libraries-and-packages" id="toc-expanding-r-libraries-and-packages" class="nav-link" data-scroll-target="#expanding-r-libraries-and-packages">Expanding R: Libraries and packages</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Getting to know R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="this-page-contains" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="this-page-contains">This page contains …</h4>
+<p>… a basic overview over R and RStudio to get you started on understanding what exactly is happening when you run R code. Why use RStudio - is R not enough? How do I navigate my data? What are libraries?</p>
+</section>
+<section id="launching-r" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="launching-r">Launching R</h2>
+<p>So you’ve successfully installed R (if not, try clicking <a href="https://cran.r-project.org/">here</a>) and are now wondering about how to work with it? Fear not, for I am here to help you out!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../_rsc/r/r_console.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">R over GUI (left) or over system console (here: Windows)</figcaption>
+</figure>
+</div>
+<p>Launching R for the first time if you’re not already familiar with coding languages might be daunting. No matter if you launched the console (right) or GUI version (left), you will find yourself presented with an arguably garish and hard-to understand console. Unfortunately, you and this console will have to become best friends, as this is where you will do all the actual <em>work</em> - however, we’ll get to getting you a nicer workspace soon, don’t worry.<br>
+Technically, this console is all you need to work with R: As you can see above, I’ve loaded a preinstalled dataset and calculated a linear regression in just two lines of code. You can also use this console to do some simple math, for example calculating the cost of tipping 15% on a meal costing 8.99€ or the number of seconds in a day:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># meal + 15% tip</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">8.99</span> <span class="sc">+</span> <span class="fl">0.15</span><span class="sc">*</span><span class="fl">8.99</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.3385</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seconds in a day</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">60</span> <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">24</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 86400</code></pre>
+</div>
+</div>
+<p>Note that usually, including spaces in your code will not change anything about the way it is processed, but can and will improve its readability!</p>
+<section id="restrictions-of-using-r-only" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="restrictions-of-using-r-only">Restrictions of using R only</h3>
+<p>However, while R is a mighty tool, it suffers when used in the way presented above: Saving your work for future reproduction becomes cumbersome as you will have to keep track of each individual command, and especially when working with more complex analysis models, you will sooner or later lose control over what variables and data sets you have loaded and how they are named.</p>
+</section>
+</section>
+<section id="Rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="Rstudio">A better environment: RStudio</h2>
+<p>This is where <a href="https://posit.co/downloads/">RStudio</a> comes in. RStudio is what’s called an IDE, an <em>integrated development environment</em> that aims to improve working with R.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../_rsc/r/RStudio.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Rstudio layout</figcaption>
+</figure>
+</div>
+<p>You might recognize one of the four panes presented above (you can get the fourth one by opening an existing script or creating a new one via the circled icon) - it’s the <strong>R console</strong> we’ve encountered previously, only now it’s tucked in nicely between a variety of other useful panes. Let’s quickly look at all panes and their respective purposes:</p>
+<ul>
+<li>The <strong>code editor</strong> is where you will probably spend most of your time. Here, you can arrange the code you’ve written and save it as a <em>script</em> for easy reuse. You can also run your code by clicking the “Run” button in the top right of the code editor, or via the keyboard shortcut <em>Ctrl/Cmd + Enter</em>. Running will execute whatever line the cursor is currently in, whatever parts of your script are currently highlighted.<br>
+</li>
+<li>The <strong>R console</strong> is what we’ve already seen when looking at standalone R. While you can write and execute your code in the code editor, the results and potential messages will all be displayed in the R console, so keep an eye on this pane when you run something to see if it actually worked. It also provides access to other consoles, in case you need them for anything.<br>
+</li>
+<li>The <strong>environment</strong> pane provides an overview of all variables, user functions and data sets that are currently loaded and available. It provides an overview over both their names and dimensions (i.e.&nbsp;how many rows/columns a data set has, etc.) and can be used to quickly inspect data sets by clicking on the respective entry. It includes other tabs as well, but most used will be the “environment” tab as well as the “git” tab when working with GitHub or other code repositories.<br>
+</li>
+<li>Last but not least, the fourth pane contains a variety of information like a <em>inbuilt file explorer</em>, a <em>plot</em> tab to view and save created graphics and - arguably most important - a <em>help</em> tab containing useful information. In R, <strong>basically every function is documented in detail</strong>, and to access this documentation, you simply have to type <code>?FUNCTION</code> into the console. Running <code>?mean</code>, for example, brings up the documentation of the <code>mean()</code>-function, showing that this function not only computes the mean of a given distribution, but can also be extended with optional parameters to trim a certain percentage of “outliers” before calculation.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Since some special functions aren’t really <em>named</em> - think of arithmetic operators like <code>+</code> or dplyr’s <code>%&gt;%</code> pipe operator, you can’t use <code>?+</code> to access their help functions. Instead, you have to wrap them in quotes, like so: <code>?"+"</code>.</p>
+</div>
+</div>
+<p>By the way, you can freely move and arrange these panes to your liking, but keeping the default view is also completely fine.</p>
+</section>
+<section id="navigating-r" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="navigating-r">Navigating R</h2>
+<section id="assigning-data-variables" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="assigning-data-variables">Assigning data: Variables</h3>
+<p>When working with data, you’re usually dealing with complex tables or lists that you need more than once. Typing them out every time would be cumbersome, which is why you can <em>save them as an object using the assignment operator</em> <code>&lt;-</code> to improve ease of use. You can save most code results as an object, including but not limited to numbers, plots or summary statistics. In the following example, I’ve saved a <em>character string</em>, a <em>vector of numbers</em> as well as <em>a data frame of car statistics</em> as objects.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>character <span class="ot">&lt;-</span> <span class="st">"green"</span> <span class="co"># one character</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">2</span>) <span class="co"># 10 numbers</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cardata <span class="ot">&lt;-</span> <span class="fu">force</span>(mtcars) <span class="co"># a data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I also highly recommend giving your variables short, but descriptive names so that you can easily identify what a given variable contains at any given time.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>R does not care what type of data you want to save in an object. It will happily overwrite any saved object if you tell it to, no matter what the original data was or the new data will be.</p>
+</div>
+</div>
+</section>
+<section id="comments" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="comments">Comments</h3>
+<p>While not directly relevant to your code, comments are an important part of keeping your sanity intact. Putting a <code>#</code> anywhere in your code will cause all further writing in the same line to be ignored by R when running functions. This means that you can put comments in their own line (see the first code block on this page) or in the same line as your code (see the second code block on this page). No matter where you want to keep them, comments are a great way to document what you’ve done (and why you’ve done it), which will help immensely in understanding your code at a later date, or someone else’s code if you’re ever collaborating with other people.</p>
+</section>
+<section id="vectors" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="vectors">Vectors</h3>
+<p>Whenever you’re working in R, you will probably be working with either <em>vectors</em>, <em>matrices</em> or <em>data frames</em> containing certain data types. While there are other data types, those three will probably be the bulk of what you encounter.<br>
+A vector is simply a list of connected items (this gets confusing, as there is also a <em>list</em> data type). Both <code>character</code> and <code>number</code> created above are vectors, even though <code>character</code> only has one item, “green”. As you can see, creating a vector is easy, as you just have <em>concatenate</em> a number of values via the <code>c()</code>-function.<br>
+Vectors can be navigated by using square brackets: <code>number[1]</code> will give us the first observation of our <code>number</code> vector (that being “1”). You can also <em>subset</em> vectors by specifying certain ranges or positions, i.e.&nbsp;<code>number[2:4]</code> will give elements 2, 3 and 4 of our vector, while <code>number[9, 2, 4]</code> will return the 9th, 2nd and 4th elements, in that order.</p>
+<p>Vectors can be of any length, but cannot feature multiple data types (more on that later). Combining differing data types to a vector will lead to <strong>R guessing what data type you want and changing everything accordingly</strong>, which is a common source of issues!</p>
+<p>See below: as soon as a character item is added to our <code>number</code>-vector, math is no longer possible.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>number</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 4 2 5 6 7 9 4 6 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>number[<span class="dv">2</span>] <span class="sc">+</span> number[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="fu">c</span>(number, <span class="st">"not a number"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>number</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "1"            "4"            "2"            "5"            "6"           
+ [6] "7"            "9"            "4"            "6"            "2"           
+[11] "not a number"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>number[<span class="dv">2</span>] <span class="sc">+</span> number[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in number[2] + number[5]: nicht-numerisches Argument für binären Operator</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are familiar with “real” coding languages like Python or C, you might notice something odd in this explainer - and yes, you’re right: The first element of a vector is accessed via [1] because R, unlike those languages, does not start counting at 0!</p>
+</div>
+</div>
+</section>
+<section id="matrices-and-data-frames" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="matrices-and-data-frames">Matrices and data frames</h3>
+<p>A matrix is the two-dimensional brother of a vector, storing data on two dimensions (commonly referred to as “rows” and “columns”). Just like vectors, however, matrix items across both rows and columns need to be of the same data type. Items inside matrices are also accessed via square brackets, however this time it needs two digits: one indicating row, and one indicating column. <code>matrix[2,1]</code> will for example spit out the element in the second row of the first column. To access an entire row/column, just leave the other entry empty (but keep the comma!): <code>matrix[2, ]</code> for the entire second row.<br>
+Working with real-world data, however, you will encounter data in different formats. For example, when working with survey data, you will find numeric values (age, …), character vectors (name, …) and other data types in the same dataset. While Matrices can’t be used tor this sort of data, <em>data frames</em> can. Data frames are basically a group of vectors of the same length, with related entries on the same position (i.e.&nbsp;the 5th “age” entry will refer to the same person as the 5th “name” entry). For this reason, data frames are probably the most widely used data type. (If you’re wondering why matrices are still important if data frames are so much better, the answer is simple: <em>matrix multiplication</em> is a powerful mathematical tool in many calculations.)</p>
+<p>Just like matrices, you can navigate data frames via square brackets - if “age” is the first column, then <code>data[5, 1]</code> will return the age of the 5th respondent. Data frame columns can also be accessed directly by name using the <code>$</code> operator: <code>data$age</code> would return a <em>vector</em> of the entire age column, the same result as using <code>data[, 1]</code>. Getting the 5th entry also works both ways, with <code>data[5, 1]</code> and <code>data$age[5]</code> producing the same results.<br>
+This will be a theme with R moving forward: There is a variety of ways to achieve your goals, which way you choose will (mostly) be down to personal preferences.<br>
+If you are wondering how you could possibly know the names of the variables in your data set, there is again a variety of ways to achieve your goals, with the simplest being the <code>names(data)</code> function that lists the names of all columns, in order.</p>
+</section>
+<section id="data-types" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="data-types">Data types</h3>
+<p>We have encountered <em>numbers</em> and <em>characters</em> before. We’ve also seen that you can do maths with numbers, but not characters, and we have also seen that when combining both, characters take priority. Numbers and characters will probably be the bulk of what you encounter, but there are a multitude of data types built into R, and some packages expand these definitions even further. Another common data type besides <em>numbers</em> and <em>characters</em> is the <em>logical</em> data type, which can take the values <code>TRUE</code> and <code>FALSE</code>.<br>
+This data type is a bit weird, as it usually has no use on its own, but can be used to subset other rows, as it can be the results of simple filtering equations. Running <code>data$age &lt; 30</code> for example returns a vector of the same length as <code>data$age</code>, with values <strong>TRUE</strong> if the age is under 30 and <strong>FALSE</strong> otherwise. This can be combined with the square brackets above to filter data: <code>data[data$age &lt; 30, ]</code> for example will return a modified <code>data</code> frame, including the rows of respondents under 30 and all columns (since the second parameter was left empty).</p>
+<p>While not <em>technically</em> data types, <strong>NA</strong> is still something we should talk about. NA stands for “non-applicable” and will be used whenever there is <em>no value to be displayed</em>, be it because there is no value in the underlying data for that case (like accessing a row/column that doesn’t exist) or because some sort of function produces no output (like running <code>mean()</code> on a character vector). NAs aren’t inherently a bad thing, as they will be discarded for most calculations or can be discarded manually via optional arguments (<code>mean()</code> has a <code>na.rm</code> argument to ignore NA in the data), however, you should still be aware whether there are any NAs in your data.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A few points to expand further on combining and transforming data types:<br>
+1. While R - just like many other programming languages - features different types of “numbers” (float, double, …), you usually do not have to worry about converting these. R is pretty good at guessing which display type is the most appropriate for any situation.<br>
+2. In case R cannot figure out your data’s types, it should default to treating them as character strings. This may be annoying since you can’t do math with strings, but they can contain basically everything - so you at least shouldn’t lose any data.<br>
+3. In case you ever find that R wrongly converted something (or want to force a conversion, even if it means losing data), R has a variety of functions starting with <code>as.</code> to accomplish this: For example, <code>as.integer()</code> forces everything to be treated as an integer - anything that can’t be converted gets converted to <code>NA</code> values instead.</p>
+</div>
+</div>
+</section>
+<section id="functions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="functions">Functions</h3>
+<p>In R, functions are your bread and butter. R comes packed with a wide variety of functions, useful for finding the minimum value of a vector or calculating complex regression models. It can be expanded even more via <em>packages</em> (more on those later). Functions are usually lowercase and end with brackets. The <code>mean()</code>function we encountered before is one such function. Given a vector, it calculates the mean of all the items in this vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.5</code></pre>
+</div>
+</div>
+<p>As we’ve seen when running <code>?mean</code>, each function comes with several parameters for us to tweak. Each parameter has a name attached to it, but if no names are specified, R treats them in the order they appear. To illustrate: If we write <code>mean(c(1,2,3))</code> R will interpret the input vector as the first argument (i.e.&nbsp;the vector to compute the mean for). It is identical to manually specifying the argument every time (i.e.&nbsp;<code>mean(x = c(1,2,3))</code>). Same goes for multiple arguments: <code>mean(c(1,2,3), 0.2)</code> and <code>mean(x = c(1,2,3), trim = 0.2)</code> produce the same result. Keep in mind that if you don’t specify argument names, you’ll have to keep within the function’s preset order of arguments, while when specifying you can also switch the arguments around (i.e.&nbsp;<code>mean(trim = 0.2, x = c(1,2,3))</code>).</p>
+</section>
+</section>
+<section id="expanding-r-libraries-and-packages" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="expanding-r-libraries-and-packages">Expanding R: Libraries and packages</h2>
+<p>While R comes prepackaged with a variety of functions, you will find yourself limited in many circumstances. For example, reading an Excel-file (.xls or .xlsx) into R is not possible with R out-of-the-box.<br>
+Fortunately, due to its open-source nature, everyone can write their own functions and commands to expand on R’s capabilities and publish them for everyone else to use. These collections of functions are commonly called <em>libraries</em> and are distributed in a set format called <em>packages</em>. There are <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">a whole lot of packages available</a>, and you will not need almost all of them.<br>
+As an example, R cannot natively load data from Excel-files (.xlsx, …). However, a variety of packages include functions to enable this, like the <code>read_excel()</code> function from the <code>readxl</code> package.</p>
+<p>You can install packages onto your local machine at any time (as long as you have an internet connection) via the <code>install.packages()</code> command. To actually use the installed packages inside R, you will have to load them into your project via the <code>library()</code> command.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Side Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Since you are matching names on a distant server in order to find your content, <code>install.packages()</code> requires a string (<code>install.packages("name")</code>) to match.<br>
+If you’re actually loading an installed library, however, the <code>library()</code> function searches for a package object, instead of matching a string, meaning you don’t need the quotation marks (<code>library(name)</code> without the “)!</p>
+</div>
+</div>
+<p>Keep in mind that while you only need to install packages once (unless you want to update, which does not happen automatically), you have to load and reload your libraries every time you open up R and before you can run functions sourced from these packages. As such, I recommend putting the required <code>library()</code> functions at the beginning of your script for easier access.</p>
+<hr>
+<p><strong>Last modified:</strong> <span style="color:#00bc8c">2023-11-09 15:00</span>, R version <span style="color:#00bc8c">4.3.1</span><br>
+<strong>Source data for this page</strong> can be found <a href="https://github.com/fallenEngels/stats_basics/blob/main/files/R_basics.qmd">here</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../files/2desc_3plots.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Frequency Plots and Distributions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../files/R_ggplot.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Beautiful data visualizations using ggplot2</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
